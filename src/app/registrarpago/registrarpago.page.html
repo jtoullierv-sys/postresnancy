@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Sección de Pago</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Detalles del Pago</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- Fecha actual -->
+      <ion-item>
+        <ion-label position="stacked">Fecha Actual</ion-label>
+        <ion-input [value]="fechaActual" readonly></ion-input>
+      </ion-item>
+
+      <!-- Monto total -->
+      <ion-item>
+        <ion-label position="stacked">Monto Total (S/)</ion-label>
+        <ion-input [value]="totalp" readonly></ion-input>
+      </ion-item>
+
+      <!-- Fecha de entrega -->
+      <ion-item>
+        <ion-label position="stacked">Fecha de Entrega</ion-label>
+        <ion-input type="date" [(ngModel)]="fentrega" required></ion-input>
+      </ion-item>
+
+      <!-- Hora de entrega -->
+      <ion-item>
+        <ion-label position="stacked">Hora de Entrega</ion-label>
+        <ion-input type="time" [(ngModel)]="hentrega" required></ion-input>
+      </ion-item>
+
+      <!-- Número -->
+      <ion-item>
+        <ion-label position="stacked">Número de contacto</ion-label>
+        <ion-input type="tel" [(ngModel)]="numero" required></ion-input>
+      </ion-item>
+
+      <!-- Subir comprobante -->
+      <ion-item lines="none"><div>
+        <ion-label position="stacked">Comprobante de Pago (imagen)</ion-label>
+        </div>
+        <input type="file" accept="image/*" (change)="onFileChange($event)" />
+      </ion-item>
+
+      <!-- Selector de QR -->
+      <ion-item>
+        <ion-label>Medio de Pago</ion-label>
+        <ion-select interface="popover" (ionChange)="onMedioChange($event)">
+          <ion-select-option *ngFor="let medio of mediosPago" [value]="medio.nombre">
+            {{ medio.nombre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Imagen QR -->
+      <div class="ion-text-center ion-margin-top"><div>
+        <ion-label color="medium">Código QR</ion-label>
+      </div>
+        <ion-img [src]="medioSeleccionado" alt="QR de pago" class="qr-img"></ion-img>
+      </div>
+
+      <!-- Botón -->
+      <ion-button expand="block" color="success" class="ion-margin-top" (click)="confirmarPago()">
+        CONFIRMAR PAGO
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

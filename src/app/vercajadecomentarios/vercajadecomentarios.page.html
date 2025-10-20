@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Comentarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid class="comentarios-container">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" sizeMd="11" sizeLg="10">
+        
+        <!-- Header con título -->
+        <div class="header-section">
+          <ion-card class="header-card">
+            <ion-card-content>
+              <div class="header-content">
+                <h1 class="titulo-principal">
+                  <ion-icon name="chatbubbles"></ion-icon>
+                  Comentarios
+                </h1>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <!-- Botón agregar comentario -->
+        <ion-grid class="button-section">
+          <ion-row class="ion-justify-content-end">
+            <ion-col size="auto">
+              <ion-button 
+                color="primary"
+                (click)="agregarComentario()">
+                <ion-icon slot="start" name="add"></ion-icon>
+                AGREGAR COMENTARIO
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!-- Grid de comentarios -->
+        <ion-grid>
+          <ion-row>
+            <ion-col 
+              size="12" 
+              sizeSm="6" 
+              sizeMd="4"
+              *ngFor="let comentario of comentarios">
+              
+              <ion-card class="comentario-card">
+                <ion-card-content>
+                  <!-- Header del comentario -->
+                  <div class="comentario-header">
+                    <div class="usuario-info">
+                      <ion-avatar class="avatar">
+                        <img src="assets/img/avatar-default.png" [alt]="comentario.usuario" />
+                      </ion-avatar>
+                      <div class="usuario-datos">
+                        <h6 class="usuario-nombre">{{ comentario.usuario }}</h6>
+                        <small class="fecha">{{ comentario.fecha }}</small>
+                      </div>
+                    </div>
+
+                    <!-- Botón eliminar (solo si es propio) -->
+                    <div class="acciones" *ngIf="comentario.esPropio && usuarioLogueado">
+                      <ion-button
+                        fill="clear"
+                        color="danger"
+                        size="small"
+                        (click)="eliminarComentario(comentario.id)">
+                        <ion-icon slot="icon-only" name="trash"></ion-icon>
+                      </ion-button>
+                    </div>
+                  </div>
+
+                  <!-- Estrellas de calificación -->
+                  <div class="calificacion">
+                    <ion-icon
+                      *ngFor="let llena of getEstrellas(comentario.calificacion)"
+                      [name]="llena ? 'star' : 'star-outline'"
+                      [class.star-filled]="llena"
+                      [class.star-empty]="!llena">
+                    </ion-icon>
+                  </div>
+
+                  <!-- Contenido del comentario -->
+                  <p class="comentario-texto">
+                    {{ comentario.contenido }}
+                  </p>
+                </ion-card-content>
+              </ion-card>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

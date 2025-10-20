@@ -1,0 +1,163 @@
+.comentarios-container {
+  padding: 20px 0;
+}
+
+// Header section
+.header-section {
+  margin-bottom: 16px;
+}
+
+.header-card {
+  background: linear-gradient(135deg, var(--ion-color-primary) 0%, var(--ion-color-primary-shade) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  padding: 8px 0;
+}
+
+.titulo-principal {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  ion-icon {
+    font-size: 2rem;
+  }
+}
+
+// Botón agregar
+.button-section {
+  margin-bottom: 24px;
+}
+
+// Cards de comentarios
+.comentario-card {
+  height: 100%;
+  border: 2px solid var(--ion-color-primary);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+}
+
+ion-card-content {
+  padding: 20px;
+}
+
+// Header del comentario
+.comentario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.usuario-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.usuario-datos {
+  flex: 1;
+}
+
+.usuario-nombre {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.fecha {
+  font-size: 0.85rem;
+  color: #c4c8cc;
+}
+
+.acciones {
+  flex-shrink: 0;
+}
+
+// Calificación con estrellas
+.calificacion {
+  display: flex;
+  gap: 5px;
+  margin-left: 50px;
+  margin-bottom: 12px;
+
+  ion-icon {
+    font-size: 1.1rem;
+  }
+
+  .star-filled {
+    color: #ffc107;
+  }
+
+  .star-empty {
+    color: #6c757d;
+  }
+}
+
+// Texto del comentario
+.comentario-texto {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #ffffff;
+  text-align: justify;
+  margin: 0;
+}
+
+// Responsive
+@media (min-width: 576px) {
+  .titulo-principal {
+    font-size: 2rem;
+
+    ion-icon {
+      font-size: 2.25rem;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .comentarios-container {
+    padding: 40px 0;
+  }
+
+  .header-content {
+    padding: 12px 0;
+  }
+
+  .titulo-principal {
+    font-size: 2.25rem;
+  }
+
+  ion-card-content {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .titulo-principal {
+    font-size: 2.5rem;
+
+    ion-icon {
+      font-size: 2.5rem;
+    }
+  }
+}

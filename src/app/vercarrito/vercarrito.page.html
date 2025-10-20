@@ -1,13 +1,61 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>vercarrito</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">vercarrito</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card class="cart-card">
+    <ion-card-header>
+      <ion-card-title>🛒 Carrito de Compras</ion-card-title>
+      <ion-card-subtitle>
+        A continuación puedes revisar los productos antes de ir al pago.
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ng-container *ngIf="elementos.length > 0; else emptyCart">
+        <ion-list>
+          <ion-item *ngFor="let item of elementos; let i = index">
+            <ion-thumbnail slot="start">
+              <img [src]="item.imagen" alt="{{ item.nombre }}" />
+            </ion-thumbnail>
+
+            <ion-label>
+              <h2>{{ item.nombre }}</h2>
+              <p>Cantidad: {{ item.cantidad }}</p>
+              <p>Precio: S/. {{ item.precio }}</p>
+            </ion-label>
+
+            <ion-badge color="medium">{{ i + 1 }}</ion-badge>
+
+            <ion-button
+              fill="clear"
+              color="danger"
+              slot="end"
+              (click)="eliminarElemento(item.id)"
+            >
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+
+        <ion-card class="summary-card">
+          <ion-card-content class="ion-text-center">
+            <h3>Total: S/. {{ total | number: '1.2-2' }}</h3>
+            <ion-button expand="block" color="primary" (click)="irAlPago()">
+              Ir al pago
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
+
+      <ng-template #emptyCart>
+        <div class="ion-text-center ion-padding">
+          <ion-icon name="cart-outline" size="large" color="medium"></ion-icon>
+          <h3>No hay productos en el carrito</h3>
+          <p>Agrega algunos productos para continuar con tu compra.</p>
+          <ion-button expand="block" color="primary" routerLink="/catalogo">
+            Explorar productos
+          </ion-button>
+        </div>
+      </ng-template>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

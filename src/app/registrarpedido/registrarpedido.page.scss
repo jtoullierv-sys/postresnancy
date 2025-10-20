@@ -1,0 +1,156 @@
+.pedido-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100%;
+}
+
+.pedido-card {
+  max-width: 1100px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+ion-card-content {
+  padding: 24px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+// Sección de imagen
+.imagen-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+// Sección del formulario
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.producto-titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d2d2d;
+  margin: 0 0 24px 0;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d2d2d;
+  margin-bottom: 8px;
+}
+
+.custom-input {
+  --background: #f5f5f5;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.custom-select {
+  --background: #f5f5f5;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+// Sección de precio
+.precio-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  margin-top: 8px;
+}
+
+.precio-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+.precio-valor {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ion-color-primary);
+}
+
+// Botones
+.botones-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+ion-button {
+  --border-radius: 8px;
+  font-weight: 600;
+  text-transform: none;
+  min-width: 120px;
+}
+
+// Responsive para tablets y superiores
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  ion-card-content {
+    padding: 40px;
+  }
+
+  .producto-imagen {
+    height: 500px;
+  }
+
+  .producto-titulo {
+    font-size: 2rem;
+  }
+
+  .precio-valor {
+    font-size: 1.75rem;
+  }
+}
+
+// Responsive para desktop
+@media (min-width: 1024px) {
+  ion-card-content {
+    padding: 48px;
+  }
+
+  .content-grid {
+    gap: 48px;
+  }
+}

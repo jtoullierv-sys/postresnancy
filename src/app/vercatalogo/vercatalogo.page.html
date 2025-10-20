@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Catálogo de Postres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="catalogo-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col 
+          size="12" 
+          sizeSm="6" 
+          sizeMd="4" 
+          sizeLg="3" 
+          *ngFor="let postre of postres">
+          
+          <ion-card class="postre-card" (click)="verDetalle(postre.id)">
+            <div class="imagen-container">
+              <img 
+                [src]="postre.imagen" 
+                [alt]="postre.descripcion" />
+            </div>
+            
+            <ion-card-content class="text-center">
+              <h5 class="postre-titulo">{{ postre.descripcion }}</h5>
+              <p class="postre-precio">S/. {{ postre.precio.toFixed(2) }}</p>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

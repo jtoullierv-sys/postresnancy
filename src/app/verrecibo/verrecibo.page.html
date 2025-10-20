@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Boleta de Pago</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card class="boleta-card">
+
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">BOLETA DE PAGO</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- Datos generales -->
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label><strong>Fecha de Pago:</strong> {{ pago.fechaPago }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Medio de Pago:</strong> {{ pago.medioPago }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Fecha de Entrega:</strong> {{ pedido.fechaEntrega }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Hora de Entrega:</strong> {{ pedido.horaEntrega }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <hr>
+
+      <!-- Tabla de productos -->
+      <div class="tabla-productos">
+        <div class="tabla-header">
+          <span>Producto</span>
+          <span>Extra</span>
+          <span class="text-end">Cant.</span>
+          <span class="text-end">Subtotal</span>
+        </div>
+
+        <div *ngFor="let item of detalles" class="tabla-row">
+          <span>{{ item.producto }}</span>
+          <span>{{ item.extra }}</span>
+          <span class="text-end">{{ item.cantidad }}</span>
+          <span class="text-end">S/. {{ item.subtotal | number: '1.2-2' }}</span>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Total -->
+      <div class="total-row">
+        <strong>Total a Pagar:</strong>
+        <strong>S/. {{ pedido.total | number: '1.2-2' }}</strong>
+      </div>
+
+      <!-- Footer -->
+      <p class="ion-text-center ion-margin-top text-muted">
+        ¡Gracias por tu compra! 🍰
+      </p>
+
+      <ion-button expand="block" color="primary" fill="outline" class="ion-margin-top" (click)="imprimirBoleta()">
+        Imprimir Boleta
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

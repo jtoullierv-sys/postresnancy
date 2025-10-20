@@ -1,0 +1,22 @@
+ion-card {
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-badge {
+  margin-right: 10px;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  font-weight: bold;
+}
+
+ion-segment-button {
+  font-weight: 600;
+}
+
+ion-card-title {
+  color: #4b2e05;
+}

@@ -1,0 +1,23 @@
+.fondo-page {
+  --background: linear-gradient(rgba(255, 228, 225, 0.95), rgba(255, 240, 245, 0.95));
+}
+
+.shadow-card {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.subtitulo {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.item-row {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.resumen {
+  margin-top: 20px;
+  background-color: #fffbea;
+  border-radius: 12px;
+}

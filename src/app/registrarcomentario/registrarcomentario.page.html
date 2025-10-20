@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Dejá tu Comentario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="comentario-container">
+    <ion-card class="comentario-card">
+      <ion-card-content>
+        <h5 class="titulo-form">Dejá tu comentario</h5>
+
+        <!-- Nombre (readonly) -->
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <ion-input
+            [value]="usuario"
+            [readonly]="true"
+            class="custom-input"
+          ></ion-input>
+        </div>
+
+        <!-- Calificación con estrellas -->
+        <div class="form-group">
+          <label class="form-label">Calificación</label>
+          <div class="rating-container">
+            <ion-icon
+              *ngFor="let estrella of estrellas"
+              [name]="calificacion >= estrella ? 'star' : 'star-outline'"
+              class="star-icon"
+              [class.active]="calificacion >= estrella"
+              (click)="seleccionarCalificacion(estrella)"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <!-- Comentario -->
+        <div class="form-group">
+          <label class="form-label">Comentario</label>
+          <ion-textarea
+            [(ngModel)]="comentario"
+            rows="4"
+            placeholder="Escribe tu comentario aquí..."
+            class="custom-textarea"
+          ></ion-textarea>
+        </div>
+
+        <!-- Botón de envío -->
+        <div class="button-container">
+          <ion-button 
+            expand="block" 
+            color="primary"
+            (click)="enviarComentario()"
+          >
+            <ion-icon slot="start" name="send"></ion-icon>
+            Enviar
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
