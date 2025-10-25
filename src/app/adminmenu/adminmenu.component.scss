@@ -1,0 +1,115 @@
+// Variables de colores
+$pink-bg: #ffe5ec;
+$pink-light: #fff0f5;
+$red-text: #dc3545;
+$white: #ffffff;
+
+// Header
+.header-toolbar {
+  --background: #{$pink-bg};
+  --color: #{$red-text};
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+// Menú lateral
+.menu-content {
+  --background: #{$pink-bg};
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 20px 16px;
+}
+
+// Botones del menú
+.menu-items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.menu-button {
+  --background: #{$white};
+  --background-hover: #{$pink-light};
+  --background-activated: #{$pink-light};
+  --color: #{$red-text};
+  --border-radius: 12px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  height: 48px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  margin: 0;
+
+  ion-icon {
+    margin-right: 8px;
+  }
+}
+
+.menu-icon {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.menu-label {
+  flex: 1;
+  text-align: left;
+}
+
+// Imagen del chef
+.chef-image-container {
+  width: 100%;
+  max-width: 200px;
+  margin-top: auto;
+  padding: 16px;
+  background: linear-gradient(135deg, #ffd6e0 0%, #ffebf0 100%);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.chef-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+// Responsive
+@media (min-width: 768px) {
+  .menu-button {
+    font-size: 15px;
+    height: 52px;
+  }
+
+  .chef-image-container {
+    max-width: 220px;
+  }
+}
+
+// Animaciones
+.menu-button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

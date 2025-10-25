@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Estadísticas del Negocio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="estadisticas-container">
+    
+    <!-- Tarjetas resumen -->
+    <ion-grid class="cards-grid">
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="3">
+          <ion-card class="stat-card card-primary">
+            <ion-card-content class="text-center">
+              <h3 class="card-title">Clientes</h3>
+              <h1 class="card-value">{{ numCliente }}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-lg="3">
+          <ion-card class="stat-card card-success">
+            <ion-card-content class="text-center">
+              <h3 class="card-title">Pedidos por validar</h3>
+              <h1 class="card-value">{{ numPedidoPorValidar }}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-lg="3">
+          <ion-card class="stat-card card-warning">
+            <ion-card-content class="text-center">
+              <h3 class="card-title">Postres en Catálogo</h3>
+              <h1 class="card-value">{{ numPostresCatalogo }}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="6" size-lg="3">
+          <ion-card class="stat-card card-danger">
+            <ion-card-content class="text-center">
+              <h3 class="card-title">Postres Personalizados</h3>
+              <h1 class="card-value">{{ numPostresPersonalizados }}</h1>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Gráficos -->
+    <ion-grid class="charts-grid">
+      <ion-row>
+        <!-- Ingresos por Mes -->
+        <ion-col size="12" size-lg="6">
+          <ion-card class="chart-card">
+            <ion-card-header class="chart-header">
+              <ion-card-title>Ingreso por Mes (Ojiva)</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="chart-content">
+              <div class="chart-placeholder">
+                <p>Aquí irá el gráfico de ingresos</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <!-- Pedidos por Mes -->
+        <ion-col size="12" size-lg="6">
+          <ion-card class="chart-card">
+            <ion-card-header class="chart-header">
+              <ion-card-title>Pedidos por Mes (Ojiva)</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="chart-content">
+              <div class="chart-placeholder">
+                <p>Aquí irá el gráfico de pedidos</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <!-- Top 5 Postres -->
+        <ion-col size="12" size-lg="6">
+          <ion-card class="chart-card">
+            <ion-card-header class="chart-header chart-header-info">
+              <ion-card-title>Top 5 Postres Solicitados</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="chart-content">
+              <div class="chart-placeholder">
+                <p>Aquí irá el gráfico de postres</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <!-- Top 5 Clientes -->
+        <ion-col size="12" size-lg="6">
+          <ion-card class="chart-card">
+            <ion-card-header class="chart-header chart-header-info">
+              <ion-card-title>Top 5 Clientes Frecuentes</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="chart-content">
+              <div class="chart-placeholder">
+                <p>Aquí irá el gráfico de clientes</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <img src="assets/img/logo.png" alt="Logo" class="logo-img">
+      Menú
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
+  <ion-content class="menu-content">
+    <div class="menu-container">
+      <!-- Botones del menú -->
+      <div class="menu-items">
+        <ion-button 
+          *ngFor="let item of menuItems"
+          expand="block"
+          class="menu-button"
+          (click)="navigateTo(item.route)">
+          <span class="menu-icon">{{ item.icon }}</span>
+          <span class="menu-label">{{ item.label }}</span>
+        </ion-button>
+      </div>
+
+      <!-- Imagen decorativa -->
+      <div class="chef-image-container">
+        <img 
+          src="https://img.freepik.com/vector-gratis/chica-linda-panaderia-sonriendo-uniforme-mascotas-ilustraciones-arte-dibujos-animados_56104-571.jpg" 
+          alt="Ilustración panadera" 
+          class="chef-image">
+      </div>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>

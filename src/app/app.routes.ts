@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AdminmenuComponent } from './adminmenu/adminmenu.component';
+import { FooterComponent } from './footer/footer.component';
 
 export const routes: Routes = [
   {
@@ -11,8 +13,11 @@ export const routes: Routes = [
     loadComponent: () => import('./vercarrito/vercarrito.page').then( m => m.VercarritoPage)
   },
   {
-    path: 'bienvenida',
-    loadComponent: () => import('./bienvenida/bienvenida.page').then( m => m.BienvenidaPage)
+    path: '',
+    component: FooterComponent,
+    children:[
+    { path: 'bienvenida', loadComponent: () => import('./bienvenida/bienvenida.page').then( m => m.BienvenidaPage)},
+    ]
   },
   {
     path: 'login',
@@ -54,4 +59,20 @@ export const routes: Routes = [
     path: 'verrecibo',
     loadComponent: () => import('./verrecibo/verrecibo.page').then( m => m.VerreciboPage)
   },
+ /* {
+    path: 'bienvenidaadmin',
+    loadComponent: () => import('./bienvenidaadmin/bienvenidaadmin.page').then( m => m.BienvenidaadminPage)
+  },*/
+   {
+    path: '',
+    component: AdminmenuComponent,
+    children: [
+      { path: 'bienvenidaadmin', loadComponent: () => import('./bienvenidaadmin/bienvenidaadmin.page').then( m => m.BienvenidaadminPage)},
+      // ... más rutas
+    ]
+  },
+  {
+    path: 'estadisticas',
+    loadComponent: () => import('./estadisticas/estadisticas.page').then( m => m.EstadisticasPage)
+  }
 ];

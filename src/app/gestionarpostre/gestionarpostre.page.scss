@@ -1,0 +1,13 @@
+ion-item {
+  --min-height: 80px;
+}
+
+ion-thumbnail img {
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+ion-fab-button {
+  --border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}

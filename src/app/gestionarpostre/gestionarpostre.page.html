@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title class="ion-text-center">🍰 Gestión de Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- SEGMENTO -->
+  <div class="ion-text-center">
+    <ion-segment [(ngModel)]="segment" color="tertiary">
+      <ion-segment-button value="postres">
+        <ion-label>Postres</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="extras">
+        <ion-label>Extras</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- POSTRES -->
+  <div *ngIf="segment === 'postres'">
+    <ion-list>
+      <ion-item *ngFor="let postre of postres">
+        <ion-thumbnail slot="start">
+          <img [src]="postre.imagen" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ postre.descripcion }}</h2>
+          <p>{{ postre.categoria }} - S/.{{ postre.precio.toFixed(2) }}</p>
+          <small>Personalizado: {{ postre.personalizado ? 'Sí' : 'No' }}</small>
+        </ion-label>
+        <ion-toggle color="success" [(ngModel)]="postre.enTienda" (ionChange)="cambiarEstado(postre)"></ion-toggle>
+        <ion-button fill="outline" color="warning" (click)="editarPostre(postre)">
+          <ion-icon slot="start" name="create"></ion-icon> Editar
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end">
+      <ion-fab-button color="primary" (click)="nuevoPostre()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+  <!-- EXTRAS -->
+  <div *ngIf="segment === 'extras'">
+    <ion-list>
+      <ion-item *ngFor="let extra of extras">
+        <ion-label>
+          <h2>{{ extra.nombre }}</h2>
+          <p>{{ extra.tipo }} - {{ extra.peso }}g - S/.{{ extra.precio.toFixed(2) }}</p>
+        </ion-label>
+        <ion-toggle color="success" [(ngModel)]="extra.estado" (ionChange)="cambiarEstadoExtra(extra)"></ion-toggle>
+        <ion-button fill="outline" color="warning" (click)="editarExtra(extra)">
+          <ion-icon slot="start" name="create"></ion-icon> Editar
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end">
+      <ion-fab-button color="primary" (click)="nuevoExtra()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+  <!-- MODAL POSTRE -->
+  <ion-modal [(isOpen)]="showPostreModal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>{{ editandoPostre?.id === 0 ? 'Agregar Postre' : 'Editar Postre' }}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Descripción</ion-label>
+          <ion-input [(ngModel)]="editandoPostre!.descripcion"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Categoría</ion-label>
+          <ion-input [(ngModel)]="editandoPostre!.categoria"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Precio (S/)</ion-label>
+          <ion-input type="number" [(ngModel)]="editandoPostre!.precio"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Imagen (URL)</ion-label>
+          <ion-input [(ngModel)]="editandoPostre!.imagen"></ion-input>
+        </ion-item>
+        <ion-button expand="block" color="success" (click)="guardarPostre()">Guardar</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- MODAL EXTRA -->
+  <ion-modal [(isOpen)]="showExtraModal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>{{ editandoExtra?.id === 0 ? 'Agregar Extra' : 'Editar Extra' }}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input [(ngModel)]="editandoExtra!.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Tipo</ion-label>
+          <ion-input [(ngModel)]="editandoExtra!.tipo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Peso (g)</ion-label>
+          <ion-input type="number" [(ngModel)]="editandoExtra!.peso"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Precio (S/)</ion-label>
+          <ion-input type="number" [(ngModel)]="editandoExtra!.precio"></ion-input>
+        </ion-item>
+        <ion-button expand="block" color="success" (click)="guardarExtra()">Guardar</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
