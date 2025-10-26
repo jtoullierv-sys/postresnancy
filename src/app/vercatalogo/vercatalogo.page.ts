@@ -39,6 +39,6 @@ export class VercatalogoPage implements OnInit {
     this.postreService.obtenerPostres().subscribe((data) => {
       // 🔧 Mapea los PostreAPI → Postre
       this.postres = data.map(mapPostre);
-    });
+    }); 
   }
 }

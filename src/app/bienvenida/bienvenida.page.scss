@@ -9,7 +9,7 @@
 .welcome-card {
   max-width: 1200px;
   width: 100%;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgb(161, 0, 0);
 }
 
 .content-wrapper {
@@ -82,4 +82,27 @@
       max-width: 400px;
     }
   }
+}
+
+ion-content {
+  --background: #ffd3d3; /* o el color de fondo que desees */
+  flex: 1;
+  height: auto;
+  min-height: 100vh;
+  display: block;
+}
+
+app-header,
+app-footer {
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+
+app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }

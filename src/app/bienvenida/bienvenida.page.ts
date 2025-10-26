@@ -8,6 +8,8 @@ import {
   IonTitle, 
   IonToolbar,
   IonCard,
+  IonCardHeader,
+  IonFooter,
   IonCardContent
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/header/header.component';
@@ -24,6 +26,8 @@ import { FooterComponent } from 'src/app/footer/footer.component';
     IonTitle, 
     IonToolbar,
     IonCard,
+    IonCardHeader,
+    IonFooter,
     IonCardContent,
     CommonModule, 
     FormsModule, 

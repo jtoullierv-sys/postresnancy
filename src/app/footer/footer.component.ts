@@ -20,7 +20,7 @@ import { addIcons } from 'ionicons';
     IonToolbar,
     IonTitle,
     IonButtons,
-    IonButton,
+    IonButton,  
     IonIcon
   ]
 })

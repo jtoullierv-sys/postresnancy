@@ -1,17 +1,24 @@
 .catalogo-container {
   padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 ion-content {
   --background: #fff;
+  flex: 1;
+  display: block;
+  min-height: 100vh;
 }
 
+/* Card de postre */
 .postre-card {
-  height: 100%;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 12px;
   overflow: hidden;
+  height: 100%;
 
   &:hover {
     transform: translateY(-8px);
@@ -23,6 +30,7 @@ ion-content {
   }
 }
 
+/* Imagen */
 .imagen-container {
   position: relative;
   height: 200px;
@@ -36,10 +44,7 @@ ion-content {
   }
 }
 
-ion-card-content {
-  padding: 16px;
-}
-
+/* Texto */
 .postre-titulo {
   font-size: 1rem;
   font-weight: 600;
@@ -58,7 +63,7 @@ ion-card-content {
   margin: 0;
 }
 
-// Responsive adjustments
+/* Responsive */
 @media (min-width: 768px) {
   .catalogo-container {
     padding: 40px 60px;
@@ -69,8 +74,24 @@ ion-card-content {
   .catalogo-container {
     padding: 40px 100px;
   }
-  
+
   .imagen-container {
     height: 220px;
   }
+}
+
+/* Asegura que header/footer estén bien posicionados */
+app-header,
+app-footer {
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+
+/* Fija el footer al final */
+app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }

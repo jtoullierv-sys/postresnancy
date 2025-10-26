@@ -34,3 +34,12 @@
         }
     }
     }
+
+    :host {
+  display: block;
+}
+
+ion-toolbar.footer-toolbar {
+  position: relative;
+  z-index: 10;
+}
