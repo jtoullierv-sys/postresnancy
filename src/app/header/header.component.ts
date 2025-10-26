@@ -1,28 +1,13 @@
-/*import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-})
-export class HeaderComponent  implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {}
-
-}
-*/
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  IonHeader,
   IonToolbar,
   IonTitle,
   IonButtons,
   IonButton,
   IonMenuButton
 } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -31,14 +16,14 @@ import {
   styleUrls: ['./header.component.scss'],
   imports: [
     CommonModule,
-    IonHeader,
     IonToolbar,
     IonTitle,
     IonButtons,
     IonButton,
-    IonMenuButton
+    IonMenuButton,
+    RouterLink // 👈 necesario para los routerLink del HTML
   ]
 })
 export class HeaderComponent {
-  // Puedes agregar propiedades si luego el header es dinámico
+  // Puedes agregar propiedades dinámicas después si quieres (por ejemplo, el nombre del usuario)
 }

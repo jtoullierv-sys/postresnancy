@@ -1,0 +1,128 @@
+[
+  {
+    "id_postre": 1,
+    "descripcion_postre": "ALFAJORES X12",
+    "imagen_postre": "https://www.culinarianmente.com/wp-content/uploads/2024/12/Receta-de-alfajores-de-harina-peruanos.jpg",
+    "personalizacion": 0,
+    "categoria": "BOCADITO",
+    "precio_postre": "22.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 2,
+    "descripcion_postre": "BROWNIE X25",
+    "imagen_postre": "https://recetasdecocina.elmundo.es/wp-content/uploads/2016/11/brownie-de-chocolate.jpg",
+    "personalizacion": 0,
+    "categoria": "BOCADITO",
+    "precio_postre": "22.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 3,
+    "descripcion_postre": "CREMA VOLTEADA",
+    "imagen_postre": "https://larepublica.cronosmedia.glr.pe/migration/images/IFJRGJ3SZVFONTFN6BBNT7KI2Y.jpg",
+    "personalizacion": 0,
+    "categoria": "BOCADITO",
+    "precio_postre": "45.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 4,
+    "descripcion_postre": "EMPANADAS X6",
+    "imagen_postre": "https://w6h5a5r4.delivery.rocketcdn.me/wp-content/uploads/2019/05/empanadas-de-matambre-1080x671.jpg",
+    "personalizacion": 0,
+    "categoria": "BOCADITO",
+    "precio_postre": "24.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 5,
+    "descripcion_postre": "ENROLLADO DE HOT DOG X25",
+    "imagen_postre": "https://d20f60vzbd93dl.cloudfront.net/uploads/tienda_017993/producto_largo.png",
+    "personalizacion": 0,
+    "categoria": "BOCADITO",
+    "precio_postre": "25.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 6,
+    "descripcion_postre": "KEKE DE ARÁNDANO",
+    "imagen_postre": "https://www.midiariodecocina.com/wp-content/uploads/2020/02/Queque-de-ar%C3%A1ndanos-simple-04.jpg",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "40.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 7,
+    "descripcion_postre": "KEKE DE CHOCOCHIPS",
+    "imagen_postre": "https://www.mdzol.com/u/fotografias/m/2023/4/3/f1280x720-1389442_1521117_5050.jpg",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "35.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 8,
+    "descripcion_postre": "KEKE DE CHOCOLATE",
+    "imagen_postre": "https://perudelights.com/wp-content/uploads/2012/01/Chocolate-cake-R4-1024x768.jpg",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "38.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 9,
+    "descripcion_postre": "KEKE DE FRUTOS SECOS",
+    "imagen_postre": "https://img-global.cpcdn.com/recipes/a42d4c8ade4d1943/1200x630cq70/photo.jpg",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "35.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 10,
+    "descripcion_postre": "KEKE DE NARANJA",
+    "imagen_postre": "https://acomeraprenderu.com/wp-content/uploads/2018/08/cakedenaranjaweb.jpg",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "35.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 11,
+    "descripcion_postre": "KEKE DE VAINILLA",
+    "imagen_postre": "https://statics.exitosanoticias.pe/2020/04/4e101e14f36c66aeb81b71f7523772d1.png",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "30.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 12,
+    "descripcion_postre": "KEKE DE ZANAHORIA",
+    "imagen_postre": "https://campograndeperu.com/wp-content/uploads/2024/03/queque-de-zanahorias-y-naranja-3-compressed-edited.jpg",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "40.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 13,
+    "descripcion_postre": "KEKE INGLÉS",
+    "imagen_postre": "https://easyways.cl/storage/20180605100513queque-ingles.jpg",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "38.00",
+    "estado_postre": 1
+  },
+  {
+    "id_postre": 14,
+    "descripcion_postre": "KEKE MARMOLEADO",
+    "imagen_postre": "https://i.pinimg.com/736x/99/f4/c0/99f4c023b774ecf2d174133f57568add.jpg",
+    "personalizacion": 0,
+    "categoria": "KEKE O TORTA",
+    "precio_postre": "35.00",
+    "estado_postre": 1
+  }
+]

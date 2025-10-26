@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AdminmenuComponent } from './adminmenu/adminmenu.component';
 import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';  
 
 export const routes: Routes = [
   {
@@ -13,11 +14,8 @@ export const routes: Routes = [
     loadComponent: () => import('./vercarrito/vercarrito.page').then( m => m.VercarritoPage)
   },
   {
-    path: '',
-    component: FooterComponent,
-    children:[
-    { path: 'bienvenida', loadComponent: () => import('./bienvenida/bienvenida.page').then( m => m.BienvenidaPage)},
-    ]
+    path: 'bienvenida',
+    loadComponent: () => import('./bienvenida/bienvenida.page').then( m => m.BienvenidaPage)
   },
   {
     path: 'login',

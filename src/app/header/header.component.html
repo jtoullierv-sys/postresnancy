@@ -1,19 +1,21 @@
-<ion-header>
+
   <ion-toolbar class="toolbar-custom">
+    <!-- Botón de menú (para laterales si usas <ion-menu>) -->
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
+    <!-- Título -->
     <ion-title class="app-title">
       🍰 Postres Nancy Online
     </ion-title>
 
+    <!-- Navegación -->
     <ion-buttons slot="end">
-      <ion-button fill="clear">Inicio</ion-button>
-      <ion-button fill="clear">Nosotros</ion-button>
-      <ion-button fill="clear">Catálogo</ion-button>
-      <ion-button fill="clear">Pedidos</ion-button>
-      <ion-button fill="clear">Login</ion-button>
+      <ion-button fill="clear" routerLink="/bienvenida">Inicio</ion-button>
+      <ion-button fill="clear" routerLink="/acercadenosotros">Nosotros</ion-button>
+      <ion-button fill="clear" routerLink="/vercatalogo">Catálogo</ion-button>
+      <ion-button fill="clear" routerLink="/registrarpedido">Pedidos</ion-button>
+      <ion-button fill="clear" routerLink="/login">Login</ion-button>
     </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+  </ion-toolbar>>

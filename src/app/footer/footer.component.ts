@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { 
-  IonFooter, 
   IonToolbar, 
   IonTitle, 
   IonButtons, 
@@ -18,7 +17,6 @@ import { addIcons } from 'ionicons';
   styleUrls: ['./footer.component.scss'],
   imports: [
     CommonModule,
-    IonFooter,
     IonToolbar,
     IonTitle,
     IonButtons,
