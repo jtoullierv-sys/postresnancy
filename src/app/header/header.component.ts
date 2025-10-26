@@ -6,26 +6,32 @@ import {
   IonTitle,
   IonButtons,
   IonButton,
-  IonMenuButton
+  IonPopover,
+  IonIcon,
+  IonList,
+  IonItem,
+  IonContent
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+  import { RouterLink } from '@angular/router';
 
-@Component({
-  selector: 'app-header',
-  standalone: true,
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  imports: [
-    CommonModule,
-    IonToolbar,
-    IonHeader,
-    IonTitle,
-    IonButtons,
-    IonButton,
-    IonMenuButton,
-    RouterLink // 👈 necesario para los routerLink del HTML
-  ]
-})
-export class HeaderComponent {
-  // Puedes agregar propiedades dinámicas después si quieres (por ejemplo, el nombre del usuario)
-}
+  @Component({
+    selector: 'app-header',
+    standalone: true,
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    imports: [
+      CommonModule,
+      IonToolbar,
+      IonHeader,
+      IonTitle,
+      IonButtons,
+      IonButton,
+      IonPopover,
+      IonIcon,
+      IonList,
+      IonItem,
+      IonContent,
+      RouterLink
+    ]
+  })
+  export class HeaderComponent {}

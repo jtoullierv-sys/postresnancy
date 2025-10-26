@@ -15,6 +15,8 @@ import {
   IonSelectOption,
   IonLabel
 } from '@ionic/angular/standalone';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 interface Postre {
   id: number;
@@ -48,6 +50,8 @@ interface Extra {
     IonSelectOption,
     IonLabel,
     CommonModule, 
+    HeaderComponent,
+    FooterComponent,
     FormsModule
   ]
 })

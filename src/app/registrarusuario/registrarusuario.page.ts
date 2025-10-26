@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { 
   IonContent, 
   IonCard, 
@@ -13,6 +13,7 @@ import {
   IonInput, 
   IonButton 
 } from '@ionic/angular/standalone';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-registrarusuario',
@@ -21,6 +22,7 @@ import {
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     FormsModule,
     IonContent,
     IonCard,
@@ -30,7 +32,8 @@ import {
     IonItem,
     IonLabel,
     IonInput,
-    IonButton
+    IonButton,
+    HeaderComponent
   ]
 })
 export class RegistrarusuarioPage {

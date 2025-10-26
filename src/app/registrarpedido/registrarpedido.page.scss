@@ -154,3 +154,18 @@ ion-button {
     gap: 48px;
   }
 }
+
+ion-content {
+  --background: #fff;
+  flex: 1;
+  height: auto;
+  min-height: 100vh;
+  display: block;
+}
+
+app-header,
+app-footer {
+  display: block;
+  position: relative;
+  z-index: 10;
+}

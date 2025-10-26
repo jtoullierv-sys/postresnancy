@@ -1,23 +1,109 @@
+/* ===== Estructura general ===== */
+ion-content {
+  --background: #f9fafc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding: 1rem;
+  flex: 1;
+  padding: 1.5rem;
 }
 
-ion-card {
+/* ===== Tarjeta ===== */
+.login-card {
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
   border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease;
 }
 
-ion-card-title {
-  font-size: 1.4rem;
+ion-card-header {
+  text-align: center;
+  background: var(--ion-color-primary);
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.titulo-login {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Formulario ===== */
+.login-form {
+  padding: 1rem 0.5rem;
+}
+
+.input-item {
+  --background: #f5f6fa;
+  --highlight-color-focused: var(--ion-color-primary);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+ion-label {
   font-weight: 600;
+  color: #333;
 }
 
-ion-button {
-  --border-radius: 10px;
+ion-input {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  font-size: 1rem;
+}
+
+.boton-login {
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ===== Enlace extra ===== */
+.extra-options {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.registro-link {
+  color: var(--ion-color-primary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--ion-color-primary-shade);
+    text-decoration: underline;
+  }
+}
+
+/* ===== Animación ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Header y footer ===== */
+app-header,
+app-footer {
+  display: block;
+  position: relative;
+  z-index: 10;
 }

@@ -1,27 +1,7 @@
-/*import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
-})
-export class LoginPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}*/
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AlertController, 
          IonContent, 
          IonCard, 
@@ -32,6 +12,8 @@ import { AlertController,
          IonLabel, 
          IonInput, 
          IonButton } from '@ionic/angular/standalone';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-login',
@@ -40,6 +22,7 @@ import { AlertController,
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     FormsModule,
     IonContent,
     IonCard,
@@ -49,6 +32,8 @@ import { AlertController,
     IonItem,
     IonLabel,
     IonInput,
+    HeaderComponent,
+    FooterComponent,
     IonButton
   ]
 })
@@ -65,7 +50,7 @@ export class LoginPage {
   async login() {
     // Ejemplo de validación local
     if (this.usuario === 'admin' && this.password === '1234') {
-      this.router.navigate(['/bienvenida']);
+      this.router.navigate(['/vercatalogo']);
     } else {
       const alert = await this.alertCtrl.create({
         header: 'Error',

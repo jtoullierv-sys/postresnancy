@@ -1,56 +1,30 @@
-/*import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-
-@Component({
-  selector: 'app-acercadenosotros',
-  templateUrl: './acercadenosotros.page.html',
-  styleUrls: ['./acercadenosotros.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
-})
-export class AcercadenosotrosPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}*/
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
   IonContent, 
-  IonHeader, 
-  IonTitle, 
-  IonToolbar,
   IonCard,
   IonCardContent
 } from '@ionic/angular/standalone';
+import { HeaderComponent } from 'src/app/header/header.component';
+import { FooterComponent } from 'src/app/footer/footer.component';
 
 @Component({
   selector: 'app-acercadenosotros',
+  standalone: true,
   templateUrl: './acercadenosotros.page.html',
   styleUrls: ['./acercadenosotros.page.scss'],
-  standalone: true,
   imports: [
-    IonContent, 
-    IonHeader, 
-    IonTitle, 
-    IonToolbar,
+    CommonModule,
+    FormsModule,
+    IonContent,
     IonCard,
     IonCardContent,
-    CommonModule, 
-    FormsModule
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class AcercadenosotrosPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor() {}
+  ngOnInit() {}
 }

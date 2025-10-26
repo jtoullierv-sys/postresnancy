@@ -1,5 +1,8 @@
 ion-content {
-  --background: #1a1a1a;
+  --background: #ffb8b8;
+  flex: 1;
+  display: block;
+  min-height: 100vh;
 }
 
 .nosotros-container {
@@ -15,7 +18,7 @@ ion-content {
   width: 100%;
   background-color: #ffffff;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 33, 33, 0.3);
 }
 
 ion-card-content {
@@ -54,7 +57,7 @@ ion-card-content {
   font-weight: 700;
 }
 
-// Responsive para tablets
+/* 📱 Responsive */
 @media (min-width: 576px) {
   ion-card-content {
     padding: 48px 40px;
@@ -66,7 +69,6 @@ ion-card-content {
   }
 }
 
-// Responsive para pantallas medianas
 @media (min-width: 768px) {
   .nosotros-container {
     padding: 40px;
@@ -88,7 +90,6 @@ ion-card-content {
   }
 }
 
-// Responsive para pantallas grandes
 @media (min-width: 1024px) {
   ion-card-content {
     padding: 64px 80px;
@@ -102,4 +103,20 @@ ion-card-content {
     font-size: 1.2rem;
     line-height: 2;
   }
+}
+
+/* Header y Footer */
+app-header,
+app-footer {
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+
+app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }

@@ -1,22 +1,63 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class="toolbar-custom">
-    <!-- Botón de menú -->
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     
-    <!-- Título -->
-    <ion-title class="app-title">
+    <!-- ===== IZQUIERDA: Botón MENU ===== -->
+    <ion-buttons slot="start" class="header-left">
+      <ion-button id="menu-trigger" fill="solid" color="light" class="menu-trigger">
+        <span class="emoji-icon">📚</span>
+        <span class="btn-text">Menu</span>
+      </ion-button>
+    </ion-buttons>
+
+    <!-- ===== CENTRO: Título clickeable ===== -->
+    <ion-title class="app-title" routerLink="/bienvenida">
       🍰 Postres Nancy Online
     </ion-title>
-    
-    <!-- Navegación -->
-    <ion-buttons slot="end">
-      <ion-button fill="clear" routerLink="/bienvenida">Inicio</ion-button>
-      <ion-button fill="clear" routerLink="/acercadenosotros">Nosotros</ion-button>
-      <ion-button fill="clear" routerLink="/vercatalogo">Catálogo</ion-button>
-      <ion-button fill="clear" routerLink="/registrarpedido">Pedidos</ion-button>
-      <ion-button fill="clear" routerLink="/login">Login</ion-button>
+
+    <!-- ===== DERECHA: Botón LOGIN ===== -->
+    <ion-buttons slot="end" class="header-right">
+      <ion-button fill="solid" color="light" routerLink="/login" class="login-button">
+        <span class="emoji-icon">👤</span>
+        <span class="btn-text">Login</span>
+      </ion-button>
     </ion-buttons>
+
+    <!-- ===== POPOVER (MENU) ===== -->
+    <ion-popover trigger="menu-trigger" triggerAction="click" showBackdrop="true" side="bottom" alignment="start">
+      <ng-template>
+        <ion-content class="popover-wrapper">
+          <ion-list class="menu-list">
+            
+            <ion-item routerLink="/bienvenida" button lines="none" detail="false" class="menu-item">
+              <div class="menu-item-box">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Inicio</span>
+              </div>
+            </ion-item>
+
+            <ion-item routerLink="/acercadenosotros" button lines="none" detail="false" class="menu-item">
+              <div class="menu-item-box">
+                <ion-icon name="people-outline"></ion-icon>
+                <span>Nosotros</span>
+              </div>
+            </ion-item>
+
+            <ion-item routerLink="/vercatalogo" button lines="none" detail="false" class="menu-item">
+              <div class="menu-item-box">
+                <ion-icon name="book-outline"></ion-icon>
+                <span>Catálogo</span>
+              </div>
+            </ion-item>
+
+            <ion-item routerLink="/registrarpedido" button lines="none" detail="false" class="menu-item">
+              <div class="menu-item-box">
+                <ion-icon name="cart-outline"></ion-icon>
+                <span>Pedidos</span>
+              </div>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
   </ion-toolbar>
 </ion-header>

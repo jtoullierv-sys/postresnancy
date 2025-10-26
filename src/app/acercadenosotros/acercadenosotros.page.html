@@ -1,14 +1,10 @@
-<ion-header>
-  <ion-toolbar color="danger">
-    <ion-title>Acerca de Nosotros</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content class="ion-padding">
+<ion-content [fullscreen]="true" class="ion-padding">
   <div class="nosotros-container">
     <ion-card class="nosotros-card">
       <ion-card-content>
-        <h1 class="titulo-principal">ACERCA DE NOSOTROS ​😀​ </h1>
+        <h1 class="titulo-principal">ACERCA DE NOSOTROS 😀</h1>
 
         <p class="texto-parrafo">
           <span class="negrita">Los Postres de Nancy</span> nace como un homenaje a nuestra madre y motor del hogar, la señora Nancy. 
@@ -34,3 +30,5 @@
     </ion-card>
   </div>
 </ion-content>
+
+<app-footer></app-footer>

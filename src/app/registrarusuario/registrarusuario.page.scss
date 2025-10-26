@@ -1,18 +1,30 @@
+/* ----- CONTENIDO PRINCIPAL ----- */
+ion-content {
+  --background: #fff;
+  margin-top: 56px;             /* deja espacio para el header */
+  display: flex;                
+  justify-content: center;      /* centra horizontalmente */
+  align-items: center;          /* centra verticalmente */
+  min-height: calc(100vh - 56px); /* pantalla menos el header */
+}
+
+/* ----- CONTENEDOR DEL FORMULARIO ----- */
 .registro-container {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   padding: 1rem;
 }
 
+/* ----- CARD ----- */
 ion-card {
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
 }
 
+/* ----- OTROS DETALLES ----- */
 ion-card-title {
   font-size: 1.4rem;
   font-weight: 600;
@@ -20,4 +32,13 @@ ion-card-title {
 
 ion-button {
   --border-radius: 10px;
+}
+
+/* ----- HEADER FIJO ----- */
+app-header {
+  position: fixed; /* Fijo arriba */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }
