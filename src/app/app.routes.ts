@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 import { AdminmenuComponent } from './adminmenu/adminmenu.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';  
 
 export const routes: Routes = [
   {

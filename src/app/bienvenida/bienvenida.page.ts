@@ -11,6 +11,7 @@ import {
   IonCardContent
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/header/header.component';
+import { FooterComponent } from 'src/app/footer/footer.component';
 
 @Component({
   selector: 'app-bienvenida',
@@ -26,7 +27,8 @@ import { HeaderComponent } from 'src/app/header/header.component';
     IonCardContent,
     CommonModule, 
     FormsModule, 
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class BienvenidaPage implements OnInit {

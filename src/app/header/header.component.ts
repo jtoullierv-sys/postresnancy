@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IonToolbar,
+  IonHeader,
   IonTitle,
   IonButtons,
   IonButton,
@@ -17,6 +18,7 @@ import { RouterLink } from '@angular/router';
   imports: [
     CommonModule,
     IonToolbar,
+    IonHeader,
     IonTitle,
     IonButtons,
     IonButton,
