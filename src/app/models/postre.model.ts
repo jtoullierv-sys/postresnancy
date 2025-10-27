@@ -15,7 +15,7 @@ export interface PostreAPI {
 export interface Postre {
   id: number;
   descripcion: string;
-  precio: string;
+  precio: number;
   imagen: string;
   categoria: string;
   activo: boolean;
@@ -32,7 +32,7 @@ export function mapPostre(apiData: PostreAPI): Postre {
   return {
     id: apiData.id_postre,
     descripcion: apiData.descripcion_postre,
-    precio: parseFloat(apiData.precio_postre).toFixed(2),
+    precio: parseFloat(apiData.precio_postre),
     imagen,
     categoria: apiData.categoria,
     activo: apiData.estado_postre === 1,

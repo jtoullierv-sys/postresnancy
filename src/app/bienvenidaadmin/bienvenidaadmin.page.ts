@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { AdminmenuComponent } from '../adminmenu/adminmenu.component';
 
 @Component({
   selector: 'app-bienvenidaadmin',
   templateUrl: './bienvenidaadmin.page.html',
   styleUrls: ['./bienvenidaadmin.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule]
+  imports: [CommonModule, IonicModule, AdminmenuComponent]
 })
 export class BienvenidaadminPage implements OnInit {
   nombreUsuario: string = 'NancyVal';

@@ -7,7 +7,7 @@ import {
   IonCardTitle,
   IonCardContent,
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { PostreService } from 'src/app/services/postre.service';
 import { Postre, mapPostre } from 'src/app/models/postre.model';
 import { HeaderComponent } from '../header/header.component';
@@ -33,7 +33,18 @@ import { FooterComponent } from '../footer/footer.component';
 export class VercatalogoPage implements OnInit {
   postres: Postre[] = [];
 
-  constructor(private postreService: PostreService) {}
+  constructor(private postreService: PostreService,
+              private router: Router
+  ) {}
+
+  registrarPedido(postre: any) {
+    // ✅ Enviar el objeto postre serializado
+    this.router.navigate(['/registrarpedido'], {
+      queryParams: {
+        postre: JSON.stringify(postre)
+      }
+    });
+  }
 
   ngOnInit() {
     this.postreService.obtenerPostres().subscribe((data) => {

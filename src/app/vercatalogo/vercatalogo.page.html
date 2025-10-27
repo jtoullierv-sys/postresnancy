@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <ion-content class="ion-padding">
-  <ion-card *ngFor="let postre of postres">
+  <ion-card *ngFor="let postre of postres" (click)="registrarPedido(postre)">
     <img [src]="postre.imagen" alt="{{ postre.descripcion }}" />
     <ion-card-header>
       <ion-card-title>{{ postre.descripcion }}</ion-card-title>

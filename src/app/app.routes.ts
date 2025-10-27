@@ -60,13 +60,10 @@ export const routes: Routes = [
     loadComponent: () => import('./bienvenidaadmin/bienvenidaadmin.page').then( m => m.BienvenidaadminPage)
   },*/
    {
-    path: '',
-    component: AdminmenuComponent,
-    children: [
-      { path: 'bienvenidaadmin', loadComponent: () => import('./bienvenidaadmin/bienvenidaadmin.page').then( m => m.BienvenidaadminPage)},
+     path: 'bienvenidaadmin',
+     loadComponent: () => import('./bienvenidaadmin/bienvenidaadmin.page').then( m => m.BienvenidaadminPage)
+   },
       // ... más rutas
-    ]
-  },
   {
     path: 'estadisticas',
     loadComponent: () => import('./estadisticas/estadisticas.page').then( m => m.EstadisticasPage)

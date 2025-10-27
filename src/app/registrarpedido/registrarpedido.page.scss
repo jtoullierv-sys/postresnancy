@@ -1,18 +1,25 @@
+/* ===========================
+   CONTENEDOR PRINCIPAL
+=========================== */
 .pedido-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px); /* ajusta según header */
   padding: 20px;
-  min-height: 100%;
 }
 
 .pedido-card {
-  max-width: 1100px;
   width: 100%;
-  background-color: #ffffff;
+  max-width: 1100px;
+  background: #fff;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
+/* ===========================
+   CONTENIDO
+=========================== */
 ion-card-content {
   padding: 24px;
 }
@@ -23,9 +30,10 @@ ion-card-content {
   gap: 32px;
 }
 
-// Sección de imagen
+/* ===========================
+   IMAGEN DEL PRODUCTO
+=========================== */
 .imagen-section {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +46,9 @@ ion-card-content {
   border-radius: 12px;
 }
 
-// Sección del formulario
+/* ===========================
+   FORMULARIO
+=========================== */
 .form-section {
   display: flex;
   flex-direction: column;
@@ -49,54 +59,36 @@ ion-card-content {
   font-size: 1.75rem;
   font-weight: 700;
   color: #2d2d2d;
-  margin: 0 0 24px 0;
-}
-
-.form-group {
-  margin-bottom: 0;
+  margin-bottom: 24px;
 }
 
 .form-label {
-  display: block;
-  font-size: 1rem;
   font-weight: 600;
   color: #2d2d2d;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.custom-input {
-  --background: #f5f5f5;
-  --padding-start: 12px;
-  --padding-end: 12px;
-  --padding-top: 12px;
-  --padding-bottom: 12px;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
+.custom-input,
 .custom-select {
   --background: #f5f5f5;
-  --padding-start: 12px;
-  --padding-end: 12px;
   border-radius: 8px;
   font-size: 1rem;
-  width: 100%;
 }
 
-// Sección de precio
+/* ===========================
+   PRECIO TOTAL
+=========================== */
 .precio-section {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 12px;
-  padding: 16px 0;
   margin-top: 8px;
 }
 
 .precio-label {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2d2d2d;
 }
 
 .precio-valor {
@@ -105,7 +97,9 @@ ion-card-content {
   color: var(--ion-color-primary);
 }
 
-// Botones
+/* ===========================
+   BOTONES
+=========================== */
 .botones-container {
   display: flex;
   justify-content: flex-end;
@@ -115,20 +109,18 @@ ion-card-content {
 
 ion-button {
   --border-radius: 8px;
-  font-weight: 600;
   text-transform: none;
   min-width: 120px;
+  font-weight: 600;
 }
 
-// Responsive para tablets y superiores
+/* ===========================
+   RESPONSIVE
+=========================== */
 @media (min-width: 768px) {
   .content-grid {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-  }
-
-  ion-card-content {
-    padding: 40px;
   }
 
   .producto-imagen {
@@ -143,29 +135,79 @@ ion-button {
     font-size: 1.75rem;
   }
 }
-
-// Responsive para desktop
-@media (min-width: 1024px) {
-  ion-card-content {
-    padding: 48px;
-  }
-
-  .content-grid {
-    gap: 48px;
-  }
+/* Header fijo arriba */
+ion-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
+/* Deja espacio para el header */
+ion-content {
+  --padding-top: 80px; /* ajusta según la altura del header */
+}
+
+/* Corrige layout del ion-page sin romper flex */
+.ion-page {
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  height: 100%;
+}
+
+/* =======================================
+   DETALLES
+======================================= */
+ion-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+ion-button {
+  --border-radius: 10px;
+}
+
+/* ============================================
+   🔧 FIX PARA HEADERS Y CONTENIDO
+   ============================================ */
+
+/* Header global (app-header) */
+app-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Header local (ion-header) debajo del global */
+ion-header {
+  position: fixed !important;
+  top: 60px; /* altura aproximada del app-header */
+  left: 0;
+  width: 100%;
+  z-index: 90;
+}
+
+/* Contenido debajo de ambos headers */
 ion-content {
   --background: #fff;
-  flex: 1;
-  height: auto;
-  min-height: 100vh;
-  display: block;
+  position: relative !important;
+  display: block !important;
+  padding-top: 120px !important; /* 60 + 60 aprox */
+  min-height: calc(100vh - 120px);
 }
 
-app-header,
-app-footer {
-  display: block;
-  position: relative;
-  z-index: 10;
+.cantidad-stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cantidad-valor {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
 }

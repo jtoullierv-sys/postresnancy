@@ -1,10 +1,16 @@
-<app-header></app-header>
+<ion-header>
+  <app-header></app-header>
+  <ion-toolbar color="danger">
+    <ion-title>Detalle del Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <div class="pedido-container">
     <ion-card class="pedido-card">
       <ion-card-content>
         <div class="content-grid">
+
           <!-- Imagen del producto -->
           <div class="imagen-section">
             <img 
@@ -17,22 +23,14 @@
           <div class="form-section">
             <h2 class="producto-titulo">{{ postre.descripcion }}</h2>
 
-            <!-- Categoría -->
+            <!-- Categoría (solo lectura) -->
             <div class="form-group">
               <label class="form-label">Categoría</label>
-              <ion-select
-                [(ngModel)]="categoriaSeleccionada"
-                (ionChange)="onCategoriaChange($event)"
-                interface="popover"
-                class="custom-select">
-                <ion-select-option *ngFor="let cat of categorias" [value]="cat">
-                  {{ cat }}
-                </ion-select-option>
-              </ion-select>
+              <ion-input [value]="postre.categoria" readonly></ion-input>
             </div>
 
             <!-- Extras -->
-            <div class="form-group">
+            <div class="form-group" *ngIf="categoriaSeleccionada === 'KEKE O TORTA'">
               <label class="form-label">Extras (Opcional)</label>
               <ion-select
                 [(ngModel)]="extraSeleccionado"
@@ -50,14 +48,11 @@
             <!-- Cantidad -->
             <div class="form-group">
               <label class="form-label">Cantidad</label>
-              <ion-input
-                type="number"
-                [(ngModel)]="cantidad"
-                min="1"
-                max="20"
-                (ionInput)="onCantidadChange($event)"
-                class="custom-input">
-              </ion-input>
+              <div class="cantidad-stepper">
+                <ion-button size="small" fill="outline" (click)="disminuirCantidad()">-</ion-button>
+                <span class="cantidad-valor">{{ cantidad }}</span>
+                <ion-button size="small" fill="outline" (click)="aumentarCantidad()">+</ion-button>
+              </div>
             </div>
 
             <!-- Precio Total -->
@@ -68,17 +63,11 @@
 
             <!-- Botones -->
             <div class="botones-container">
-              <ion-button 
-                fill="outline" 
-                color="medium"
-                (click)="cancelar()">
+              <ion-button fill="outline" color="medium" (click)="cancelar()">
                 Cancelar
               </ion-button>
               
-              <ion-button 
-                *ngIf="usuarioLogueado"
-                color="primary"
-                (click)="enviarCarrito()">
+              <ion-button *ngIf="usuarioLogueado" color="primary" (click)="enviarCarrito()">
                 Enviar a carrito
               </ion-button>
             </div>
@@ -88,5 +77,3 @@
     </ion-card>
   </div>
 </ion-content>
-
-<app-footer></app-footer>

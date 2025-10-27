@@ -1,22 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { 
-  IonContent, 
-  IonHeader, 
-  IonTitle, 
-  IonToolbar,
-  IonCard,
-  IonCardContent,
-  IonInput,
-  IonButton,
-  IonSelect,
-  IonSelectOption,
-  IonLabel
+  IonContent, IonHeader, IonTitle, IonToolbar,
+  IonCard, IonCardContent, IonInput, IonButton,
+  IonSelect, IonSelectOption, IonLabel
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
 
 interface Postre {
   id: number;
@@ -38,35 +29,17 @@ interface Extra {
   styleUrls: ['./registrarpedido.page.scss'],
   standalone: true,
   imports: [
-    IonContent, 
-    IonHeader, 
-    IonTitle, 
-    IonToolbar,
-    IonCard,
-    IonCardContent,
-    IonInput,
-    IonButton,
-    IonSelect,
-    IonSelectOption,
-    IonLabel,
-    CommonModule, 
-    HeaderComponent,
-    FooterComponent,
-    FormsModule
+    CommonModule, FormsModule, RouterLink,
+    IonContent, IonHeader, IonToolbar, IonTitle,
+    IonCard, IonCardContent, IonInput, IonButton,
+    IonSelect, IonSelectOption, IonLabel, HeaderComponent
   ]
 })
 export class RegistrarpedidoPage implements OnInit {
 
-  postre: Postre = {
-    id: 1,
-    descripcion: 'BROWNIE x25',
-    categoria: 'BOCADITO',
-    precio: 22.00,
-    imagen: 'assets/img/brownie.jpg'
-  };
+  postre!: Postre; // se llenará con el parámetro recibido
 
-  categorias: string[] = ['POSTRE', 'BOCADITO'];
-
+  categorias = ['POSTRE', 'BOCADITO'];
   extras: Extra[] = [
     { id: 1, nombre: 'Chispas de Chocolate', precio: 3.00 },
     { id: 2, nombre: 'Frutas Frescas', precio: 5.00 },
@@ -76,26 +49,25 @@ export class RegistrarpedidoPage implements OnInit {
     { id: 6, nombre: 'Ganache de Chocolate', precio: 5.50 }
   ];
 
-  categoriaSeleccionada: string = 'BOCADITO';
+  categoriaSeleccionada = '';
   extraSeleccionado: number | null = null;
-  cantidad: number = 1;
-  precioUnitario: number = 22.00;
-  precioTotal: number = 22.00;
-  usuarioLogueado: boolean = true; // Deberías verificar esto desde un servicio
+  cantidad = 1;
+  precioUnitario = 0;
+  precioTotal = 0;
+  usuarioLogueado = true;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    // Aquí deberías cargar los datos del postre desde la API
-    // const id = this.route.snapshot.paramMap.get('id');
-    // this.cargarPostre(id);
-    
-    this.precioUnitario = this.postre.precio;
-    this.categoriaSeleccionada = this.postre.categoria;
-    this.calcularPrecioTotal();
+    // 🔹 Obtener el parámetro desde la URL
+    this.route.queryParams.subscribe(params => {
+      if (params['postre']) {
+        this.postre = JSON.parse(params['postre']);
+        this.categoriaSeleccionada = this.postre.categoria;
+        this.precioUnitario = this.postre.precio;
+        this.precioTotal = this.postre.precio;
+      }
+    });
   }
 
   onCategoriaChange(event: any) {
@@ -109,28 +81,13 @@ export class RegistrarpedidoPage implements OnInit {
 
   onCantidadChange(event: any) {
     const valor = parseInt(event.detail.value);
-    if (valor >= 1 && valor <= 20) {
-      this.cantidad = valor;
-      this.calcularPrecioTotal();
-    } else if (valor < 1) {
-      this.cantidad = 1;
-      this.calcularPrecioTotal();
-    } else if (valor > 20) {
-      this.cantidad = 20;
-      this.calcularPrecioTotal();
-    }
+    this.cantidad = Math.min(Math.max(valor || 1, 1), 20);
+    this.calcularPrecioTotal();
   }
 
   calcularPrecioTotal() {
-    let precioExtra = 0;
-    
-    if (this.extraSeleccionado) {
-      const extra = this.extras.find(e => e.id === this.extraSeleccionado);
-      if (extra) {
-        precioExtra = extra.precio;
-      }
-    }
-    
+    const extra = this.extras.find(e => e.id === this.extraSeleccionado);
+    const precioExtra = extra ? extra.precio : 0;
     this.precioTotal = (this.precioUnitario + precioExtra) * this.cantidad;
   }
 
@@ -149,16 +106,25 @@ export class RegistrarpedidoPage implements OnInit {
     };
 
     console.log('Enviando al carrito:', pedido);
-    
-    // Aquí deberías llamar a tu servicio para guardar en el carrito
-    // this.carritoService.agregar(pedido).subscribe(...)
-    
     alert('¡Producto agregado al carrito!');
-    this.router.navigate(['/catalogo']);
+    this.router.navigate(['/vercatalogo']);
   }
 
   cancelar() {
-    this.router.navigate(['/catalogo']);
+    this.router.navigate(['/vercatalogo']);
   }
 
+  aumentarCantidad() {
+  if (this.cantidad < 20) {
+    this.cantidad++;
+    this.calcularPrecioTotal();
+  }
+}
+
+disminuirCantidad() {
+  if (this.cantidad > 1) {
+    this.cantidad--;
+    this.calcularPrecioTotal();
+  }
+}
 }
