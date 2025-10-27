@@ -8,6 +8,8 @@ import {
   IonSelect, IonSelectOption, IonLabel
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../header/header.component';
+import { ExtraService } from 'src/app/services/extra.service';
+import { Extra, mapExtra } from 'src/app/models/extra.model';
 
 interface Postre {
   id: number;
@@ -15,12 +17,6 @@ interface Postre {
   categoria: string;
   precio: number;
   imagen: string;
-}
-
-interface Extra {
-  id: number;
-  nombre: string;
-  precio: number;
 }
 
 @Component({
@@ -40,14 +36,8 @@ export class RegistrarpedidoPage implements OnInit {
   postre!: Postre; // se llenará con el parámetro recibido
 
   categorias = ['POSTRE', 'BOCADITO'];
-  extras: Extra[] = [
-    { id: 1, nombre: 'Chispas de Chocolate', precio: 3.00 },
-    { id: 2, nombre: 'Frutas Frescas', precio: 5.00 },
-    { id: 3, nombre: 'Crema de Mantequilla', precio: 4.00 },
-    { id: 4, nombre: 'Almendras Laminadas', precio: 6.00 },
-    { id: 5, nombre: 'Manjar Blanco', precio: 3.50 },
-    { id: 6, nombre: 'Ganache de Chocolate', precio: 5.50 }
-  ];
+
+  extras: Extra[] = [];
 
   categoriaSeleccionada = '';
   extraSeleccionado: number | null = null;
@@ -56,7 +46,7 @@ export class RegistrarpedidoPage implements OnInit {
   precioTotal = 0;
   usuarioLogueado = true;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private extraService: ExtraService) {}
 
   ngOnInit() {
     // 🔹 Obtener el parámetro desde la URL
@@ -68,6 +58,11 @@ export class RegistrarpedidoPage implements OnInit {
         this.precioTotal = this.postre.precio;
       }
     });
+
+    this.extraService.obtenerExtras().subscribe((data) => {
+          // 🔧 Mapea los PostreAPI → Postre
+          this.extras = data.map(mapExtra);
+    }); 
   }
 
   onCategoriaChange(event: any) {
@@ -86,10 +81,11 @@ export class RegistrarpedidoPage implements OnInit {
   }
 
   calcularPrecioTotal() {
-    const extra = this.extras.find(e => e.id === this.extraSeleccionado);
-    const precioExtra = extra ? extra.precio : 0;
-    this.precioTotal = (this.precioUnitario + precioExtra) * this.cantidad;
-  }
+  const extra = this.extras.find(e => e.id === this.extraSeleccionado);
+  const precioExtra = extra ? Number(extra.precio) : 0;
+  const precioUnitario = Number(this.precioUnitario);
+  this.precioTotal = (precioUnitario + precioExtra) * this.cantidad;
+}
 
   enviarCarrito() {
     if (!this.usuarioLogueado) {

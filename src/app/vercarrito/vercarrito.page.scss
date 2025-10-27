@@ -21,3 +21,46 @@
   background-color: #fffbea;
   border-radius: 12px;
 }
+
+/* ============================================
+   🔧 FIX PARA HEADERS Y CONTENIDO
+   ============================================ */
+
+/* Header global (app-header) */
+app-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Header local (ion-header) debajo del global */
+ion-header {
+  position: fixed !important;
+  top: 60px; /* altura aproximada del app-header */
+  left: 0;
+  width: 100%;
+  z-index: 90;
+}
+
+/* Contenido debajo de ambos headers */
+ion-content {
+  --background: #fff;
+  position: relative !important;
+  display: block !important;
+  padding-top: 120px !important; /* 60 + 60 aprox */
+  min-height: calc(100vh - 120px);
+}
+
+.cantidad-stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cantidad-valor {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+}

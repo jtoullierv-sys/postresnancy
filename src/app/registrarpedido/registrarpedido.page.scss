@@ -182,14 +182,7 @@ app-header {
   z-index: 100;
 }
 
-/* Header local (ion-header) debajo del global */
-ion-header {
-  position: fixed !important;
-  top: 60px; /* altura aproximada del app-header */
-  left: 0;
-  width: 100%;
-  z-index: 90;
-}
+
 
 /* Contenido debajo de ambos headers */
 ion-content {

@@ -1,0 +1,66 @@
+[
+    {
+        "id_extra": 1,
+        "nombre_extra": "Chispas de Chocolate",
+        "tipo_extra": "Decoración",
+        "peso_extra": "50.00",
+        "precio_extra": "3.50",
+        "estado_extra": 1
+    },
+    {
+        "id_extra": 2,
+        "nombre_extra": "Frutas Frescas",
+        "tipo_extra": "Relleno",
+        "peso_extra": "100.00",
+        "precio_extra": "5.00",
+        "estado_extra": 1
+    },
+    {
+        "id_extra": 3,
+        "nombre_extra": "Crema de Mantequilla",
+        "tipo_extra": "Cobertura",
+        "peso_extra": "150.00",
+        "precio_extra": "4.50",
+        "estado_extra": 1
+    },
+    {
+        "id_extra": 4,
+        "nombre_extra": "Almendras Laminadas",
+        "tipo_extra": "Decoración",
+        "peso_extra": "80.00",
+        "precio_extra": "3.00",
+        "estado_extra": 1
+    },
+    {
+        "id_extra": 5,
+        "nombre_extra": "Manjar Blanco",
+        "tipo_extra": "Relleno",
+        "peso_extra": "120.00",
+        "precio_extra": "4.00",
+        "estado_extra": 1
+    },
+    {
+        "id_extra": 6,
+        "nombre_extra": "Ganache de Chocolate",
+        "tipo_extra": "Cobertura",
+        "peso_extra": "100.00",
+        "precio_extra": "4.80",
+        "estado_extra": 1
+    },
+    {
+        "id_extra": 7,
+        "nombre_extra": "Ninguno",
+        "tipo_extra": "Ninguno",
+        "peso_extra": "0.00",
+        "precio_extra": "0.00",
+        "estado_extra": 1
+    },
+    {
+        "id_extra": 8,
+        "nombre_extra": "Galleta Triturada",
+        "tipo_extra": "Decoración",
+        "peso_extra": "10.00",
+        "precio_extra": "5.00",
+        "estado_extra": 1
+    }
+]

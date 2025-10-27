@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component'; 
 
 @Component({
   selector: 'app-vercarrito',
@@ -9,6 +11,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    HeaderComponent,
+    FooterComponent,
     IonicModule
   ],
   templateUrl: './vercarrito.page.html',
