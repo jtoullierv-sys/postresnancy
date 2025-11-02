@@ -1,8 +1,10 @@
 ion-content {
-  --background: #ffb8b8;
+  --background: #fab4b4;
   flex: 1;
   display: block;
   min-height: 100vh;
+  --padding-bottom: 80px;
+  --padding-top: 40px;
 }
 
 .nosotros-container {
@@ -16,9 +18,9 @@ ion-content {
 .nosotros-card {
   max-width: 900px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #fff9f9;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(255, 33, 33, 0.3);
+  box-shadow: 0 10px 30px rgb(250, 8, 8);
 }
 
 ion-card-content {
@@ -29,7 +31,7 @@ ion-card-content {
   text-align: center;
   color: #dc3545;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 32px;
   letter-spacing: -0.5px;
 }
@@ -38,7 +40,7 @@ ion-card-content {
   font-size: 1rem;
   line-height: 1.75;
   text-align: justify;
-  color: #2d2d2d;
+  color: #f9a8a8;
   margin-bottom: 24px;
   font-weight: 400;
 
@@ -49,7 +51,7 @@ ion-card-content {
 
 .negrita {
   font-weight: 700;
-  color: #1a1a1a;
+  color: #f1b8b8;
 }
 
 .texto-destacado {

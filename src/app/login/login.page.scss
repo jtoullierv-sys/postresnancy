@@ -1,6 +1,6 @@
 /* ===== Estructura general ===== */
 ion-content {
-  --background: #f9fafc;
+  --background: #ffc6c7;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,15 +20,22 @@ ion-content {
   width: 100%;
   max-width: 420px;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px #ff9e9e;
   background: #ffffff;
   overflow: hidden;
   animation: fadeInUp 0.5s ease;
 }
-
+ion-card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  justify-content: center;
+  color : #fff; 
+}
 ion-card-header {
   text-align: center;
-  background: var(--ion-color-primary);
+  background: #ff6868;
+  justify-content: center;
   color: #fff;
   padding: 1rem 0;
 }
@@ -45,15 +52,17 @@ ion-card-header {
 }
 
 .input-item {
-  --background: #f5f6fa;
-  --highlight-color-focused: var(--ion-color-primary);
-  border-radius: 12px;
+  --background: #ff888863;
+  --highlight-color-focused: #3c3838;
+  color: #363636;
+  justify-content: center;
+  border-radius: 20px;
   margin-bottom: 1rem;
 }
 
 ion-label {
   font-weight: 600;
-  color: #333;
+  color: #ffffff;
 }
 
 ion-input {
@@ -63,7 +72,7 @@ ion-input {
 }
 
 .boton-login {
-  --background: var(--ion-color-primary);
+  --background: #ff6161;
   --background-activated: var(--ion-color-primary-shade);
   --border-radius: 12px;
   font-weight: 600;
@@ -77,7 +86,7 @@ ion-input {
 }
 
 .registro-link {
-  color: var(--ion-color-primary);
+  color: #000000;
   text-decoration: none;
   font-size: 0.95rem;
   transition: color 0.3s ease;

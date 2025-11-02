@@ -8,11 +8,12 @@ import { ExtraAPI } from '../models/extra.model';
   providedIn: 'root'
 })
 export class ExtraService {
-  private url = 'assets/data/extras.json'; // 📁 JSON temporal local
+  private API_BASE_URL = 'https://api-postresnancy.onrender.com/';
+  private EXTRAS_ENDPOINT = 'extras/listar';
 
   constructor(private http: HttpClient) {}
-
+  
   obtenerExtras(): Observable<ExtraAPI[]> {
-    return this.http.get<ExtraAPI[]>(this.url);
+    return this.http.get<ExtraAPI[]>(`${this.API_BASE_URL}${this.EXTRAS_ENDPOINT}`);
   }
 }

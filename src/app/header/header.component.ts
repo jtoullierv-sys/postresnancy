@@ -9,7 +9,7 @@ import {
   IonModal,
   IonContent
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
 import {
   personCircleOutline,
@@ -21,8 +21,10 @@ import {
   basketOutline,
   chatboxOutline,
   informationCircleOutline,
-  closeOutline
-} from 'ionicons/icons';
+  closeOutline, exitOutline } from 'ionicons/icons';
+import { StorageService } from '../services/storage';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-header',
@@ -44,10 +46,15 @@ import {
 export class HeaderComponent {
   @ViewChild('sideMenu') sideMenu!: IonModal;
 
-  constructor() {
+  constructor(
+    private alertCtrl: AlertController,
+    private storage: StorageService,
+    private router: Router
+  ) {
     addIcons({
-      personCircleOutline,
       menuOutline,
+      personCircleOutline,
+      closeOutline,
       homeOutline,
       peopleOutline,
       gridOutline,
@@ -55,11 +62,33 @@ export class HeaderComponent {
       basketOutline,
       chatboxOutline,
       informationCircleOutline,
-      closeOutline
+      exitOutline
     });
   }
 
   async closeMenu() {
     await this.sideMenu.dismiss();
   }
+
+  async closeSesion() {
+    const alert = await this.alertCtrl.create({
+      header: 'Cerrar sesión',
+      message: '¿Deseas salir de tu cuenta?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Salir',
+          handler: async () => {
+            await this.storage.clear(); // ✅ Limpia todo el almacenamiento
+            this.router.navigate(['/login']); // ✅ Redirige al login
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }

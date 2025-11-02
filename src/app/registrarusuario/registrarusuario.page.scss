@@ -1,6 +1,6 @@
 /* ----- CONTENIDO PRINCIPAL ----- */
 ion-content {
-  --background: #fff;
+  --background: #fabcbc;
   margin-top: 56px;             /* deja espacio para el header */
   display: flex;                
   justify-content: center;      /* centra horizontalmente */
@@ -20,6 +20,7 @@ ion-content {
 /* ----- CARD ----- */
 ion-card {
   width: 100%;
+  background: #fc8888;
   max-width: 500px;
   border-radius: 16px;
 }
@@ -32,6 +33,8 @@ ion-card-title {
 
 ion-button {
   --border-radius: 10px;
+  color : #fff;
+  --background: #ff4949;
 }
 
 /* ----- HEADER FIJO ----- */
