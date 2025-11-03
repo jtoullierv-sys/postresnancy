@@ -13,16 +13,21 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
   
-  registrarUsuario(): Observable<UsuarioAPI[]> {
-    return this.http.get<UsuarioAPI[]>(`${this.API_BASE_URL}${this.REGISTRO_ENDPOINT}`);
+  registrarUsuario(usuario: string, contrasena:string): Observable<any> {
+    const body = { usuario, contrasena };
+    return this.http.post<any>(
+      `${this.API_BASE_URL}${this.REGISTRO_ENDPOINT}`,
+      body,
+      { headers: { 'Content-Type': 'application/json' } }
+    )
   }
 
   loginUsuario(usuario: string, contrasena: string): Observable<any> {
   const body = { usuario, contrasena }; // formato correcto
-  return this.http.post<any>(
-    `${this.API_BASE_URL}${this.LOGIN_ENDPOINT}`,
-    body,
-    { headers: { 'Content-Type': 'application/json' } }
+    return this.http.post<any>(
+      `${this.API_BASE_URL}${this.LOGIN_ENDPOINT}`,
+      body,
+      { headers: { 'Content-Type': 'application/json' } }
   );
-    }
+  }
 }

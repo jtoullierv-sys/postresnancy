@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { UsuarioService } from '../../services/usuario.service';
+
 import { 
   IonContent, 
   IonCard, 
@@ -45,29 +48,66 @@ export class RegistrarusuarioPage {
   contrasena = '';
   confirmarContrasena = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private alertCtrl: AlertController
+  ) {}
 
-  registrarusuario() {
+  async registrarusuario() {
     if (!this.nombre || !this.dni || !this.correo || !this.usuario || !this.contrasena) {
-      alert('Por favor, completa todos los campos.');
+      const alert = await this.alertCtrl.create({
+        header: 'Campos incompletos',
+        message: 'Por favor, completa todos los campos.',
+        buttons: ['OK']
+      });
+      await alert.present();
       return;
     }
 
     if (this.contrasena !== this.confirmarContrasena) {
-      alert('Las contraseñas no coinciden.');
+      const alert = await this.alertCtrl.create({
+        header: 'Error',
+        message: 'Las contraseñas no coinciden.',
+        buttons: ['OK']
+      });
+      await alert.present();
       return;
     }
 
-    // 👉 Aquí puedes luego hacer una llamada HTTP a tu backend PHP
-    console.log('Datos del formulario:', {
-      nombre: this.nombre,
-      dni: this.dni,
-      correo: this.correo,
-      usuario: this.usuario,
-      contrasena: this.contrasena
-    });
+    // ✅ Enviar datos al backend
+    this.usuarioService.registrarUsuario(this.usuario, this.contrasena).subscribe({
+      next: async (response) => {
+        console.log('Respuesta del backend:', response);
 
-    alert('Registro exitoso 🎉');
-    this.router.navigate(['/login']);
+        if (response && response.usuario) {
+          const alert = await this.alertCtrl.create({
+            header: 'Registro exitoso 🎉',
+            message: `Usuario ${response.usuario} registrado correctamente. Ahora puedes iniciar sesión.`,
+            buttons: ['OK']
+          });
+          await alert.present();
+
+          // ✅ Redirigir al login
+          this.router.navigate(['/login']);
+        } else {
+          const alert = await this.alertCtrl.create({
+            header: 'Error',
+            message: 'No se pudo registrar el usuario. Verifica los datos.',
+            buttons: ['OK']
+          });
+          await alert.present();
+        }
+      },
+      error: async (err) => {
+        console.error('Error en el registro:', err);
+        const alert = await this.alertCtrl.create({
+          header: 'Error',
+          message: 'Error de conexión con el servidor.',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    });
   }
 }

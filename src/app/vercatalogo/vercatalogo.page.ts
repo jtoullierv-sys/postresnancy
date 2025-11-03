@@ -8,8 +8,8 @@ import {
   IonCardContent,
 } from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
-import { PostreService } from 'src/app/services/postre.service';
-import { Postre, mapPostre } from 'src/app/models/postre.model';
+import { PostreService } from 'src/services/postre.service';
+import { Postre, mapPostre } from 'src/models/postre.model';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 

@@ -3,8 +3,8 @@ import { Router, RouterModule } from '@angular/router';
 import { AlertController, IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UsuarioService } from '../services/usuario.service';
-import { StorageService } from '../services/storage';
+import { UsuarioService } from '../../services/usuario.service';
+import { StorageService } from '../../services/storage';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 

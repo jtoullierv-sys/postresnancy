@@ -8,8 +8,8 @@ import {
   IonSelect, IonSelectOption, IonLabel
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../header/header.component';
-import { ExtraService } from 'src/app/services/extra.service';
-import { Extra, mapExtra } from 'src/app/models/extra.model';
+import { ExtraService } from 'src/services/extra.service';
+import { Extra, mapExtra } from 'src/models/extra.model';
 
 interface Postre {
   id: number;

@@ -22,7 +22,7 @@ import {
   chatboxOutline,
   informationCircleOutline,
   closeOutline, exitOutline } from 'ionicons/icons';
-import { StorageService } from '../services/storage';
+import { StorageService } from '../../services/storage';
 import { AlertController } from '@ionic/angular';
 
 

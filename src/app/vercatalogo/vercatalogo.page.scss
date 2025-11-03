@@ -10,6 +10,7 @@ ion-content {
   flex: 1;
   display: block;
   min-height: 100vh;
+  --padding-bottom: 240px;
 }
 
 /* Card de postre */
@@ -35,7 +36,7 @@ ion-content {
   position: relative;
   height: 200px;
   overflow: hidden;
-  background-color: #f5f5f5;
+  background-color: #fdb8b8;
 
   img {
     width: 100%;
@@ -47,9 +48,9 @@ ion-content {
 /* Texto */
 .postre-titulo {
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 800;
   margin: 0 0 8px 0;
-  color: var(--ion-color-dark);
+  color: #f35656;
   min-height: 40px;
   display: flex;
   align-items: center;

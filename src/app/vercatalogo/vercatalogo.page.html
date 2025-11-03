@@ -4,11 +4,11 @@
   <ion-card *ngFor="let postre of postres" (click)="registrarPedido(postre)">
     <img [src]="postre.imagen" alt="{{ postre.descripcion }}" />
     <ion-card-header>
-      <ion-card-title>{{ postre.descripcion }}</ion-card-title>
+      <ion-card-title><b>{{ postre.descripcion }}</b></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Precio: S/. {{ postre.precio }}</p>
-      <p>Categoría: {{ postre.categoria }}</p>
+      <b>Precio:</b><p> S/. {{ postre.precio }}</p>
+      <b>Categoría:</b><p>{{ postre.categoria }}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>
