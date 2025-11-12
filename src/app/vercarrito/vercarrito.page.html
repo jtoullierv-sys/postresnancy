@@ -13,26 +13,26 @@
       <ng-container *ngIf="elementos.length > 0; else emptyCart">
         <ion-list>
           <ion-item *ngFor="let item of elementos; let i = index">
+            
             <ion-thumbnail slot="start">
               <img [src]="item.imagen" alt="{{ item.nombre }}" />
             </ion-thumbnail>
-
+            
             <ion-label>
               <h2>{{ item.nombre }}</h2>
               <p>Cantidad: {{ item.cantidad }}</p>
               <p>Precio: S/. {{ item.precio }}</p>
             </ion-label>
-
             <ion-badge color="medium">{{ i + 1 }}</ion-badge>
-
-            <ion-button
-              fill="clear"
-              color="danger"
-              slot="end"
-              (click)="eliminarElemento(item.id)"
-            >
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
+           <ion-button
+            slot="end"
+            color="danger"
+            fill="solid"
+            shape="round"
+            size="small"
+            (click)="eliminarElemento(item.id)">
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
           </ion-item>
         </ion-list>
 

@@ -21,14 +21,14 @@ export class CarritoService {
   id_extra: number
 ): Observable<any> {
   const body = {
-    cliente: id_cliente,
-    postre: id_postre,
-    extra: id_extra,
+    id_cliente: id_cliente,
+    id_postre: id_postre,
+    id_extra: id_extra,
     cantidad: cantidad_postre,
     subtotal: parseFloat(subtotal_carrito.toString())
   };
 
-  console.log('Body enviado:', body); // 👈 te mostrará exactamente lo que va al backend
+  console.log('Body enviado:', body);
 
   return this.http.post<any>(
     `${this.API_BASE_URL}${this.INSERTAR_ENDPOINT}`,
@@ -36,8 +36,6 @@ export class CarritoService {
     { headers: { 'Content-Type': 'application/json' } }
   );
 }
-
-
   obtenerCarrito($id_cliente : number): Observable<CarritoAPI[]> {
     return this.http.get<CarritoAPI[]>(`${this.API_BASE_URL}${this.OBTENER_ENDPOINT+$id_cliente}`);
   }

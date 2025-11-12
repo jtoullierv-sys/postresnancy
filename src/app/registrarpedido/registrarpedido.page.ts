@@ -97,7 +97,7 @@ export class RegistrarpedidoPage implements OnInit {
 
   async enviarCarrito() {
     try {
-      const cliente = await this.storage.get('cliente'); // Espera correctamente la promesa
+      const cliente = await this.storage.get('cliente');
 
       if (!cliente || !cliente.id_cliente) {
         await this.mostrarAlerta('Error', 'No se encontró información del cliente. Inicia sesión nuevamente.');
