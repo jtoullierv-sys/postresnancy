@@ -1,232 +1,173 @@
-
-/* Contenedor principal - centrado */
+/* ===========================
+   CONTENEDOR PRINCIPAL
+=========================== */
 .pedido-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 280px);
+  min-height: calc(100vh - 120px); /* ajusta según header */
   padding: 20px;
 }
 
-/* Tarjeta */
 .pedido-card {
   width: 100%;
-  max-width: 500px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  max-width: 1100px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(240, 94, 94, 0.12);
 }
 
+/* ===========================
+   CONTENIDO
+=========================== */
 ion-card-content {
-  padding: 0;
+  padding: 24px;
 }
 
 .content-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
 }
 
-/* Imagen */
+/* ===========================
+   IMAGEN DEL PRODUCTO
+=========================== */
 .imagen-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px;
-  background: #fafafa;
 }
 
 .producto-imagen {
   width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
-/* Formulario */
+/* ===========================
+   FORMULARIO
+=========================== */
 .form-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 24px;
 }
 
 .producto-titulo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-align: center;
-  color: #1a1a1a;
-  margin: 0 0 4px 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d2d2d;
+  margin-bottom: 24px;
 }
 
 .form-label {
   font-weight: 600;
-  color: #333;
-  font-size: 0.9rem;
+  color: #2d2d2d;
   margin-bottom: 6px;
-  display: block;
 }
 
-/* Categoría */
-.categoria-link {
-  color: #999;
-  text-decoration: none;
-  font-size: 0.85rem;
-  display: block;
-  margin-bottom: 12px;
-}
-
-/* Select */
-.extras-group {
-  margin-bottom: 0;
-}
-
+.custom-input,
 .custom-select {
-  --background: #f8f8f8;
-  --border-radius: 6px;
-  --padding-start: 12px;
-  --padding-end: 12px;
-  font-size: 0.9rem;
-  border: 1px solid #e0e0e0;
+  --background: #f5f5f5;
+  border-radius: 8px;
+  font-size: 1rem;
 }
 
-/* Cantidad */
-.cantidad-group {
-  margin-bottom: 0;
-}
-
-.cantidad-stepper {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 6px;
-}
-
-.cantidad-btn {
-  --background: #5b9bd5;
-  --color: white;
-  --border-radius: 6px;
-  --padding-start: 0;
-  --padding-end: 0;
-  height: 36px;
-  width: 36px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.cantidad-valor {
-  min-width: 40px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: #1a1a1a;
-}
-
-/* Precio */
+/* ===========================
+   PRECIO TOTAL
+=========================== */
 .precio-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 18px 24px;
-  background: #fafafa;
-  border-top: 1px solid #f0f0f0;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .precio-label {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
 }
 
 .precio-valor {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #e74c3c;
+  color: var(--ion-color-primary);
 }
 
-/* Botones */
+/* ===========================
+   BOTONES
+=========================== */
 .botones-container {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px 24px;
-  background: white;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
 }
 
-.btn-cancelar {
-  --background: white;
-  --color: #666;
+ion-button {
   --border-radius: 8px;
-  height: 44px;
+  text-transform: none;
+  min-width: 120px;
   font-weight: 600;
-  border: 1px solid #ddd;
-  text-transform: none;
 }
 
-.btn-agregar {
-  --background: #5b9bd5;
-  --color: white;
-  --border-radius: 8px;
-  height: 46px;
-  font-weight: 700;
-  text-transform: none;
-}
-
-/* Responsive - Tablet y Desktop */
+/* ===========================
+   RESPONSIVE
+=========================== */
 @media (min-width: 768px) {
-  .pedido-container {
-    padding: 40px 24px;
-  }
-
-  .pedido-card {
-    max-width: 900px;
-  }
-
   .content-grid {
-    flex-direction: row;
-    align-items: stretch;
-  }
-
-  .imagen-section {
-    flex: 1;
-    padding: 32px;
-    min-width: 400px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
   }
 
   .producto-imagen {
-    max-height: 450px;
-    object-fit: cover;
-  }
-
-  .form-section {
-    flex: 1;
-    padding: 32px;
-    justify-content: space-between;
+    height: 500px;
   }
 
   .producto-titulo {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
-  .precio-section {
-    padding: 20px 32px;
+  .precio-valor {
+    font-size: 1.75rem;
   }
+}
+/* Header fijo arriba */
+ion-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
 
-  .botones-container {
-    flex-direction: row;
-    justify-content: flex-end;
-    padding: 24px 32px;
-    gap: 12px;
-  }
+/* Deja espacio para el header */
+ion-content {
+  --padding-top: 40px; /* ajusta según la altura del header */
+  --padding-bottom: 240px;
+}
 
-  .btn-cancelar {
-    min-width: 110px;
-  }
+/* Corrige layout del ion-page sin romper flex */
+.ion-page {
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  height: 100%;
+}
 
-  .btn-agregar {
-    min-width: 150px;
-  }
+/* =======================================
+   DETALLES
+======================================= */
+ion-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+ion-button {
+  --border-radius: 10px;
 }
 
 /* ============================================
@@ -242,23 +183,25 @@ app-header {
   z-index: 100;
 }
 
-/* Header local (ion-header) debajo del global */
-ion-header {
-  position: fixed !important;
-  top: 60px; /* altura aproximada del app-header */
-  left: 0;
-  width: 100%;
-  z-index: 90;
-}
+
 
 /* Contenido debajo de ambos headers */
 ion-content {
-  --background: #f3baba;
+  --background: #fff;
   position: relative !important;
   display: block !important;
-  justify-content: center;
+  padding-top: 120px !important; /* 60 + 60 aprox */
+  min-height: calc(100vh - 120px);
+}
+
+.cantidad-stepper {
+  display: flex;
   align-items: center;
-  --padding-bottom: 20px;
-  padding-top: 20px !important; /* 60 + 60 aprox */
-  min-height: 95vh;
+  gap: 10px;
+}
+
+.cantidad-valor {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
 }

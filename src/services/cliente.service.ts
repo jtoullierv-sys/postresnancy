@@ -9,10 +9,14 @@ import { ClienteAPI } from '../models/cliente.model';
 export class ClienteService {
   private API_BASE_URL = 'https://api-postresnancy.onrender.com/';
   private CLIENTE_ENDPOINT = 'clientes/insertar-cliente';
+  private OBTENERC_ENDOPOINT = 'clientes/buscar-por-usuario/';
 
   constructor(private http: HttpClient) {}
 
   insertarCliente(data: any): Observable<any> {
     return this.http.post(`${this.API_BASE_URL}${this.CLIENTE_ENDPOINT}`, data);
+  }
+  obtenerCliente($usuario: string): Observable<ClienteAPI[]> {
+      return this.http.get<ClienteAPI[]>(`${this.API_BASE_URL}${this.OBTENERC_ENDOPOINT+$usuario}`);
   }
 }

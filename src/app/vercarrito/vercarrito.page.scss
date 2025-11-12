@@ -1,69 +1,155 @@
-.fondo-page {
-  --background: linear-gradient(rgba(255, 228, 225, 0.95), rgba(255, 240, 245, 0.95));
+.fondo-page,
+ion-content {
+  --background: #ffc6c7;
+
+  position: relative !important;
+  display: block !important;
+  padding-top: 120px !important;
+  min-height: calc(100vh - 120px);
+}
+.cart-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px #ff9e9e;
+  background: #ffffff;
+  overflow: hidden;
+
+  margin: 7rem auto;
+
+  padding: 0;
 }
 
-.shadow-card {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+.cart-card {
+  ion-card-header {
+    text-align: center;
+    background: #ff6868; 
+    color: #fff;
+    padding: 1rem 0.5rem; 
+  }
 
+  ion-card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px; 
+    justify-content: center;
+    color: #fff;
+  }
+
+  ion-card-subtitle {
+    color: #ffc6c7;
+    font-size: 0.9rem;
+    padding-top: 0.25rem;
+  }
+
+  ion-card-content {
+    padding: 1rem;
+  }
+}
+/* === FIN DE LA SOLUCIÓN === */
+
+/* * Subtítulo
+ * Se usa un color de texto oscuro de S1
+ */
 .subtitulo {
   font-size: 0.95rem;
-  color: #666;
+  color: #363636; /* De S1 (.input-item color) */
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
+/* * Fila de item (ej. un input o un display)
+ * Se estiliza como S1 (.input-item)
+ */
 .item-row {
-  padding: 8px 0;
-  border-bottom: 1px solid #ddd;
+  --background: #ff888863; /* De S1 (.input-item) */
+  --highlight-color-focused: #3c3838; /* De S1 (.input-item) */
+  color: #363636; /* De S1 (.input-item) */
+  justify-content: center;
+  border-radius: 20px; /* De S1 (.input-item) */
+  margin-bottom: 1rem; /* De S1 (.input-item) */
+  padding: 0.5rem 1rem; /* Añadido para espaciado */
+  border-bottom: none; /* Se quita el borde de S2 */
 }
 
-.resumen {
+/* * Caja de resumen
+ * Se estiliza con un fondo más claro de S1
+ */
+/* 5. Se añade .summary-card para que herede el estilo */
+.resumen,
+.summary-card {
   margin-top: 20px;
-  background-color: #fffbea;
-  border-radius: 12px;
+  background-color: #fff; /* Cambiado de #ffc6c7 a #fff para que contraste */
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid #ff9e9e; /* Borde con sombra de S1 */
+  box-shadow: 0 4px 12px #ff9e9e60; /* Sombra suave */
 }
 
 /* ============================================
-   🔧 FIX PARA HEADERS Y CONTENIDO
-   ============================================ */
+ * 🔧 FIX PARA HEADERS Y CONTENIDO (Estructura de S2)
+ * Aplicando el TEMA de S1 (ion-card-header)
+ * ============================================ */
 
 /* Header global (app-header) */
 app-header {
+  /* Estructura de S2 */
   position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
+
+  /* Tema de S1 (ion-card-header) */
+  background: #ff6868;
+  color: #fff;
 }
 
 /* Header local (ion-header) debajo del global */
 ion-header {
+  /* Estructura de S2 */
   position: fixed !important;
   top: 60px; /* altura aproximada del app-header */
   left: 0;
   width: 100%;
   z-index: 90;
+
+  /* * Tema de S1 (ion-card-header)
+   * Asumimos que ion-toolbar heredará esto
+   */
+  ion-toolbar {
+    --background: #ff6868;
+    --color: #fff;
+  }
 }
 
-/* Contenido debajo de ambos headers */
-ion-content {
-  --background: #fff;
-  position: relative !important;
-  display: block !important;
-  padding-top: 200px !important; /* 60 + 60 aprox */
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-  --padding-bottom: 240px;
-}
-
+/* * Stepper de cantidad
+ * Se aplica el estilo de S1 (.boton-login) a los botones internos
+ */
 .cantidad-stepper {
   display: flex;
   align-items: center;
+  justify-content: center; /* Centramos los botones */
   gap: 10px;
+
+  /* Estilo de S1 (.boton-login) aplicado a los botones */
+  ion-button {
+    --background: #ff6161;
+    --background-activated: #e05555; /* Un poco más oscuro */
+    --border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin: 0;
+  }
 }
 
+/* * Valor numérico del stepper
+ * Se aplica el color de texto de S1
+ */
 .cantidad-valor {
   min-width: 30px;
   text-align: center;
   font-weight: bold;
+  font-size: 1.1rem;
+  color: #363636; /* De S1 (.input-item color) */
 }
