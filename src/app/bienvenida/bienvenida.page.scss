@@ -8,18 +8,9 @@ ion-content {
   --padding-bottom: 200px;
 }
 
-app-header,
-app-footer {
+app-header {
   display: block;
   position: relative;
-  z-index: 10;
-}
-
-app-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   z-index: 10;
 }
 
@@ -107,6 +98,36 @@ app-footer {
   line-height: 1.6;
 }
 
+// 🔹 NUEVA sección de redes sociales
+.social-section {
+  margin-top: 24px;
+  text-align: center;
+
+  .social-title {
+    font-size: 1rem;
+    color: #f72844;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 8px;
+
+    ion-button {
+      --color: #f82844;
+      font-size: 1.4rem;
+      transition: transform 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
 // Responsive para tablets y desktop
 @media (min-width: 768px) {
   .welcome-container {
@@ -119,16 +140,14 @@ app-footer {
     gap: 48px;
     padding: 40px;
   }
-  
+
   .text-section {
     text-align: left;
     max-width: none;
   }
-  
-  .logo-section {
-    img {
-      max-width: 380px;
-    }
+
+  .logo-section img {
+    max-width: 380px;
   }
 
   .title {
@@ -141,6 +160,10 @@ app-footer {
 
   .subtitle {
     font-size: 1.05rem;
+  }
+
+  .social-section {
+    text-align: left;
   }
 }
 

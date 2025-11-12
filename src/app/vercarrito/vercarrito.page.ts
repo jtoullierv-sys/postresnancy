@@ -6,6 +6,8 @@ import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component'; 
 import { CarritoService } from 'src/services/carrito.service';
 import { StorageService } from 'src/services/storage';
+import { addIcons } from 'ionicons';
+import { closeCircleOutline, cartOutline } from 'ionicons/icons'; // nota: "cartOutline", no "carOutline"
 
 @Component({
   selector: 'app-vercarrito',
@@ -29,7 +31,10 @@ export class VercarritoPage implements OnInit {
     private carritoService: CarritoService,
     private storage: StorageService,
     private alertCtrl: AlertController
-  ) {}
+  ) {
+    // 👇 Registrar los íconos correctamente aquí:
+    addIcons({ closeCircleOutline, cartOutline });
+  }
 
   async ngOnInit() {
     await this.cargarCarrito();
@@ -46,12 +51,11 @@ export class VercarritoPage implements OnInit {
 
       this.carritoService.obtenerCarrito(cliente.id_cliente).subscribe({
         next: (data) => {
-          // Adaptamos el JSON del backend al formato que usa el HTML
           this.elementos = data.map((item: any) => ({
             id_carrito: item.id_carrito,
             nombre: item.postre.descripcion_postre,
             cantidad: item.cantidad_postre,
-            precio: parseFloat(item.subtotal_carrito), // o item.postre.precio_postre si lo prefieres
+            precio: parseFloat(item.subtotal_carrito),
             imagen: item.postre.imagen_postre,
             extra: item.extra.nombre_extra
           }));

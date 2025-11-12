@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,12 +7,13 @@ import {
   IonTitle, 
   IonToolbar,
   IonCard,
-  IonCardHeader,
-  IonFooter,
-  IonCardContent
+  IonCardContent,
+  IonButton,
+  IonIcon
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { logoFacebook, logoInstagram, logoWhatsapp } from 'ionicons/icons'; 
 import { HeaderComponent } from 'src/app/header/header.component';
-import { FooterComponent } from 'src/app/footer/footer.component';
 
 @Component({
   selector: 'app-bienvenida',
@@ -26,20 +26,19 @@ import { FooterComponent } from 'src/app/footer/footer.component';
     IonTitle, 
     IonToolbar,
     IonCard,
-    IonCardHeader,
-    IonFooter,
     IonCardContent,
+    IonButton,
+    IonIcon,
     CommonModule, 
     FormsModule, 
-    HeaderComponent,
-    FooterComponent
+    HeaderComponent
   ]
 })
 export class BienvenidaPage implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    addIcons({ logoFacebook, logoInstagram, logoWhatsapp});
   }
 
+  ngOnInit() {}
 }
