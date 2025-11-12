@@ -1,49 +1,32 @@
-// ===========================
-// VARIABLES
-// ===========================
 $red-primary: #ef4444;
 $red-dark: #dc2626;
 $pink-bg: #ffe5ec;
 $pink-light: #fff0f5;
 $white: #ffffff;
 
-// ===========================
-// HEADER TOOLBAR
-// ===========================
 ion-header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
-  &.ion-no-border::after {
-    display: none;
-  }
+  &.ion-no-border::after { display: none; }
 }
 
 .toolbar-custom {
   --background: #{$red-primary};
   --color: #{$white};
   --min-height: 60px;
-  --padding-start: 12px;
-  --padding-end: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-// ===========================
-// IZQUIERDA: Menu + Logo
-// ===========================
 .header-left {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex: 1;
 }
 
-.menu-button-custom {
-  --color: #{$white};
-  --padding-start: 8px;
-  --padding-end: 8px;
-  
-  ion-icon {
-    font-size: 28px;
-  }
+.menu-button-custom ion-icon {
+  font-size: 28px;
+  color: $white;
 }
 
 .logo-section {
@@ -52,313 +35,90 @@ ion-header {
   gap: 10px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  
-  &:hover {
-    transform: scale(1.02);
-  }
+  &:hover { transform: scale(1.03); }
 }
 
 .logo-circle {
   width: 42px;
   height: 42px;
-  background: #{$white};
+  background: $white;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .logo-text {
-  font-size: 1.1rem;
+  color: $white;
   font-weight: 700;
-  color: #{$white};
-  letter-spacing: 0.3px;
+  font-size: 1.1rem;
 }
 
-// ===========================
-// DERECHA: Login
-// ===========================
-.header-right {
+/* ===== Usuario ===== */
+.user-info {
   display: flex;
   align-items: center;
+  gap: 6px;
+  ion-icon {
+    font-size: 24px;
+    color: $white;
+  }
+  .user-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: $white;
+    text-transform: capitalize;
+  }
+}
+
+.logout-button {
+  --color: #{$white};
+  --padding-start: 6px;
+  --padding-end: 6px;
+  ion-icon { font-size: 22px; }
+  &:hover { transform: scale(1.1); }
 }
 
 .login-button {
   --color: #{$white};
-  --background: rgba(255, 255, 255, 0.2);
-  --background-hover: rgba(255, 255, 255, 0.3);
   --border-radius: 10px;
-  --padding-start: 12px;
-  --padding-end: 12px;
-  
-  height: 42px;
-  font-weight: 600;
-  backdrop-filter: blur(10px);
-  
-  ion-icon {
-    font-size: 24px;
-    margin-right: 6px;
-  }
-  
-  .btn-text {
-    font-size: 15px;
-  }
+  ion-icon { font-size: 22px; margin-right: 5px; }
 }
 
-// ===========================
-// MODAL LATERAL (MENÚ)
-// ===========================
+/* ===== MODAL (igual que antes, solo limpio) ===== */
 ion-modal.side-menu-modal {
   --width: 280px;
-  --height: 100%;
-  
-  &::part(backdrop) {
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
+  &::part(backdrop) { background: rgba(0,0,0,0.5); }
   &::part(content) {
-    position: fixed !important;
-    top: 0 !important;
     left: 0 !important;
-    bottom: 0 !important;
-    right: auto !important;
     width: 280px !important;
-    height: 100% !important;
-    max-height: 100% !important;
-    border-radius: 0 !important;
-    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.3);
-    margin: 0 !important;
-    transform: none !important;
-  }
-  
-  &::part(handle) {
-    display: none;
+    height: 100%;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.3);
   }
 }
 
-.menu-modal-content {
-  --background: #{$pink-bg};
-}
+.menu-modal-content { --background: #{$pink-bg}; }
 
-.menu-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  padding: 0;
-}
-
-// ===========================
-// HEADER DEL MENÚ
-// ===========================
 .menu-header {
-  background: linear-gradient(135deg, #{$red-primary} 0%, #{$red-dark} 100%);
-  padding: 24px 20px;
+  background: linear-gradient(135deg, $red-primary, $red-dark);
+  padding: 22px 20px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative;
-}
-
-.close-button {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  --color: #{$white};
-  --background: rgba(255, 255, 255, 0.2);
-  --border-radius: 8px;
-  width: 36px;
-  height: 36px;
-  
-  ion-icon {
-    font-size: 24px;
-  }
-}
-
-.menu-logo {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 12px;
-}
-
-.menu-logo-circle {
-  width: 60px;
-  height: 60px;
-  background: #{$white};
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.menu-title {
-  color: #{$white};
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: 0.5px;
-}
-
-// ===========================
-// ITEMS DEL MENÚ
-// ===========================
-.menu-items {
-  flex: 1;
-  padding: 20px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow-y: auto;
+  .menu-title { color: $white; font-weight: 700; }
 }
 
 .menu-item-button {
-  --background: #{$white};
-  --background-hover: #{$pink-light};
-  --background-activated: #{$red-primary};
-  --color: #{$red-primary};
-  --color-activated: #{$white};
+  --background: $white;
+  --color: $red-primary;
   --border-radius: 12px;
-  --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  --padding-start: 16px;
-  --padding-end: 16px;
-  
-  height: 52px;
-  font-size: 15px;
-  font-weight: 600;
-  text-transform: none;
-  margin: 0;
-  transition: all 0.3s ease;
-  
-  ion-icon {
-    font-size: 22px;
-    margin-right: 12px;
-    color: #{$red-primary};
-  }
-  
-  span {
-    flex: 1;
-    text-align: left;
-  }
-  
-  &:hover {
-    transform: translateX(4px);
-    --box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
-  }
-  
-  &:active {
-    transform: translateX(2px) scale(0.98);
-    
-    ion-icon {
-      color: #{$white};
-    }
-  }
+  margin-bottom: 8px;
+  ion-icon { color: $red-primary; }
+  &:hover { transform: translateX(5px); }
 }
 
-// ===========================
-// IMAGEN DEL CHEF
-// ===========================
 .chef-image-container {
-  width: 100%;
-  padding: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.chef-image {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #{$pink-light} 0%, #{$white} 100%);
-  padding: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-// ===========================
-// RESPONSIVE
-// ===========================
-@media (max-width: 768px) {
-  .logo-text {
-    font-size: 1rem;
-  }
-  
-  .logo-circle {
-    width: 38px;
-    height: 38px;
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 576px) {
-  .toolbar-custom {
-    --padding-start: 8px;
-    --padding-end: 8px;
-  }
-  
-  .logo-text {
-    display: none;
-  }
-  
-  .btn-text {
-    display: none;
-  }
-  
-  .login-button {
-    --padding-start: 8px;
-    --padding-end: 8px;
-    min-width: 42px;
-    
-    ion-icon {
-      margin-right: 0;
-    }
-  }
-  
-  .logo-circle {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
-  
-  .menu-button-custom {
-    ion-icon {
-      font-size: 26px;
-    }
-  }
-  
-  .side-menu-modal::part(content) {
-    width: 260px;
-  }
-  
-  .menu-item-button {
-    height: 48px;
-    font-size: 14px;
-    
-    ion-icon {
-      font-size: 20px;
-    }
-  }
-  
-  .chef-image {
-    width: 140px;
-    height: 140px;
-  }
-}
-
-@media (max-width: 400px) {
-  .side-menu-modal::part(content) {
-    width: 240px;
-  }
-  
-  .menu-logo-circle {
-    width: 50px;
-    height: 50px;
-    font-size: 28px;
-  }
-  
-  .menu-title {
-    font-size: 1.1rem;
-  }
+  padding: 20px;
 }

@@ -15,6 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { star, starOutline, send } from 'ionicons/icons';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-registrarcomentario',
@@ -33,7 +34,8 @@ import { star, starOutline, send } from 'ionicons/icons';
     IonButton,
     IonIcon,
     CommonModule, 
-    FormsModule
+    FormsModule,
+    HeaderComponent
   ]
 })
 export class RegistrarcomentarioPage implements OnInit {

@@ -14,7 +14,7 @@ import {
 import { addIcons } from 'ionicons';
 import { logoFacebook, logoInstagram, logoWhatsapp } from 'ionicons/icons'; 
 import { HeaderComponent } from 'src/app/header/header.component';
-
+import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-bienvenida',
   templateUrl: './bienvenida.page.html',
@@ -31,7 +31,8 @@ import { HeaderComponent } from 'src/app/header/header.component';
     IonIcon,
     CommonModule, 
     FormsModule, 
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class BienvenidaPage implements OnInit {

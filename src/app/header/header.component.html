@@ -12,13 +12,25 @@
       </div>
     </ion-buttons>
 
-    <!-- ===== DERECHA: Botón LOGIN ===== -->
-    <ion-buttons slot="end" class="header-right">
-      <ion-button routerLink="/login" class="login-button" fill="clear">
+    <!-- ===== DERECHA: Usuario o Login ===== -->
+    <ion-buttons slot="end" class="header-right" *ngIf="usuario; else loginBtn">
+      <div class="user-info">
         <ion-icon name="person-circle-outline"></ion-icon>
-        <span class="btn-text">Login</span>
+        <span class="user-name">{{ usuario?.nombre || 'Invitado' }}</span>
+      </div>
+      <ion-button fill="clear" class="logout-button" (click)="closeSesion()">
+        <ion-icon name="exit-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+    <ng-template #loginBtn>
+      <ion-buttons slot="end" class="header-right">
+        <ion-button routerLink="/login" class="login-button" fill="clear">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <span class="btn-text">Login</span>
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
   </ion-toolbar>
 </ion-header>
 
@@ -38,85 +50,46 @@
             <div class="menu-logo-circle">🍰</div>
           </div>
           <h2 class="menu-title">Menú Principal</h2>
-          <ion-button 
-            fill="clear" 
-            class="close-button"
-            (click)="closeMenu()">
+          <ion-button fill="clear" class="close-button" (click)="closeMenu()">
             <ion-icon name="close-outline"></ion-icon>
           </ion-button>
         </div>
 
         <!-- Lista de opciones -->
         <div class="menu-items">
-          <ion-button 
-            expand="block" 
-            class="menu-item-button"
-            routerLink="/bienvenida"
-            (click)="closeMenu()">
+          <ion-button expand="block" class="menu-item-button" routerLink="/bienvenida" (click)="closeMenu()">
             <ion-icon name="home-outline" slot="start"></ion-icon>
             <span>Inicio</span>
           </ion-button>
 
-          <ion-button 
-            expand="block" 
-            class="menu-item-button"
-            routerLink="/acercadenosotros"
-            (click)="closeMenu()">
+          <ion-button expand="block" class="menu-item-button" routerLink="/acercadenosotros" (click)="closeMenu()">
             <ion-icon name="people-outline" slot="start"></ion-icon>
             <span>Nosotros</span>
           </ion-button>
 
-          <ion-button 
-            expand="block" 
-            class="menu-item-button"
-            routerLink="/vercatalogo"
-            (click)="closeMenu()">
+          <ion-button expand="block" class="menu-item-button" routerLink="/vercatalogo" (click)="closeMenu()">
             <ion-icon name="grid-outline" slot="start"></ion-icon>
             <span>Catálogo</span>
           </ion-button>
 
-          <ion-button 
-            expand="block" 
-            class="menu-item-button"
-            routerLink="/registrarpedido"
-            (click)="closeMenu()">
+          <ion-button expand="block" class="menu-item-button" routerLink="/vercarrito" (click)="closeMenu()">
             <ion-icon name="cart-outline" slot="start"></ion-icon>
-            <span>Pedidos</span>
-          </ion-button>
-
-          <ion-button 
-            expand="block" 
-            class="menu-item-button"
-            routerLink="/vercarrito"
-            (click)="closeMenu()">
-            <ion-icon name="basket-outline" slot="start"></ion-icon>
             <span>Carrito</span>
           </ion-button>
 
-          <ion-button 
-            expand="block" 
-            class="menu-item-button"
-            routerLink="/registrarcomentario"
-            (click)="closeMenu()">
+          <ion-button expand="block" class="menu-item-button" routerLink="/registrarcomentario" (click)="closeMenu()">
             <ion-icon name="chatbox-outline" slot="start"></ion-icon>
             <span>Comentarios</span>
           </ion-button>
 
-          <ion-button 
-            expand="block" 
-            class="menu-item-button"
-            routerLink="/verestadopedido"
-            (click)="closeMenu()">
+          <ion-button expand="block" class="menu-item-button" routerLink="/verestadopedido" (click)="closeMenu()">
             <ion-icon name="information-circle-outline" slot="start"></ion-icon>
             <span>Estado de Pedido</span>
           </ion-button>
 
-        <ion-button 
-            expand="block" 
-            class="menu-item-button"
-            (click)="closeSesion()">
+          <ion-button expand="block" class="menu-item-button" (click)="closeSesion()">
             <ion-icon name="exit-outline"></ion-icon>
-            <span>Cerrar Sesion</span>
+            <span>Cerrar Sesión</span>
           </ion-button>
         </div>
 
