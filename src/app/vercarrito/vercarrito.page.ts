@@ -7,7 +7,7 @@ import { HeaderComponent } from '../header/header.component';
 import { CarritoService } from 'src/services/carrito.service';
 import { StorageService } from 'src/services/storage';
 import { addIcons } from 'ionicons';
-import { closeCircleOutline, cartOutline } from 'ionicons/icons'; // nota: "cartOutline", no "carOutline"
+import { closeCircleOutline, cartOutline } from 'ionicons/icons'; 
 
 @Component({
   selector: 'app-vercarrito',
@@ -32,7 +32,6 @@ export class VercarritoPage implements OnInit {
     private storage: StorageService,
     private alertCtrl: AlertController
   ) {
-    // 👇 Registrar los íconos correctamente aquí:
     addIcons({ closeCircleOutline, cartOutline });
   }
 
@@ -79,9 +78,24 @@ export class VercarritoPage implements OnInit {
     return this.elementos.reduce((sum, e) => sum + e.precio, 0);
   }
 
-  eliminarElemento(id: number) {
-    this.elementos = this.elementos.filter(e => e.id_carrito !== id);
+  async eliminarElemento(id: number) {
+  //this.elementos = this.elementos.filter(e => e.id_carrito !== id);
+  try {
+    this.carritoService.eliminarCarrito(id).subscribe({
+      next: async () => {
+        await this.mostrarAlerta('Éxito', 'Producto eliminado del carrito.');
+        await this.cargarCarrito(); // Se recarga el carrito
+      },
+      error: async (err) => {
+        console.error('Error al eliminar item:', err);
+        await this.mostrarAlerta('Error', 'No se pudo eliminar el producto.');
+      }
+    });
+  } catch (error) {
+    console.error('Error inesperado:', error);
+    await this.mostrarAlerta('Error', 'Ocurrió un problema al eliminar el producto.');
   }
+}
 
   irAlPago() {
     console.log('Ir al pago con total:', this.total);

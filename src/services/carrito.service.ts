@@ -7,10 +7,10 @@ import { CarritoAPI } from '../models/carrito.model';
   providedIn: 'root'
 })
 export class CarritoService {
-  private API_BASE_URL = 'https://api-postresnancy.onrender.com/';
-  private INSERTAR_ENDPOINT = 'detalles/carrito/agregar';
-  private OBTENER_ENDPOINT = 'detalles/carrito/cliente/';
-  private ELIMINARITEM_ENDOPOINT = ' '
+  private API_BASE_URL = 'https://api-postresnancy.onrender.com/detalles/carrito/';
+  private INSERTAR_ENDPOINT = 'agregar';
+  private OBTENER_ENDPOINT = 'cliente/';
+  private ELIMINARITEM_ENDOPOINT = 'eliminar/'
 
   constructor(private http: HttpClient) {}
   
@@ -41,6 +41,11 @@ export class CarritoService {
   obtenerCarrito($id_cliente : number): Observable<CarritoAPI[]> {
     return this.http.get<CarritoAPI[]>(`${this.API_BASE_URL}${this.OBTENER_ENDPOINT+$id_cliente}`);
   }
-
   
+  eliminarCarrito(id_carrito: number): Observable<any> {
+  return this.http.delete<any>(
+    `${this.API_BASE_URL}${this.ELIMINARITEM_ENDOPOINT}${id_carrito}`
+  );
+
+} 
 }
