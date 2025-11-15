@@ -13,6 +13,7 @@
 <ion-menu side="start" menuId="main-menu" contentId="main-content">
   <ion-content class="menu-content">
     <div class="menu-container">
+
       <!-- Botones del menú -->
       <div class="menu-items">
         <ion-button 
@@ -23,6 +24,15 @@
           <span class="menu-icon">{{ item.icon }}</span>
           <span class="menu-label">{{ item.label }}</span>
         </ion-button>
+
+        <!-- Botón de Cerrar Sesión -->
+        <ion-button 
+          expand="block"
+          class="menu-button"
+          (click)="closeSesion()">
+          <span class="menu-icon">🚪</span>
+          <span class="menu-label">Cerrar Sesión</span>
+        </ion-button>
       </div>
 
       <!-- Imagen decorativa -->
@@ -32,6 +42,7 @@
           alt="Ilustración panadera" 
           class="chef-image">
       </div>
+
     </div>
   </ion-content>
 </ion-menu>

@@ -62,8 +62,6 @@ export class LoginPage implements OnInit {
         await this.storage.set('usuario', response);
 
         const idUsuario = response.id_usuario;
-
-        // 1️⃣ Verificar si es admin
         this.usuarioService.esAdmin(idUsuario).subscribe({
           next: async (adminResp) => {
 
@@ -74,7 +72,6 @@ export class LoginPage implements OnInit {
               return; 
             }
 
-            // 3️⃣ NO ES ADMIN → obtener cliente
             this.clienteService.obtenerCliente(this.usuario).subscribe({
               next: async (clienteResponse) => {
 
@@ -102,7 +99,6 @@ export class LoginPage implements OnInit {
           },
 
           error: () => {
-            // Si falla admin → tratar como NO admin
             this.clienteService.obtenerCliente(this.usuario).subscribe({
               next: async (clienteResponse) => {
 
