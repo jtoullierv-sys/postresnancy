@@ -5,7 +5,7 @@ ion-content {
   position: relative !important;
   display: block !important;
   padding-top: 120px !important;
-  min-height: calc(100vh - 120px);
+  min-height: 850px;
 }
 .cart-card {
   width: 100%;
@@ -153,4 +153,3 @@ ion-header {
   font-size: 1.1rem;
   color: #000000; /* De S1 (.input-item color) */
 }
-
