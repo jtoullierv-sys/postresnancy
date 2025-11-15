@@ -16,12 +16,11 @@ export class AdminmenuComponent {
   usuario: any = null;
 
   menuItems = [
-    { icon: '🏠', label: 'Inicio', route: '/admin' },
-    { icon: '👩‍🍳', label: 'Registrar Personalizado', route: '/registrar-personalizado' },
+    { icon: '🏠', label: 'Inicio', route: '/bienvenidaadmin' },
     { icon: '🍰', label: 'Mis Postres', route: '/mis-postres' },
     { icon: '🧾', label: 'Mis Pedidos', route: '/mis-pedidos' },
     { icon: '❗', label: 'Mis Reclamos', route: '/mis-reclamos' },
-    { icon: '📊', label: 'Mis Estadísticas', route: '/mis-estadisticas' }
+    { icon: '📊', label: 'Mis Estadísticas', route: '/estadisticas' }
   ];
 
   constructor(
