@@ -1,7 +1,264 @@
+/* ============================================
+   🎀 ESTILO DEL FONDO
+   ============================================ */
+
+.pago-content {
+  --background: #ffe5ec;
+}
+
+/* Contenedor centrado */
+.pago-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Tarjeta principal */
+.pago-card {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  background: #fff0f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+}
+
+/* Título */
+.pago-title {
+  text-align: center;
+  color: #d6336c;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+/* Campos */
+.pago-item {
+  --background: transparent;
+  border-radius: 12px;
+  margin-top: 10px;
+
+  ion-input {
+    margin-top: 8px;
+  }
+}
+
+/* =============================
+   📸 Subida de imagen
+   ============================= */
+.upload-group {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.upload-label {
+  font-size: 14px;
+  color: #d6336c;
+  margin-bottom: 6px;
+}
+
+.upload-input {
+  background: #fff0f5;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ffc2d1;
+}
+
+/* =============================
+   📌 QR
+   ============================= */
+.qr-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.qr-text {
+  font-size: 14px;
+  color: #888;
+  display: block;
+  margin-bottom: 8px;
+}
+
 .qr-img {
   width: 200px;
-  height: 300px;
-  margin: 1rem auto;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  height: 200px;
+  border-radius: 16px;
+  border: 3px solid #ffd6e0;
+  background: #ffffff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  margin: 0 auto;
+}
+
+/* =============================
+   🎯 Botón principal
+   ============================= */
+.pago-btn {
+  --background: #d6336c;
+  --background-hover: #e35d89;
+  --background-activated: #c2255c;
+  margin-top: 22px;
+  border-radius: 16px;
+  font-weight: 600;
+}
+
+/* =============================
+   🧮 Stepper (si lo usas)
+   ============================= */
+.cantidad-stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cantidad-valor {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ============================================
+   🛠 FIX PARA HEADERS SOLO EN ESTA PÁGINA
+   ============================================ */
+
+/* Ajustar espacio bajo el header global */
+.page-registrar-pago ion-content {
+  padding-top: 100px !important;
+}
+
+/* Ajustar si hay footer */
+.page-registrar-pago ion-content {
+  padding-bottom: 80px;
+}
+
+/* ======== FONDO GENERAL ======== */
+.fondo-page,
+ion-content {
+  --background: #ffc6c7;
+  position: relative !important;
+  display: block !important;
+  padding-top: 120px !important;
+  min-height: calc(100vh - 120px);
+}
+
+/* ======== CARD PRINCIPAL ======== */
+ion-card {
+  width: 100%;
+  max-width: 420px;
+  margin: 2.5rem auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px #ff9e9e;
+}
+
+ion-card-header {
+  text-align: center;
+  background: #ff6868;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 16px 16px 0 0;
+}
+
+ion-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+ion-card-content {
+  padding: 1.2rem;
+}
+
+/* ======== ITEMS & INPUTS ======== */
+ion-item {
+  --background: #ff888863;
+  --highlight-color-focused: #3c3838;
+  color: #363636;
+
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  padding: 6px 0;
+  border-bottom: none !important;
+}
+
+ion-label {
+  font-weight: 600;
+}
+
+ion-input {
+  color: #000;
+  font-weight: 500;
+}
+
+/* ======== INPUT FILE (Comprobante) ======== */
+input[type="file"] {
+  margin-top: 0.5rem;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 12px;
+  border: 1px solid #ff9e9e;
+  width: 100%;
+}
+
+/* ======== SELECTOR MÉTODO DE PAGO ======== */
+ion-select {
+  font-weight: 600;
+}
+
+ion-select-option {
+  padding: 1rem;
+}
+
+/* ======== IMAGEN QR ======== */
+.qr-img {
+  width: 220px;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px #ff9e9e60;
+  display: block;
+}
+
+/* ======== BOTÓN DE CONFIRMAR ======== */
+ion-button {
+  --background: #ff6868;
+  --background-activated: #e05555;
+  --border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ======== HEADER GLOBAL ======== */
+app-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  background: #ff6868;
+  color: #fff;
+}
+
+/* ======== HEADER LOCAL INTERIOR ======== */
+ion-header {
+  position: fixed !important;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  z-index: 90;
+
+  ion-toolbar {
+    --background: #ff6868;
+    --color: #fff;
+  }
+}
+
+/* ======== ESPACIADO FINAL ======== */
+.ion-padding {
+  padding-bottom: 3rem; 
 }

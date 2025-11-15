@@ -18,7 +18,8 @@ import {
   IonImg,
   IonButton
 } from '@ionic/angular/standalone';
-
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-registrarpago',
   standalone: true,
@@ -41,7 +42,9 @@ import {
     IonSelect,
     IonSelectOption,
     IonImg,
-    IonButton
+    IonButton,
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class RegistrarpagoPage {

@@ -1,58 +1,37 @@
 import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IonicModule, AlertController, MenuController } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-adminmenu',
+  standalone: true,
   templateUrl: './adminmenu.component.html',
   styleUrls: ['./adminmenu.component.scss'],
-  standalone: true,
-  imports: [CommonModule, IonicModule]
+  imports: [CommonModule, IonicModule, RouterLink]
 })
 export class AdminmenuComponent {
 
-  usuario: any = null;
+  constructor(private router: Router) {}
 
-  menuItems = [
-    { icon: '🏠', label: 'Inicio', route: '/bienvenidaadmin' },
-    { icon: '🍰', label: 'Mis Postres', route: '/mis-postres' },
-    { icon: '🧾', label: 'Mis Pedidos', route: '/mis-pedidos' },
-    { icon: '❗', label: 'Mis Reclamos', route: '/mis-reclamos' },
-    { icon: '📊', label: 'Mis Estadísticas', route: '/estadisticas' }
-  ];
-
-  constructor(
-    private router: Router,
-    private alertCtrl: AlertController,
-    private storage: Storage,
-    private menuController: MenuController
-  ) {}
-
-  navigateTo(route: string) {
-    this.router.navigate([route]);
+  goToInicio() {
+    this.router.navigate(['/bienvenidaadmin']);
   }
 
-  // MÉTODO DE CERRAR SESIÓN (tal como lo pediste)
-  async closeSesion() {
-    const alert = await this.alertCtrl.create({
-      header: 'Cerrar sesión',
-      message: '¿Deseas salir de tu cuenta?',
-      buttons: [
-        { text: 'Cancelar', role: 'cancel' },
-        {
-          text: 'Salir',
-          handler: async () => {
-            await this.menuController.close('main-menu');
-            await this.storage.clear();
-            this.usuario = null;
-            this.router.navigate(['/login']);
-          }
-        }
-      ]
-    });
-
-    await alert.present();
+  goToPostres() {
+    this.router.navigate(['/mis-postres']);
   }
+
+  goToPedidos() {
+    this.router.navigate(['/mis-pedidos']);
+  }
+
+  goToReclamos() {
+    this.router.navigate(['/mis-reclamos']);
+  }
+
+  goToEstadisticas() {
+    this.router.navigate(['/estadisticas']);
+  }
+
 }
