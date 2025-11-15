@@ -7,7 +7,8 @@ import { HeaderComponent } from '../header/header.component';
 import { CarritoService } from 'src/services/carrito.service';
 import { StorageService } from 'src/services/storage';
 import { addIcons } from 'ionicons';
-import { closeCircleOutline, cartOutline } from 'ionicons/icons'; 
+import { closeCircleOutline, cartOutline } from 'ionicons/icons';
+import {Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-vercarrito',
@@ -30,7 +31,8 @@ export class VercarritoPage implements OnInit {
   constructor(
     private carritoService: CarritoService,
     private storage: StorageService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private router: Router
   ) {
     addIcons({ closeCircleOutline, cartOutline });
   }
@@ -98,7 +100,7 @@ export class VercarritoPage implements OnInit {
 }
 
   irAlPago() {
-    console.log('Ir al pago con total:', this.total);
+    this.router.navigate(['/registrarpago']);
   }
 
   private async mostrarAlerta(header: string, message: string) {
