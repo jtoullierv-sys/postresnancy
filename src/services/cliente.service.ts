@@ -16,7 +16,7 @@ export class ClienteService {
   insertarCliente(data: any): Observable<any> {
     return this.http.post(`${this.API_BASE_URL}${this.CLIENTE_ENDPOINT}`, data);
   }
-  obtenerCliente($usuario: string): Observable<ClienteAPI[]> {
-      return this.http.get<ClienteAPI[]>(`${this.API_BASE_URL}${this.OBTENERC_ENDOPOINT+$usuario}`);
+  obtenerCliente(usuario: string): Observable<ClienteAPI> {
+    return this.http.get<ClienteAPI>(`${this.API_BASE_URL}${this.OBTENERC_ENDOPOINT}${usuario}`);
   }
 }

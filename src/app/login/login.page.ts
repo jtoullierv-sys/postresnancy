@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
     private alertCtrl: AlertController,
     private usuarioService: UsuarioService,
     private clienteService: ClienteService,
-    private storage: StorageService
+    private storage: StorageService,
   ) {}
 
   async ngOnInit() {
@@ -45,58 +45,97 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    if (!this.usuario || !this.password) {
-      await this.mostrarAlerta('Error', 'Por favor, ingrese usuario y contraseña.');
-      return;
-    }
 
-    try {
-      // Llamada al servicio de login
-      this.usuarioService.loginUsuario(this.usuario, this.password).subscribe({
-        next: async (response) => {
-          if (response && response.usuario) {
-            // Guardar usuario base
-            await this.storage.set('usuario', response);
-            try {
-              this.clienteService.obtenerCliente(this.usuario).subscribe({
-                next: async (clienteResponse: any) => {
-                  const cliente: Cliente = {
-                    id_cliente: clienteResponse.id_cliente,
-                    id_usuario: response.usuario.id_usuario ?? 0, // opcional según tu API
-                    cli_nom: clienteResponse.nombre_cliente,
-                    cli_correo: clienteResponse.correo_cliente
-                  };
+  if (!this.usuario || !this.password) {
+    await this.mostrarAlerta('Error', 'Por favor, ingrese usuario y contraseña.');
+    return;
+  }
 
-                  await this.storage.set('cliente', cliente);
-                  this.router.navigate(['/vercatalogo']);
-                },
-                error: async (err) => {
-                  console.error('Error obteniendo cliente:', err);
-                  await this.mostrarAlerta('Advertencia', 'No se pudo obtener la información del cliente.');
-                  this.router.navigate(['/vercatalogo']);
-                }
-              });
-            } catch (clienteError) {
-              console.error('Excepción al obtener cliente:', clienteError);
-              await this.mostrarAlerta('Advertencia', 'No se pudo obtener el cliente asociado.');
-              this.router.navigate(['/vercatalogo']);
+  this.usuarioService.loginUsuario(this.usuario, this.password).subscribe({
+    next: async (response) => {
+
+        if (!response || !response.usuario) {
+          await this.mostrarAlerta('Error', 'Usuario o contraseña incorrectos.');
+          return;
+        }
+
+        await this.storage.set('usuario', response);
+
+        const idUsuario = response.id_usuario;
+
+        // 1️⃣ Verificar si es admin
+        this.usuarioService.esAdmin(idUsuario).subscribe({
+          next: async (adminResp) => {
+
+            const esAdmin = adminResp?.esAdmin === true;
+
+            if (esAdmin) {
+              this.router.navigate(['/bienvenidaadmin']);
+              return; 
             }
 
-          } else {
-            await this.mostrarAlerta('Error', 'Usuario o contraseña incorrectos.');
-          }
-        },
-        error: async (err) => {
-          console.error('Error en login:', err);
-          await this.mostrarAlerta('Error', 'Error de conexión con el servidor.');
-        }
-      });
+            // 3️⃣ NO ES ADMIN → obtener cliente
+            this.clienteService.obtenerCliente(this.usuario).subscribe({
+              next: async (clienteResponse) => {
 
-    } catch (error) {
-      console.error('Excepción en login:', error);
-      await this.mostrarAlerta('Error', 'Ocurrió un problema inesperado.');
-    }
+                if (!clienteResponse || !clienteResponse.id_cliente) {
+                  await this.mostrarAlerta('Error', 'Usuario no encontrado.');
+                  return;
+                }
+
+                const cliente: Cliente = {
+                  id_cliente: clienteResponse.id_cliente,
+                  id_usuario: idUsuario,
+                  cli_nom: clienteResponse.cli_nom,
+                  cli_correo: clienteResponse.cli_correo,
+                };
+
+                await this.storage.set('cliente', cliente);
+
+                this.router.navigate(['/vercatalogo']);
+              },
+              error: async () => {
+                await this.mostrarAlerta('Error', 'Usuario no encontrado.');
+              }
+            });
+
+          },
+
+          error: () => {
+            // Si falla admin → tratar como NO admin
+            this.clienteService.obtenerCliente(this.usuario).subscribe({
+              next: async (clienteResponse) => {
+
+                if (!clienteResponse || !clienteResponse.id_cliente) {
+                  await this.mostrarAlerta('Error', 'Usuario no encontrado.');
+                  return;
+                }
+
+                const cliente: Cliente = {
+                  id_cliente: clienteResponse.id_cliente,
+                  id_usuario: idUsuario,
+                  cli_nom: clienteResponse.cli_nom,
+                  cli_correo: clienteResponse.cli_correo,
+                };
+
+                await this.storage.set('cliente', cliente);
+
+                this.router.navigate(['/vercatalogo']);
+              },
+              error: async () => {
+                await this.mostrarAlerta('Error', 'Usuario no encontrado.');
+              }
+            });
+          }
+        });
+      },
+
+      error: async () => {
+        await this.mostrarAlerta('Error', 'Usuario o contraseña incorrectos.');
+      }
+    });
   }
+
 
   private async mostrarAlerta(header: string, message: string) {
     const alert = await this.alertCtrl.create({
