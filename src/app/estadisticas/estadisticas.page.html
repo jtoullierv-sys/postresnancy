@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -57,7 +59,7 @@
         <!-- Ingresos por Mes -->
         <ion-col size="12" size-lg="6">
           <ion-card class="chart-card">
-            <ion-card-header class="chart-header">
+            <ion-card-header class="chart-header chart-header-primary">
               <ion-card-title>Ingreso por Mes (Ojiva)</ion-card-title>
             </ion-card-header>
             <ion-card-content class="chart-content">
@@ -71,7 +73,7 @@
         <!-- Pedidos por Mes -->
         <ion-col size="12" size-lg="6">
           <ion-card class="chart-card">
-            <ion-card-header class="chart-header">
+            <ion-card-header class="chart-header chart-header-success">
               <ion-card-title>Pedidos por Mes (Ojiva)</ion-card-title>
             </ion-card-header>
             <ion-card-content class="chart-content">
@@ -85,7 +87,7 @@
         <!-- Top 5 Postres -->
         <ion-col size="12" size-lg="6">
           <ion-card class="chart-card">
-            <ion-card-header class="chart-header chart-header-info">
+            <ion-card-header class="chart-header chart-header-warning">
               <ion-card-title>Top 5 Postres Solicitados</ion-card-title>
             </ion-card-header>
             <ion-card-content class="chart-content">
@@ -99,7 +101,7 @@
         <!-- Top 5 Clientes -->
         <ion-col size="12" size-lg="6">
           <ion-card class="chart-card">
-            <ion-card-header class="chart-header chart-header-info">
+            <ion-card-header class="chart-header chart-header-danger">
               <ion-card-title>Top 5 Clientes Frecuentes</ion-card-title>
             </ion-card-header>
             <ion-card-content class="chart-content">
@@ -114,3 +116,6 @@
 
   </div>
 </ion-content>
+
+<!-- Footer Componente -->
+<app-footeradmin></app-footeradmin>

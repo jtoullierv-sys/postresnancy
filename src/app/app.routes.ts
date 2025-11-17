@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AdminmenuComponent } from './adminmenu/adminmenu.component';
 
 export const routes: Routes = [
   {

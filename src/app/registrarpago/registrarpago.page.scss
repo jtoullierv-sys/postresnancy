@@ -142,7 +142,8 @@ ion-content {
   position: relative !important;
   display: block !important;
   padding-top: 120px !important;
-  min-height: calc(100vh - 120px);
+  min-height: 850px;
+  --padding-bottom: 80px;
 }
 
 /* ======== CARD PRINCIPAL ======== */

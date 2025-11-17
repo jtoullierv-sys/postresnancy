@@ -22,12 +22,13 @@ ion-header {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding-left: 7px;
 }
 
-.menu-button-custom ion-icon {
+/*.menu-button-custom ion-icon {
   font-size: 28px;
   color: $white;
-}
+}*/
 
 .logo-section {
   display: flex;

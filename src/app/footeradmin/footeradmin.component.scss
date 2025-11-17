@@ -1,0 +1,77 @@
+// ===========================
+// VARIABLES
+// ===========================
+$red-primary: #ef4444;
+$pink-bg: #ffe5ec;
+$white: #ffffff;
+
+// ===========================
+// FOOTER BASE
+// ===========================
+.footer-custom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-toolbar {
+  --background: #{$white};
+  --color: #{$red-primary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 2px solid lighten($red-primary, 25%);
+}
+
+// ===========================
+// ICONOS DEL FOOTER
+// ===========================
+.footer-icons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.footer-icons ion-button {
+  --color: #{$red-primary};
+  --padding-start: 10px;
+  --padding-end: 10px;
+  transition: transform 0.2s ease;
+  
+  ion-icon {
+    font-size: 28px;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+// ===========================
+// ESTADO ACTIVO
+// ===========================
+.footer-icons ion-button.activated,
+.footer-icons ion-button.router-link-active {
+  --color: darken($red-primary, 10%);
+  ion-icon {
+    filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.3));
+  }
+}
+
+// ===========================
+// RESPONSIVE
+// ===========================
+@media (max-width: 576px) {
+  .footer-icons ion-button ion-icon {
+    font-size: 26px;
+  }
+}

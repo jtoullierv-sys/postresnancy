@@ -63,13 +63,6 @@ $pink-gradient: linear-gradient(135deg, #ffe5ec 0%, #fff0f5 100%);
   }
 }
 
-ion-content {
-  --background: #fff;
-  position: relative !important;
-  display: flex !important;
-  min-height: 100vh;
-}
-
 .cantidad-stepper {
   display: flex;
   align-items: center;
@@ -77,7 +70,139 @@ ion-content {
 }
 
 .cantidad-valor {
-  min-width: 30px;
+  min-width: 30px;  
   text-align: center;
   font-weight: bold;
+}
+
+/* ======== FONDO GENERAL ======== */
+/* ======== FONDO GENERAL ======== */
+.fondo-page,
+ion-content {
+  --background: #ffc6c7;
+  position: relative !important;
+  display: block !important;
+  padding-top: 100px !important; 
+  min-height: 100vh;
+  
+  /* AÑADE ESTO (Ajusta los 150px a la altura de tu footer + espacio extra) */
+  --padding-bottom: 150px;
+} 
+
+/* ======== CARD PRINCIPAL ======== */
+ion-card {
+  width: 100%;
+  max-width: 420px;
+  margin: 2.5rem auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px #ff9e9e;
+}
+
+ion-card-header {
+  text-align: center;
+  background: #ff6868;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 16px 16px 0 0;
+}
+
+ion-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+ion-card-content {
+  padding: 1.2rem;
+}
+
+/* ======== ITEMS & INPUTS ======== */
+ion-item {
+  --background: #ff888863;
+  --highlight-color-focused: #3c3838;
+  color: #363636;
+
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  padding: 6px 0;
+  border-bottom: none !important;
+}
+
+ion-label {
+  font-weight: 600;
+}
+
+ion-input {
+  color: #000;
+  font-weight: 500;
+}
+
+/* ======== INPUT FILE (Comprobante) ======== */
+input[type="file"] {
+  margin-top: 0.5rem;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 12px;
+  border: 1px solid #ff9e9e;
+  width: 100%;
+}
+
+/* ======== SELECTOR MÉTODO DE PAGO ======== */
+ion-select {
+  font-weight: 600;
+}
+
+ion-select-option {
+  padding: 1rem;
+}
+
+/* ======== IMAGEN QR ======== */
+.qr-img {
+  width: 220px;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px #ff9e9e60;
+  display: block;
+}
+
+/* ======== BOTÓN DE CONFIRMAR ======== */
+ion-button {
+  --background: #ff6868;
+  --background-activated: #e05555;
+  --border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ======== HEADER GLOBAL ======== */
+app-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  background: #ff6868;
+  color: #fff;
+}
+
+/* ======== HEADER LOCAL INTERIOR ======== */
+ion-header {
+  position: fixed !important;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  z-index: 90;
+
+  ion-toolbar {
+    --background: #ff6868;
+    --color: #fff;
+  }
+}
+
+/* ======== ESPACIADO FINAL ======== */
+.ion-padding {
+  padding-bottom: 3rem; 
 }
