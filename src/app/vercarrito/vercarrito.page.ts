@@ -100,8 +100,12 @@ export class VercarritoPage implements OnInit {
 }
 
   irAlPago() {
-    this.router.navigate(['/registrarpago']);
-  }
+  this.router.navigate(['/registrarpago'], {
+    queryParams: {
+      total: this.total
+    }
+  });
+}
 
   private async mostrarAlerta(header: string, message: string) {
     const alert = await this.alertCtrl.create({
