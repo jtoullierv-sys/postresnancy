@@ -3,7 +3,7 @@ export interface PedidoAPI {
   id_estadopedido: number;
   total_pagado: number;
   contacto_pedido: string;
-  fecha_entrega: Date;
+  fecha_entrega: string;
   hora_entrega: string;
 }
 
@@ -12,7 +12,7 @@ export interface Pedido {
   id_estadopedido: number;
   total_pagado: number;
   contacto_pedido: string;
-  fecha_entrega: Date;
+  fecha_entrega: string;
   hora_entrega: string;
 }
 

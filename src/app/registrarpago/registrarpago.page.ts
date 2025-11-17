@@ -34,10 +34,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RegistrarpagoPage {
 
-  totalp: number = 120.50;
+  totalp: number = 0.0;
   fechaActual: string = new Date().toLocaleDateString('es-PE');
-
-  fentrega: string = '';
+  fentrega : string = '';
   hentrega: string = '';
   numero: string = '';
 
@@ -69,6 +68,7 @@ export class RegistrarpagoPage {
     this.route.queryParams.subscribe(params => {
       if (params['total']) {
         this.totalp = Number(params['total']);
+        console.log(this.totalp);
       }
     });
   }
@@ -76,18 +76,17 @@ export class RegistrarpagoPage {
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (!file) return;
-
+    console.log("Guarda img");
     const reader = new FileReader();
     reader.onload = () => {
       this.comprobanteBase64 = reader.result as string;
     };
     reader.readAsDataURL(file);
+    console.log("Almacena base 64");
   }
 
-  // MÉTODO PRINCIPAL
   confirmarPago() {
 
-    // 🛑 VALIDACIONES OBLIGATORIAS
     if (!this.fentrega || !this.hentrega || !this.numero) {
       alert("Debe completar fecha, hora y número de contacto.");
       return;
@@ -97,8 +96,6 @@ export class RegistrarpagoPage {
       alert("Debe subir un comprobante de pago.");
       return;
     }
-
-    // 🔍 DEBUG: Ver lo que se enviará
     console.log("📦 DATOS A ENVIAR AL BACKEND:");
     console.log({
       id_cliente: this.idCliente,
@@ -107,8 +104,6 @@ export class RegistrarpagoPage {
       fecha_entrega: this.fentrega,
       hora_entrega: this.hentrega
     });
-
-    // PRIMERO REGISTRAR PEDIDO
     this.pedidoService.insertarPedido(
       this.idCliente,
       1,
@@ -120,9 +115,8 @@ export class RegistrarpagoPage {
     .subscribe({
       next: (respPedido) => {
         console.log("✔ Pedido registrado:", respPedido);
-
         const id_pedido = respPedido.id_pedido;
-
+        
         // LUEGO REGISTRAR PAGO
         this.pagoService.insertarPago({
           id_pedido: id_pedido,
@@ -149,7 +143,6 @@ export class RegistrarpagoPage {
       },
       error: (err) => {
         console.error("❌ ERROR DETALLADO DESDE EL BACKEND:", err);
-
         if (err.error && err.error.error) {
           console.error("📌 MENSAJE REAL DEL SERVIDOR:", err.error.error);
           alert("Error del servidor: " + err.error.error);

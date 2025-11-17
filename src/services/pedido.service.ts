@@ -25,8 +25,6 @@ export class PedidoService {
     contacto_pedido,
     fecha_entrega,
     hora_entrega,
-    fecha_pedido: new Date().toISOString().split('T')[0], // YYYY-MM-DD
-    monto_devuelto: 0
   };
 
   console.log("📤 ENVIANDO AL BACKEND", body);
