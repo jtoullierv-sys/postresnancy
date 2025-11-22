@@ -17,6 +17,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { trash, receiptOutline, alertCircleOutline } from 'ionicons/icons';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-verestadopedido',
@@ -38,6 +40,8 @@ import { trash, receiptOutline, alertCircleOutline } from 'ionicons/icons';
     IonSegment,
     IonSegmentButton,
     CommonModule,
+    HeaderComponent,
+    FooterComponent
   ],
 })
 export class VerestadopedidoPage {
