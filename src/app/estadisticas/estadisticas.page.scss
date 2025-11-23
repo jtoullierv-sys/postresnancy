@@ -1,170 +1,666 @@
+// ============================================
+// VARIABLES GLOBALES
+// ============================================
+$color-blue: #3b82f6;
+$color-green: #10b981;
+$color-orange: #f59e0b;
+$color-purple: #8b5cf6;
+$color-red: #ff6b6b;
+$color-white: #ffffff;
+$color-bg-light: #f8fafc;
+$color-bg-gradient-start: #fef3f4;
+$color-bg-gradient-end: #ffe4e6;
+$color-text-primary: #1e293b;
+$color-text-secondary: #64748b;
+$color-text-muted: #94a3b8;
+
+$shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 35px 0 rgba(0, 0, 0, 0.12);
+$shadow-2xl: 0 25px 50px 0 rgba(0, 0, 0, 0.15);
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 20px;
+$radius-2xl: 24px;
+
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ============================================
+// RESET Y BASE
+// ============================================
 :host {
-    // Configuración base del fondo para la página
-    --ion-background-color: #f7f7f7;
-    font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-// Aseguramos que haya espacio para el footer fijo
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// ============================================
+// CONTENEDOR PRINCIPAL
+// ============================================
+.estadisticas-content {
+  --background: linear-gradient(to bottom, #{$color-bg-gradient-start} 0%, #{$color-bg-gradient-end} 100%);
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
 .estadisticas-container {
-    padding-bottom: 56px; // Ajusta este valor si tu footer es más alto
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 20px 140px;
+  min-height: 100vh;
 }
 
-/* ===========================
-   ESTILOS DE TARJETAS RESUMEN
-   =========================== */
+// ============================================
+// HEADER DEL DASHBOARD
+// ============================================
+.dashboard-header {
+  margin-bottom: 40px;
+  animation: slideInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-badge {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, $color-red 0%, #ee5a6f 100%);
+  border-radius: $radius-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $shadow-lg, 0 0 30px rgba($color-red, 0.3);
+  animation: pulse 2s infinite;
+
+  ion-icon {
+    font-size: 32px;
+    color: $color-white;
+  }
+}
+
+.title-content {
+  flex: 1;
+}
+
+.dashboard-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: $color-text-primary;
+  margin: 0 0 6px;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  background: linear-gradient(135deg, $color-red 0%, #ee5a6f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dashboard-subtitle {
+  font-size: 1rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  margin: 0;
+}
+
+.export-pdf-btn {
+  --background: linear-gradient(135deg, $color-red 0%, #ee5a6f 100%);
+  --background-hover: linear-gradient(135deg, #ee5a6f 0%, #dc4a5b 100%);
+  --border-radius: #{$radius-md};
+  --box-shadow: #{$shadow-md};
+  --padding-start: 28px;
+  --padding-end: 28px;
+  height: 52px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  transition: all $transition-base;
+
+  ion-icon {
+    font-size: 22px;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    --box-shadow: #{$shadow-xl};
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+// ============================================
+// GRID DE ESTADÍSTICAS
+// ============================================
+.statistics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
 .stat-card {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    background: #ffffff;
-    transition: all 0.3s ease-in-out;
-    border-left: 5px solid;
-    margin-bottom: 12px; // Espacio entre las tarjetas en móvil
+  background: $color-white;
+  border-radius: $radius-xl;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  transition: all $transition-slow;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out backwards;
 
-    ion-card-content {
-        padding: 15px;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: $shadow-2xl;
+
+    &::before {
+      transform: scaleX(1);
     }
-    
-    &:hover {
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        transform: translateY(-2px);
+
+    .icon-container {
+      transform: scale(1.1) rotate(5deg);
     }
+  }
+
+  &.blue-theme {
+    color: $color-blue;
+    .icon-container {
+      background: linear-gradient(135deg, rgba($color-blue, 0.15) 0%, rgba($color-blue, 0.05) 100%);
+      ion-icon { color: $color-blue; }
+    }
+  }
+
+  &.green-theme {
+    color: $color-green;
+    .icon-container {
+      background: linear-gradient(135deg, rgba($color-green, 0.15) 0%, rgba($color-green, 0.05) 100%);
+      ion-icon { color: $color-green; }
+    }
+  }
+
+  &.orange-theme {
+    color: $color-orange;
+    .icon-container {
+      background: linear-gradient(135deg, rgba($color-orange, 0.15) 0%, rgba($color-orange, 0.05) 100%);
+      ion-icon { color: $color-orange; }
+    }
+  }
+
+  &.purple-theme {
+    color: $color-purple;
+    .icon-container {
+      background: linear-gradient(135deg, rgba($color-purple, 0.15) 0%, rgba($color-purple, 0.05) 100%);
+      ion-icon { color: $color-purple; }
+    }
+  }
 }
 
-.card-title {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 5px;
-    color: #6c757d; // Gris suave
+.card-inner {
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.card-value {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 0;
+.icon-container {
+  width: 72px;
+  height: 72px;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all $transition-base;
+
+  ion-icon {
+    font-size: 36px;
+  }
 }
 
-/* Colores de Borde */
-.card-primary { border-left-color: #007bff; } // Azul
-.card-success { border-left-color: #28a745; } // Verde
-.card-warning { border-left-color: #ffc107; } // Amarillo/Naranja
-.card-danger { border-left-color: #dc3545; }  // Rojo
-
-
-/* ===========================
-   ESTILOS DE BLOQUES DE GRÁFICOS
-   =========================== */
-.charts-grid {
-    margin-top: 20px;
+.stat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.chart-card {
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    background: #ffffff;
+.stat-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: $color-text-primary;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin: 4px 0;
+}
+
+.stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  align-self: flex-start;
+  transition: all $transition-fast;
+
+  ion-icon {
+    font-size: 16px;
+  }
+
+  &.success {
+    color: $color-green;
+    background: rgba($color-green, 0.12);
+  }
+
+  &.neutral {
+    color: $color-text-muted;
+    background: rgba($color-text-muted, 0.12);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// ============================================
+// CONTAINER DE GRÁFICOS
+// ============================================
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 28px;
+}
+
+.chart-wrapper {
+  background: $color-white;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  transition: all $transition-slow;
+  animation: fadeInUp 0.8s ease-out backwards;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-6px);
+  }
+
+  &.large-chart {
+    grid-column: span 1;
+  }
 }
 
 .chart-header {
-    padding: 15px 20px 0;
-    border-bottom: 1px solid #eee;
+  padding: 28px 28px 20px;
+  background: linear-gradient(to bottom, rgba($color-white, 0.8) 0%, $color-white 100%);
+  border-bottom: 2px solid rgba($color-text-muted, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.chart-header ion-card-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
+.chart-title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
 }
 
-.chart-content {
-    padding: 20px;
+.chart-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: $shadow-sm;
+
+  ion-icon {
+    font-size: 26px;
+    color: $color-white;
+  }
+
+  &.red-icon {
+    background: linear-gradient(135deg, $color-red 0%, #ee5a6f 100%);
+  }
+
+  &.green-icon {
+    background: linear-gradient(135deg, $color-green 0%, darken($color-green, 8%) 100%);
+  }
+
+  &.gold-icon {
+    background: linear-gradient(135deg, $color-orange 0%, darken($color-orange, 8%) 100%);
+  }
+
+  &.purple-icon {
+    background: linear-gradient(135deg, $color-purple 0%, darken($color-purple, 8%) 100%);
+  }
 }
 
-.chart-placeholder {
-    height: 300px; 
-    display: flex;
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: $color-text-primary;
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+.chart-description {
+  font-size: 0.875rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  margin: 0;
+}
+
+.chart-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: $color-text-primary;
+  letter-spacing: -1px;
+}
+
+.chart-body {
+  padding: 32px 28px;
+  min-height: 300px;
+
+  canvas {
+    max-height: 350px !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+// ============================================
+// ANIMACIONES
+// ============================================
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// Delays escalonados
+.statistics-grid .stat-card:nth-child(1) { animation-delay: 0.1s; }
+.statistics-grid .stat-card:nth-child(2) { animation-delay: 0.2s; }
+.statistics-grid .stat-card:nth-child(3) { animation-delay: 0.3s; }
+.statistics-grid .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+.charts-container .chart-wrapper:nth-child(1) { animation-delay: 0.5s; }
+.charts-container .chart-wrapper:nth-child(2) { animation-delay: 0.6s; }
+.charts-container .chart-wrapper:nth-child(3) { animation-delay: 0.7s; }
+.charts-container .chart-wrapper:nth-child(4) { animation-delay: 0.8s; }
+
+// ============================================
+// RESPONSIVE DESIGN
+// ============================================
+
+// Large tablets y pequeñas desktops
+@media (max-width: 1200px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Tablets
+@media (max-width: 992px) {
+  .estadisticas-container {
+    padding: 20px 16px 120px;
+  }
+
+  .dashboard-title {
+    font-size: 1.875rem;
+  }
+
+  .statistics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .charts-container {
+    gap: 24px;
+  }
+}
+
+// Móviles grandes
+@media (max-width: 768px) {
+  .estadisticas-container {
+    padding: 16px 14px 110px;
+  }
+
+  .dashboard-header {
+    margin-bottom: 32px;
+  }
+
+  .header-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .title-group {
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    border: 2px dashed #ccc;
-    color: #888;
-    font-size: 1.1rem;
-}
+    text-align: center;
+  }
 
-$red-primary: #ef4444;
-$white: #ffffff;
+  .icon-badge {
+    width: 56px;
+    height: 56px;
 
-// ===========================
-// FOOTER BASE (Incluye la posición fija)
-// ===========================
-.footer-custom {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.footer-toolbar {
-    --background: #{$white};
-    --color: #{$red-primary};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 0;
-    border-top: 2px solid lighten($red-primary, 25%);
-}
-
-// ===========================
-// ICONOS DEL FOOTER
-// ===========================
-.footer-icons {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.footer-icons ion-button {
-    --color: #{$red-primary};
-    --padding-start: 10px;
-    --padding-end: 10px;
-    transition: transform 0.2s ease;
-    
     ion-icon {
-        font-size: 28px;
+      font-size: 28px;
     }
+  }
 
-    &:hover {
-        transform: scale(1.15);
-    }
+  .dashboard-title {
+    font-size: 1.625rem;
+  }
 
-    &:active {
-        transform: scale(0.95);
-        opacity: 0.8;
-    }
+  .dashboard-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .export-pdf-btn {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .statistics-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  .chart-header {
+    flex-direction: column;
+    padding: 24px 20px 16px;
+  }
+
+  .chart-metric {
+    align-items: flex-start;
+  }
+
+  .chart-body {
+    padding: 24px 20px;
+    min-height: 260px;
+  }
 }
 
-// ===========================
-// ESTADO ACTIVO
-// ===========================
-.footer-icons ion-button.activated,
-.footer-icons ion-button.router-link-active {
-    --color: darken($red-primary, 10%);
-    ion-icon {
-        filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.3));
-    }
-}
-
-// ===========================
-// RESPONSIVE
-// ===========================
+// Móviles pequeños
 @media (max-width: 576px) {
-    .footer-icons ion-button ion-icon {
-        font-size: 26px;
+  .estadisticas-container {
+    padding: 12px 10px 100px;
+  }
+
+  .icon-badge {
+    width: 48px;
+    height: 48px;
+
+    ion-icon {
+      font-size: 24px;
     }
+  }
+
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .card-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+  }
+
+  .icon-container {
+    width: 64px;
+    height: 64px;
+
+    ion-icon {
+      font-size: 32px;
+    }
+  }
+
+  .stat-content {
+    align-items: center;
+  }
+
+  .stat-number {
+    font-size: 2.25rem;
+  }
+
+  .stat-badge {
+    align-self: center;
+  }
+
+  .chart-title {
+    font-size: 1.125rem;
+  }
+
+  .chart-description {
+    font-size: 0.8rem;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+
+  .chart-body {
+    padding: 20px 16px;
+    min-height: 240px;
+  }
+}
+
+// Extra pequeños
+@media (max-width: 400px) {
+  .estadisticas-container {
+    padding: 10px 8px 100px;
+  }
+
+  .dashboard-title {
+    font-size: 1.375rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .chart-body {
+    padding: 16px 12px;
+  }
 }
 
 /* ============================================

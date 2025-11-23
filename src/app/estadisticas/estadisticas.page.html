@@ -1,112 +1,186 @@
 <app-header></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="estadisticas-content">
   <div class="estadisticas-container">
     
-    <!-- Tarjetas resumen -->
-    <ion-grid class="cards-grid">
-      <ion-row>
-        <ion-col size="12" size-md="6" size-lg="3">
-          <ion-card class="stat-card card-primary">
-            <ion-card-content class="text-center">
-              <h3 class="card-title">Clientes</h3>
-              <h1 class="card-value">{{ numCliente }}</h1>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+    <!-- Header Superior con Título y Botón PDF -->
+    <div class="dashboard-header">
+      <div class="header-wrapper">
+        <div class="title-group">
+          <div class="icon-badge">
+            <ion-icon name="stats-chart"></ion-icon>
+          </div>
+          <div class="title-content">
+            <h1 class="dashboard-title">Dashboard Analytics</h1>
+            <p class="dashboard-subtitle">Panel de control y estadísticas en tiempo real</p>
+          </div>
+        </div>
+        <ion-button class="export-pdf-btn" (click)="generarReportePDF()">
+          <ion-icon slot="start" name="download-outline"></ion-icon>
+          Exportar PDF
+        </ion-button>
+      </div>
+    </div>
 
-        <ion-col size="12" size-md="6" size-lg="3">
-          <ion-card class="stat-card card-success">
-            <ion-card-content class="text-center">
-              <h3 class="card-title">Pedidos por validar</h3>
-              <h1 class="card-value">{{ numPedidoPorValidar }}</h1>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+    <!-- Grid de Tarjetas de Estadísticas -->
+    <div class="statistics-grid">
+      
+      <!-- Card 1: Clientes -->
+      <div class="stat-card blue-theme">
+        <div class="card-inner">
+          <div class="icon-container">
+            <ion-icon name="people"></ion-icon>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Total Clientes</span>
+            <h2 class="stat-number">{{ numCliente }}</h2>
+            <div class="stat-badge success">
+              <ion-icon name="trending-up"></ion-icon>
+              <span>+12% este mes</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <ion-col size="12" size-md="6" size-lg="3">
-          <ion-card class="stat-card card-warning">
-            <ion-card-content class="text-center">
-              <h3 class="card-title">Postres en Catálogo</h3>
-              <h1 class="card-value">{{ numPostresCatalogo }}</h1>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+      <!-- Card 2: Pedidos por Validar -->
+      <div class="stat-card green-theme">
+        <div class="card-inner">
+          <div class="icon-container">
+            <ion-icon name="time"></ion-icon>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Pedidos por Validar</span>
+            <h2 class="stat-number">{{ numPedidoPorValidar }}</h2>
+            <div class="stat-badge neutral">
+              <ion-icon name="remove"></ion-icon>
+              <span>Sin cambios</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <ion-col size="12" size-md="6" size-lg="3">
-          <ion-card class="stat-card card-danger">
-            <ion-card-content class="text-center">
-              <h3 class="card-title">Postres Personalizados</h3>
-              <h1 class="card-value">{{ numPostresPersonalizados }}</h1>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      <!-- Card 3: Postres en Catálogo -->
+      <div class="stat-card orange-theme">
+        <div class="card-inner">
+          <div class="icon-container">
+            <ion-icon name="ice-cream"></ion-icon>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Postres en Catálogo</span>
+            <h2 class="stat-number">{{ numPostresCatalogo }}</h2>
+            <div class="stat-badge success">
+              <ion-icon name="trending-up"></ion-icon>
+              <span>+5 productos</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Gráficos -->
-    <ion-grid class="charts-grid">
-      <ion-row>
-        <!-- Ingresos por Mes -->
-        <ion-col size="12" size-lg="6">
-          <ion-card class="chart-card">
-            <ion-card-header class="chart-header chart-header-primary">
-              <ion-card-title>Ingreso por Mes (Ojiva)</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="chart-content">
-              <div class="chart-placeholder">
-                <p>Aquí irá el gráfico de ingresos</p>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+      <!-- Card 4: Postres Personalizados -->
+      <div class="stat-card purple-theme">
+        <div class="card-inner">
+          <div class="icon-container">
+            <ion-icon name="sparkles"></ion-icon>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">Postres Personalizados</span>
+            <h2 class="stat-number">{{ numPostresPersonalizados }}</h2>
+            <div class="stat-badge success">
+              <ion-icon name="trending-up"></ion-icon>
+              <span>+8% demanda</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- Pedidos por Mes -->
-        <ion-col size="12" size-lg="6">
-          <ion-card class="chart-card">
-            <ion-card-header class="chart-header chart-header-success">
-              <ion-card-title>Pedidos por Mes (Ojiva)</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="chart-content">
-              <div class="chart-placeholder">
-                <p>Aquí irá el gráfico de pedidos</p>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+    </div>
 
-        <!-- Top 5 Postres -->
-        <ion-col size="12" size-lg="6">
-          <ion-card class="chart-card">
-            <ion-card-header class="chart-header chart-header-warning">
-              <ion-card-title>Top 5 Postres Solicitados</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="chart-content">
-              <div class="chart-placeholder">
-                <p>Aquí irá el gráfico de postres</p>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+    <!-- Grid de Gráficos -->
+    <div class="charts-container">
+      
+      <!-- Gráfico de Ingresos -->
+      <div class="chart-wrapper large-chart">
+        <div class="chart-header">
+          <div class="chart-title-group">
+            <div class="chart-icon red-icon">
+              <ion-icon name="trending-up"></ion-icon>
+            </div>
+            <div>
+              <h3 class="chart-title">Ingresos Acumulados</h3>
+              <p class="chart-description">Evolución mensual de ingresos en soles</p>
+            </div>
+          </div>
+          <div class="chart-metric">
+            <span class="metric-label">Total</span>
+            <span class="metric-value">S/. 48,200</span>
+          </div>
+        </div>
+        <div class="chart-body">
+          <canvas #ingresoChart></canvas>
+        </div>
+      </div>
 
-        <!-- Top 5 Clientes -->
-        <ion-col size="12" size-lg="6">
-          <ion-card class="chart-card">
-            <ion-card-header class="chart-header chart-header-danger">
-              <ion-card-title>Top 5 Clientes Frecuentes</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="chart-content">
-              <div class="chart-placeholder">
-                <p>Aquí irá el gráfico de clientes</p>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      <!-- Gráfico de Pedidos -->
+      <div class="chart-wrapper large-chart">
+        <div class="chart-header">
+          <div class="chart-title-group">
+            <div class="chart-icon green-icon">
+              <ion-icon name="analytics"></ion-icon>
+            </div>
+            <div>
+              <h3 class="chart-title">Pedidos por Mes</h3>
+              <p class="chart-description">Crecimiento de órdenes acumuladas</p>
+            </div>
+          </div>
+          <div class="chart-metric">
+            <span class="metric-label">Total</span>
+            <span class="metric-value">132 pedidos</span>
+          </div>
+        </div>
+        <div class="chart-body">
+          <canvas #pedidosChart></canvas>
+        </div>
+      </div>
+
+      <!-- Top 5 Postres -->
+      <div class="chart-wrapper">
+        <div class="chart-header">
+          <div class="chart-title-group">
+            <div class="chart-icon gold-icon">
+              <ion-icon name="trophy"></ion-icon>
+            </div>
+            <div>
+              <h3 class="chart-title">Top 5 Postres</h3>
+              <p class="chart-description">Productos más solicitados</p>
+            </div>
+          </div>
+        </div>
+        <div class="chart-body">
+          <canvas #postresChart></canvas>
+        </div>
+      </div>
+
+      <!-- Top 5 Clientes -->
+      <div class="chart-wrapper">
+        <div class="chart-header">
+          <div class="chart-title-group">
+            <div class="chart-icon purple-icon">
+              <ion-icon name="medal"></ion-icon>
+            </div>
+            <div>
+              <h3 class="chart-title">Clientes VIP</h3>
+              <p class="chart-description">Compradores más frecuentes</p>
+            </div>
+          </div>
+        </div>
+        <div class="chart-body">
+          <canvas #clientesChart></canvas>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </ion-content>
 
-<!-- Footer Componente -->
 <app-footeradmin></app-footeradmin>
