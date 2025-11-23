@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <ion-content class="ion-padding">
 
   <!-- SEGMENTO SUPERIOR -->
@@ -12,10 +13,10 @@
 
   <!-- 🟢 PEDIDOS ACTIVOS -->
   <ng-container *ngIf="segmento === 'activos'">
-    <ion-card *ngFor="let pedido of pedidosActivos; let i = index" class="pedido-card">
+    <ion-card *ngFor="let pedido of pedidosActivos" class="pedido-card">
 
       <ion-card-header>
-        <ion-card-title>🍰 Pedido #{{ i + 1 }}</ion-card-title>
+        <ion-card-title>🍰 Pedido #{{ pedido.id_pedido }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
@@ -23,21 +24,26 @@
         <!-- Lista de etapas -->
         <ion-list class="etapas-list" lines="none">
           <ion-item *ngFor="let etapa of etapas; let paso = index">
-            <ion-badge [color]="obtenerColor(pedido.estado, paso + 1)">
+            <ion-badge [color]="obtenerColor(pedido.id_estadopedido, paso + 1)">
               {{ paso + 1 }}
             </ion-badge>
             <ion-label>{{ etapa }}</ion-label>
           </ion-item>
         </ion-list>
 
+        <!-- Información adicional -->
+        <p><strong>Total pagado:</strong> S/ {{ pedido.total_pagado }}</p>
+        <p><strong>Contacto:</strong> {{ pedido.contacto_pedido }}</p>
+        <p><strong>Entrega:</strong> {{ pedido.fecha_entrega }} - {{ pedido.hora_entrega }}</p>
+
         <!-- Botones -->
         <div class="botones-acciones">
-          <ion-button fill="outline" color="primary" (click)="verRecibo(pedido.id)">
+          <ion-button fill="outline" color="primary" (click)="verRecibo(pedido.id_pedido)">
             <ion-icon slot="start" name="receipt-outline"></ion-icon>
             Ver Recibo
           </ion-button>
 
-          <ion-button fill="outline" color="danger" (click)="cancelarPedido(pedido.id)">
+          <ion-button fill="outline" color="danger" (click)="cancelarPedido(pedido.id_pedido)">
             <ion-icon slot="start" name="trash"></ion-icon>
             Cancelar
           </ion-button>
@@ -52,11 +58,14 @@
   <ng-container *ngIf="segmento === 'cancelados'">
     <ion-card *ngFor="let pedido of pedidosCancelados" class="pedido-card">
       <ion-card-header>
-        <ion-card-title>Pedido Cancelado #{{ pedido.id }}</ion-card-title>
+        <ion-card-title>Pedido Cancelado #{{ pedido.id_pedido }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
         <p class="cancelado-texto">Este pedido fue cancelado.</p>
+
+        <p><strong>Total:</strong> S/ {{ pedido.total_pagado }}</p>
+        <p><strong>Contacto:</strong> {{ pedido.contacto_pedido }}</p>
       </ion-card-content>
     </ion-card>
   </ng-container>
@@ -66,11 +75,14 @@
     <ion-card *ngFor="let pedido of pedidosFinalizados" class="pedido-card">
 
       <ion-card-header>
-        <ion-card-title>Pedido Finalizado #{{ pedido.id }}</ion-card-title>
+        <ion-card-title>Pedido Finalizado #{{ pedido.id_pedido }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content class="ion-text-center finalizado-boton">
-        <ion-button fill="outline" color="success" (click)="reclamarPedido(pedido.id)">
+
+        <p><strong>Entrega:</strong> {{ pedido.fecha_entrega }} - {{ pedido.hora_entrega }}</p>
+
+        <ion-button fill="outline" color="success" (click)="reclamarPedido(pedido.id_pedido)">
           <ion-icon slot="start" name="alert-circle-outline"></ion-icon>
           Reclamar
         </ion-button>
@@ -80,4 +92,5 @@
   </ng-container>
 
 </ion-content>
+
 <app-footer></app-footer>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   IonContent,
   IonCard,
@@ -19,6 +19,10 @@ import { addIcons } from 'ionicons';
 import { trash, receiptOutline, alertCircleOutline } from 'ionicons/icons';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+
+import { Pedido, mapPedido } from 'src/models/pedido.model';
+import { PedidoService } from 'src/services/pedido.service';
+import { StorageService } from 'src/services/storage';
 
 @Component({
   selector: 'app-verestadopedido',
@@ -44,27 +48,46 @@ import { FooterComponent } from '../footer/footer.component';
     FooterComponent
   ],
 })
-export class VerestadopedidoPage {
+export class VerestadopedidoPage implements OnInit {
+
   segmento = 'activos';
-
   etapas = ['Recibido', 'Preparando', 'Enviado', 'Entregado'];
-  contadorpedido = 1;
 
-  pedidosActivos = [
-    { id: 1, estado: 2 },
-    { id: 2, estado: 3 },
-  ];
+  pedidosActivos: Pedido[] = [];
+  pedidosCancelados: Pedido[] = [];
+  pedidosFinalizados: Pedido[] = [];
 
-  pedidosCancelados = [
-    { id: 3, estado: 7 },
-  ];
-
-  pedidosFinalizados = [
-    { id: 4, estado: 6 },
-  ];
-
-  constructor() {
+  constructor(
+    private pedidoService: PedidoService,
+    private storage: StorageService
+  ) {
     addIcons({ trash, receiptOutline, alertCircleOutline });
+  }
+
+  async ngOnInit() {
+    await this.cargarPedidos();
+  }
+
+  async cargarPedidos() {
+    const cliente = await this.storage.get('cliente');
+
+    if (!cliente || !cliente.id_cliente) {
+      console.error('❌ No se encontró el cliente en storage');
+      return;
+    }
+
+    this.pedidoService.obtenerPedidos(cliente.id_cliente).subscribe({
+      next: (data) => {
+        const pedidos = data.map(mapPedido);
+
+        this.pedidosActivos = pedidos.filter(p => p.id_estadopedido >= 1 && p.id_estadopedido <= 5);
+        this.pedidosFinalizados = pedidos.filter(p => p.id_estadopedido === 6);
+        this.pedidosCancelados = pedidos.filter(p => p.id_estadopedido > 6);
+      },
+      error: (err) => {
+        console.error('Error al obtener pedidos', err);
+      }
+    });
   }
 
   cambiarSegmento(event: any) {
@@ -72,21 +95,20 @@ export class VerestadopedidoPage {
   }
 
   obtenerColor(estado: number, paso: number): string {
-    if (estado === 6) return paso <= estado - 2 ? 'success' : 'medium';
+    if (estado === 6) return paso <= 4 ? 'success' : 'medium';
     if (estado > 6) return paso <= 4 ? 'danger' : 'medium';
     return paso <= estado ? 'primary' : 'medium';
   }
 
   cancelarPedido(id: number) {
-    alert(`Cancelando pedido ${id}`);
+    alert(Cancelando pedido ${id});
   }
 
   verRecibo(id: number) {
-    alert(`Mostrando recibo del pedido ${id}`);
+    alert(Mostrando recibo del pedido ${id});
   }
 
   reclamarPedido(id: number) {
-    alert(`Reclamando pedido ${id}`);
-  }
-
+    alert(Reclamando pedido ${id});
+  }
 }
