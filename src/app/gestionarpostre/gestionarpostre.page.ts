@@ -66,11 +66,7 @@ export class GestionarpostrePage implements OnInit {
     private toastController: ToastController
   ) {
     // Registrar los iconos
-    addIcons({
-      'add-circle-outline': addCircleOutline,
-      'create-outline': createOutline,
-      'basket-outline': basketOutline
-    });
+    addIcons({'addCircleOutline':addCircleOutline,'createOutline':createOutline,'basketOutline':basketOutline});
   }
 
   ngOnInit() {
