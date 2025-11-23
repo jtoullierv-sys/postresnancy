@@ -48,7 +48,6 @@ export class VercatalogoPage implements OnInit {
 
   ngOnInit() {
     this.postreService.obtenerPostres().subscribe((data) => {
-      // 🔧 Mapea los PostreAPI → Postre
       this.postres = data.map(mapPostre);
     }); 
   }
