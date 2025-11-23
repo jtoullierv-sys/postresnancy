@@ -110,6 +110,6 @@ export class VerestadopedidoPage implements OnInit {
 
   reclamarPedido(id: number) {
 <<<<<<< HEAD
-    alert(Reclamando pedido ${id});
+    alert(`Reclamando pedido ${id}`);
   }
 }
