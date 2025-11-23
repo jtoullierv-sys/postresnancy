@@ -8,7 +8,7 @@ export class PedidoService {
 
   private API_BASE_URL = 'https://api-postresnancy.onrender.com/';
   private INSERTAR_ENDPOINT = 'detalles/compra/';
-  private OBTENER_ENDPOINT = '';
+  private OBTENER_ENDPOINT = 'pedidos/cliente/';
 
   constructor(private http: HttpClient) {}
 
