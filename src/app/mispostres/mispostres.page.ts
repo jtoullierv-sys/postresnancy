@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+// 1. IMPORTACIÓN CORREGIDA PARA COMPONENTES STANDALONE
 import { 
   IonHeader, 
   IonToolbar, 
@@ -13,10 +15,12 @@ import {
   IonIcon, 
   IonCard, 
   IonCardContent, 
-  IonToggle,
-  AlertController, 
-  ToastController 
-} from '@ionic/angular';
+  IonToggle
+} from '@ionic/angular/standalone';
+
+// 2. LOS CONTROLADORES (SERVICIOS) SE MANTIENEN AQUÍ
+import { AlertController, ToastController } from '@ionic/angular';
+
 import { addIcons } from 'ionicons';
 import { addCircleOutline, createOutline, basketOutline } from 'ionicons/icons';
 import { HeaderComponent } from '../header/header.component';
@@ -33,9 +37,9 @@ interface Product {
 }
 
 @Component({
-  selector: 'app-gestionarpostre',
-  templateUrl: './gestionarpostre.page.html',
-  styleUrls: ['./gestionarpostre.page.scss'],
+  selector: 'app-mispostres',
+  templateUrl: './mispostres.page.html',
+  styleUrls: ['./mispostres.page.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -56,7 +60,7 @@ interface Product {
     FooteradminComponent
   ]
 })
-export class GestionarpostrePage implements OnInit {
+export class MispostresPage implements OnInit {
   activeTab: string = 'postres';
   isMobile: boolean = false;
   products: Product[] = [];
@@ -65,8 +69,8 @@ export class GestionarpostrePage implements OnInit {
     private alertController: AlertController,
     private toastController: ToastController
   ) {
-    // Registrar los iconos
-    addIcons({'addCircleOutline':addCircleOutline,'createOutline':createOutline,'basketOutline':basketOutline});
+    // 3. CORRECCIÓN DE ICONOS (Sin duplicados)
+    addIcons({ addCircleOutline, createOutline, basketOutline });
   }
 
   ngOnInit() {
@@ -94,46 +98,19 @@ export class GestionarpostrePage implements OnInit {
   }
 
   loadProducts() {
-    // Aquí llamarás a tu servicio API
-    // Ejemplo:
-    // this.productService.getProducts().subscribe(
-    //   (data: Product[]) => {
-    //     this.products = data;
-    //   },
-    //   (error) => {
-    //     this.presentToast('Error al cargar productos', 'danger');
-    //     console.error('Error:', error);
-    //   }
-    // );
+    // Lógica futura para cargar productos
+    // this.products = ...
   }
 
   async addProduct() {
-    // Aquí implementarás la lógica para agregar un producto
-    // Puedes abrir un modal o navegar a otra página
     this.presentToast('Abrir formulario para agregar producto', 'primary');
   }
 
   async editProduct(product: Product) {
-    // Aquí implementarás la lógica para editar un producto
-    // Puedes abrir un modal con el formulario de edición
     this.presentToast(`Editar: ${product.descripcion}`, 'warning');
   }
 
   async toggleEnTienda(product: Product) {
-    // Aquí llamarás a tu API para actualizar el estado
-    // Ejemplo:
-    // this.productService.updateProductStatus(product.id, product.enTienda).subscribe(
-    //   (response) => {
-    //     const status = product.enTienda ? 'visible' : 'oculto';
-    //     this.presentToast(`${product.descripcion} ahora está ${status} en tienda`, product.enTienda ? 'success' : 'medium');
-    //   },
-    //   (error) => {
-    //     product.enTienda = !product.enTienda; // Revertir el cambio en caso de error
-    //     this.presentToast('Error al actualizar el estado', 'danger');
-    //     console.error('Error:', error);
-    //   }
-    // );
-
     const status = product.enTienda ? 'visible' : 'oculto';
     await this.presentToast(
       `${product.descripcion} ahora está ${status} en tienda`,
