@@ -101,20 +101,14 @@ export class VerestadopedidoPage implements OnInit {
   }
 
   cancelarPedido(id: number) {
-    alert(Cancelando pedido ${id});
+    alert(`Cancelando pedido ${id}`);
   }
 
   verRecibo(id: number) {
-    alert(Mostrando recibo del pedido ${id});
+    alert(`Mostrando recibo del pedido ${id}`);
   }
 
   reclamarPedido(id: number) {
-<<<<<<< HEAD
-    alert(Reclamando pedido ${id});
+    alert(`Reclamando pedido ${id}`);
   }
 }
-=======
-    alert(`Reclamando pedido ${id}`);
-  }
-}
->>>>>>> 09c5c595d3bb7c1ce86690ed1023c26514d4f8f6
