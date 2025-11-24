@@ -6,19 +6,14 @@ import { Observable } from 'rxjs';
 export class PagoService {
 
   private API_BASE_URL = 'https://api-postresnancy.onrender.com/';
-  private INSERTAR_ENDPOINT = 'pagos/insertar';
+  private INSERTAR_ENDPOINT = 'pagos/registrar';
 
   constructor(private http: HttpClient) {}
 
-  insertarPago(body: {
-    id_pedido: number;
-    medio_pago: string;
-    imagen_pago: string; 
-    fecha_pago: string;
-  }): Observable<any> {
+  registrarPagoConImagen(formData: FormData): Observable<any> {
     return this.http.post<any>(
       `${this.API_BASE_URL}${this.INSERTAR_ENDPOINT}`,
-      body
+      formData
     );
   }
 }

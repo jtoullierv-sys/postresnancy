@@ -10,14 +10,11 @@ import {
 
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
-
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-
 import { PedidoService } from 'src/services/pedido.service';
 import { PagoService } from 'src/services/pago.service';
 import { ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-registrarpago',
@@ -36,11 +33,11 @@ export class RegistrarpagoPage {
 
   totalp: number = 0.0;
   fechaActual: string = new Date().toLocaleDateString('es-PE');
-  fentrega : string = '';
-  hentrega: string = '';
-  numero: string = '';
+  fentrega = '';
+  hentrega = '';
+  numero = '';
 
-  comprobanteBase64: string = '';
+  archivoComprobante: File | null = null;  // <-- ARCHIVO REAL
 
   mediosPago = [
     { nombre: 'Yape', img: 'assets/img/qryape.jpeg' },
@@ -61,104 +58,88 @@ export class RegistrarpagoPage {
 
   async ngOnInit() {
     await this.storage.create();
-
     const cliente = await this.storage.get('cliente');
     this.idCliente = cliente?.id_cliente;
 
     this.route.queryParams.subscribe(params => {
       if (params['total']) {
         this.totalp = Number(params['total']);
-        console.log(this.totalp);
       }
     });
   }
 
   onFileChange(event: any) {
     const file = event.target.files[0];
-    if (!file) return;
-    console.log("Guarda img");
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.comprobanteBase64 = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-    console.log("Almacena base 64");
+
+    if (file) {
+      this.archivoComprobante = file;
+      console.log("📁 Archivo seleccionado:", file);
+    }
   }
 
   confirmarPago() {
 
-    if (!this.fentrega || !this.hentrega || !this.numero) {
-      alert("Debe completar fecha, hora y número de contacto.");
-      return;
-    }
-
-    if (!this.comprobanteBase64) {
-      alert("Debe subir un comprobante de pago.");
-      return;
-    }
-    console.log("📦 DATOS A ENVIAR AL BACKEND:");
-    console.log({
-      id_cliente: this.idCliente,
-      total: this.totalp,
-      contacto: this.numero,
-      fecha_entrega: this.fentrega,
-      hora_entrega: this.hentrega
-    });
-    this.pedidoService.insertarPedido(
-      this.idCliente,
-      1,
-      this.totalp,
-      this.numero,
-      this.fentrega,
-      this.hentrega
-    )
-    .subscribe({
-      next: (respPedido) => {
-        console.log("✔ Pedido registrado:", respPedido);
-        const id_pedido = respPedido.id_pedido;
-        
-        // LUEGO REGISTRAR PAGO
-        this.pagoService.insertarPago({
-          id_pedido: id_pedido,
-          medio_pago: this.medioSeleccionado,
-          imagen_pago: this.comprobanteBase64,
-          fecha_pago: new Date().toISOString()
-        })
-        .subscribe({
-          next: () => {
-            alert('Pago registrado correctamente');
-            this.router.navigate(['/catalogo']);
-          },
-          error: (err) => {
-            console.error("❌ ERROR DETALLADO EN REGISTRO DE PAGO:", err);
-
-            if (err.error && err.error.error) {
-              console.error("📌 MENSAJE REAL DEL SERVIDOR:", err.error.error);
-              alert("Error en el pago: " + err.error.error);
-            } else {
-              alert("Error al registrar el pago (ver consola)");
-            }
-          }
-        });
-      },
-      error: (err) => {
-        console.error("❌ ERROR DETALLADO DESDE EL BACKEND:", err);
-        if (err.error && err.error.error) {
-          console.error("📌 MENSAJE REAL DEL SERVIDOR:", err.error.error);
-          alert("Error del servidor: " + err.error.error);
-        } else {
-          alert("Error al registrar el pedido (ver consola)");
-        }
-      }
-    });
+  if (!this.fentrega || !this.hentrega || !this.numero) {
+    alert("Debe completar fecha, hora y número de contacto.");
+    return;
   }
 
-  onMedioChange(event: any) {
-    const nombreMedio = event.detail.value;
-    const medio = this.mediosPago.find(m => m.nombre === nombreMedio);
+  if (!this.archivoComprobante) {
+    alert("Debe subir un comprobante de pago.");
+    return;
+  }
 
-    if (medio) {
-      this.medioSeleccionado = medio.img;
+  console.log("📦 Registrando pedido y pago + imagen...");
+
+  this.pedidoService.insertarPedido(
+    this.idCliente,
+    1,
+    this.totalp,
+    this.numero,
+    this.fentrega,
+    this.hentrega
+  )
+  .subscribe({
+    next: (respPedido) => {
+      console.log("✔ Pedido registrado:", respPedido);
+
+      const id_pedido = respPedido.id_pedido;
+
+      // -----------------------------
+      // 1️⃣ CREAR FORMDATA CON TODO
+      // -----------------------------
+      const formData = new FormData();
+      formData.append('id_pedido', id_pedido);
+      formData.append('medio_pago', this.medioSeleccionado);
+      formData.append('fecha_pago', new Date().toISOString());
+      formData.append('imagen', this.archivoComprobante!);
+
+      // -----------------------------
+      // 2️⃣ ENVIAR TODO EN UNA SOLA PETICIÓN
+      // -----------------------------
+      this.pagoService.registrarPagoConImagen(formData)
+      .subscribe({
+        next: (resp) => {
+          console.log("✔ Pago + imagen registrado:", resp);
+          alert("Pago registrado correctamente");
+          this.router.navigate(['/catalogo']);
+        },
+        error: (err) => {
+          console.error("❌ Error registrando pago con comprobante:", err);
+          alert("Error al registrar el pago.");
+        }
+      });
+
+    },
+    error: (err) => {
+      console.error("❌ Error registrando pedido:", err);
+      alert("Error al registrar el pedido.");
     }
+  });
+}
+
+  onMedioChange(event: any) {
+    const medio = this.mediosPago.find(m => m.nombre === event.detail.value);
+    if (medio) this.medioSeleccionado = medio.img;
   }
 }
