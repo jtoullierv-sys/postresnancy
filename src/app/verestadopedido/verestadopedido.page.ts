@@ -100,8 +100,32 @@ export class VerestadopedidoPage implements OnInit {
     return paso <= estado ? 'primary' : 'medium';
   }
 
-  cancelarPedido(id: number) {
-    alert(`Cancelando pedido ${id}`);
+  async cancelarPedido(id: number) {
+    const confirmar = confirm("¿Seguro que deseas cancelar este pedido?");
+    if (!confirmar) return;
+
+    this.pedidoService.cancelarPedido(id).subscribe({
+      next: async (response) => {
+        console.log('Respuesta del backend:', response);
+
+        await this.mostrarAlerta('Éxito', 'El pedido fue cancelado correctamente.');
+        await this.cargarPedidos();
+      },
+      error: async (err) => {
+        console.error('Error al cancelar pedido', err);
+        await this.mostrarAlerta('Error', 'No se pudo cancelar el pedido.');
+      }
+    });
+  }
+
+  async mostrarAlerta(header: string, message: string) {
+    const alert = document.createElement('ion-alert');
+    alert.header = header;
+    alert.message = message;
+    alert.buttons = ['OK'];
+
+    document.body.appendChild(alert);
+    await alert.present();
   }
 
   verRecibo(id: number) {
@@ -112,3 +136,4 @@ export class VerestadopedidoPage implements OnInit {
     alert(`Reclamando pedido ${id}`);
   }
 }
+

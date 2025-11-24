@@ -77,7 +77,7 @@ export class VercarritoPage implements OnInit {
   }
 
   get total(): number {
-    return this.elementos.reduce((sum, e) => sum + e.precio, 0);
+    return this.elementos.reduce((sum, e) => sum + parseFloat(e.precio), 0);
   }
 
   async eliminarElemento(id: number) {

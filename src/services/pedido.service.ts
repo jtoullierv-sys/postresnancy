@@ -9,6 +9,7 @@ export class PedidoService {
   private API_BASE_URL = 'https://api-postresnancy.onrender.com/';
   private INSERTAR_ENDPOINT = 'detalles/compra/';
   private OBTENER_ENDPOINT = 'pedidos/cliente/';
+  private CANCELAR_ENDOPOINT = 'pedidos/actualizar-estado/';
 
   constructor(private http: HttpClient) {}
 
@@ -41,5 +42,8 @@ obtenerPedidos(id_cliente: number){
   return this.http.get<PedidoAPI[]>(`${this.API_BASE_URL}${this.OBTENER_ENDPOINT+id_cliente}`);
 }
 
+cancelarPedido(id_pedido: number){
+  return this.http.get<PedidoAPI[]>(`${this.API_BASE_URL}${this.CANCELAR_ENDOPOINT+id_pedido}`);
+}
 
 }
