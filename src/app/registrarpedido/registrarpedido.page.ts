@@ -3,10 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { 
-  IonContent, IonHeader, IonTitle, IonToolbar,
-  IonCard, IonCardContent, IonInput, IonButton,
-  IonSelect, IonSelectOption, IonLabel
+  IonContent, 
+  IonCard, 
+  IonCardContent, 
+  IonInput, 
+  IonButton,
+  IonSelect, 
+  IonSelectOption
 } from '@ionic/angular/standalone';
+
 import { HeaderComponent } from '../header/header.component';
 import { ExtraService } from 'src/services/extra.service';
 import { Extra, mapExtra } from 'src/models/extra.model';
@@ -28,16 +33,22 @@ interface Postre {
   styleUrls: ['./registrarpedido.page.scss'],
   standalone: true,
   imports: [
-    CommonModule, FormsModule, RouterLink,
-    IonContent, IonHeader, IonToolbar, IonTitle,
-    IonCard, IonCardContent, IonInput, IonButton,
-    IonSelect, IonSelectOption, IonLabel, HeaderComponent
+    CommonModule, 
+    FormsModule, 
+    RouterLink,
+    IonContent, 
+    IonCard, 
+    IonCardContent, 
+    IonInput, 
+    IonButton,
+    IonSelect, 
+    IonSelectOption,
+    HeaderComponent
   ]
 })
 export class RegistrarpedidoPage implements OnInit {
 
   postre!: Postre;
-  categorias = ['POSTRE', 'BOCADITO'];
   extras: Extra[] = [];
 
   categoriaSeleccionada = '';

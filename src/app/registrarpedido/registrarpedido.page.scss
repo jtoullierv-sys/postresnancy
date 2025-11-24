@@ -1,207 +1,600 @@
-/* ===========================
-   CONTENEDOR PRINCIPAL
-=========================== */
+// ============================================
+// VARIABLES DE DISEÑO
+// ============================================
+$color-primary: #ff6b6b;
+$color-primary-dark: #ee5a6f;
+$color-success: #10b981;
+$color-white: #ffffff;
+$color-bg: linear-gradient(135deg, #fef3f4 0%, #ffe9ea 100%);
+$color-text-dark: #2d2d2d;
+$color-text-medium: #555555;
+$color-text-light: #777777;
+
+$shadow-card: 0 8px 24px rgba(255, 104, 104, 0.2);
+$shadow-button: 0 4px 12px rgba(255, 104, 104, 0.25);
+$shadow-image: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+$radius-card: 20px;
+$radius-button: 12px;
+$radius-input: 12px;
+
+// ============================================
+// BASE Y RESET
+// ============================================
+:host {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+// ============================================
+// ION-CONTENT - SCROLL HABILITADO
+// ============================================
+ion-content {
+  --background: #{$color-bg};
+  --padding-top: 20px;
+  --padding-bottom: 40px;
+  --overflow: auto;
+}
+
+// ============================================
+// CONTENEDOR PRINCIPAL
+// ============================================
 .pedido-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 120px); /* ajusta según header */
-  padding: 20px;
-}
-
-.pedido-card {
   width: 100%;
-  max-width: 1100px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(240, 94, 94, 0.12);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-/* ===========================
-   CONTENIDO
-=========================== */
+// ============================================
+// TARJETA PRINCIPAL
+// ============================================
+.pedido-card {
+  background: $color-white;
+  border-radius: $radius-card;
+  box-shadow: $shadow-card;
+  margin: 0;
+  width: 100%;
+  max-width: 500px;
+  overflow: visible;
+  animation: fadeInUp 0.5s ease-out;
+}
+
 ion-card-content {
   padding: 24px;
 }
 
+// ============================================
+// GRID DE CONTENIDO
+// ============================================
 .content-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-/* ===========================
-   IMAGEN DEL PRODUCTO
-=========================== */
+// ============================================
+// SECCIÓN DE IMAGEN
+// ============================================
 .imagen-section {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .producto-imagen {
   width: 100%;
-  height: 350px;
+  height: auto;
+  max-height: 350px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 16px;
+  box-shadow: $shadow-image;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
-/* ===========================
-   FORMULARIO
-=========================== */
+// ============================================
+// SECCIÓN DE FORMULARIO
+// ============================================
 .form-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 }
 
 .producto-titulo {
   font-size: 1.75rem;
-  font-weight: 700;
-  color: #2d2d2d;
-  margin-bottom: 24px;
+  font-weight: 800;
+  color: $color-text-dark;
+  text-align: center;
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .form-label {
+  font-weight: 700;
+  color: $color-text-dark;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// ============================================
+// INPUTS Y SELECTS
+// ============================================
+ion-input {
+  --background: rgba(255, 136, 136, 0.1);
+  --border-radius: #{$radius-input};
+  --padding-start: 16px;
+  --padding-end: 16px;
   font-weight: 600;
-  color: #2d2d2d;
-  margin-bottom: 6px;
-}
-
-.custom-input,
-.custom-select {
-  --background: #f5f5f5;
-  border-radius: 8px;
+  color: $color-text-medium;
   font-size: 1rem;
+  min-height: 48px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    --background: rgba(255, 136, 136, 0.15);
+    border-color: rgba($color-primary, 0.3);
+  }
 }
 
-/* ===========================
-   PRECIO TOTAL
-=========================== */
+.custom-select {
+  --background: rgba(255, 136, 136, 0.1);
+  --border-radius: #{$radius-input};
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --placeholder-color: #{$color-text-light};
+  font-weight: 600;
+  color: $color-text-dark;
+  font-size: 1rem;
+  min-height: 48px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    --background: rgba(255, 136, 136, 0.15);
+    border-color: rgba($color-primary, 0.2);
+  }
+}
+
+// ============================================
+// CONTROL DE CANTIDAD
+// ============================================
+.cantidad-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 0;
+}
+
+.cantidad-stepper ion-button {
+  --background: $color-white;
+  --background-hover: $color-primary;
+  --background-activated: $color-primary-dark;
+  --color: $color-primary;
+  --color-hover: $color-white;
+  --border-width: 2px;
+  --border-color: $color-primary;
+  --border-radius: 10px;
+  --box-shadow: #{$shadow-button};
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.cantidad-valor {
+  font-size: 2rem;
+  font-weight: 900;
+  color: $color-text-dark;
+  min-width: 60px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-primary, 0.05) 100%);
+  padding: 12px 24px;
+  border-radius: $radius-button;
+  letter-spacing: -1px;
+}
+
+// ============================================
+// SECCIÓN DE PRECIO
+// ============================================
 .precio-section {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  padding: 20px 16px;
+  background: linear-gradient(135deg, rgba($color-primary, 0.08) 0%, rgba($color-primary, 0.03) 100%);
+  border-radius: $radius-button;
   margin-top: 8px;
 }
 
 .precio-label {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: $color-text-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .precio-valor {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ion-color-primary);
+  font-size: 2rem;
+  font-weight: 900;
+  color: $color-primary;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 4px rgba($color-primary, 0.2);
 }
 
-/* ===========================
-   BOTONES
-=========================== */
+// ============================================
+// BOTONES DE ACCIÓN
+// ============================================
 .botones-container {
+  margin-top: 24px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
   gap: 12px;
-  margin-top: 16px;
+  padding-bottom: 16px;
 }
 
-ion-button {
-  --border-radius: 8px;
+.botones-container ion-button {
+  --border-radius: #{$radius-button};
+  font-weight: 700;
+  font-size: 1rem;
+  height: 56px;
+  width: 100%;
   text-transform: none;
-  min-width: 120px;
-  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+
+  &[fill="outline"] {
+    --border-width: 2px;
+    --border-color: #{$color-text-medium};
+    --color: #{$color-text-medium};
+    
+    &:hover {
+      --background: rgba(0, 0, 0, 0.05);
+      transform: translateY(-2px);
+    }
+  }
+
+  &[color="primary"] {
+    --background: linear-gradient(135deg, #{$color-primary} 0%, #{$color-primary-dark} 100%);
+    --box-shadow: #{$shadow-button};
+    
+    &:hover {
+      --box-shadow: 0 6px 20px rgba(255, 104, 104, 0.4);
+      transform: translateY(-2px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
 }
 
-/* ===========================
-   RESPONSIVE
-=========================== */
+// ============================================
+// ANIMACIONES
+// ============================================
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================
+// RESPONSIVE - TABLETS Y DESKTOP
+// ============================================
 @media (min-width: 768px) {
+  .pedido-container {
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .pedido-card {
+    max-width: 950px;
+  }
+
+  ion-card-content {
+    padding: 40px;
+  }
+
   .content-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 48px;
+    align-items: start;
   }
 
   .producto-imagen {
-    height: 500px;
+    max-height: 500px;
   }
 
   .producto-titulo {
-    font-size: 2rem;
+    font-size: 2.25rem;
+    text-align: left;
+  }
+
+  .botones-container {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+
+  .botones-container ion-button {
+    width: auto;
+    min-width: 180px;
+  }
+
+  .precio-section {
+    justify-content: flex-end;
+    gap: 20px;
+  }
+}
+
+// ============================================
+// RESPONSIVE - DESKTOP GRANDE
+// ============================================
+@media (min-width: 1024px) {
+  .pedido-card {
+    max-width: 1100px;
+  }
+
+  .producto-imagen {
+    max-height: 600px;
+  }
+
+  .producto-titulo {
+    font-size: 2.5rem;
+  }
+
+  .precio-valor {
+    font-size: 2.25rem;
+  }
+}
+
+// ============================================
+// RESPONSIVE - MÓVILES PEQUEÑOS
+// ============================================
+@media (max-width: 576px) {
+  ion-content {
+    --padding-top: 16px;
+    --padding-bottom: 32px;
+  }
+
+  .pedido-container {
+    padding: 12px;
+  }
+
+  ion-card-content {
+    padding: 20px 16px;
+  }
+
+  .content-grid {
+    gap: 24px;
+  }
+
+  .producto-titulo {
+    font-size: 1.5rem;
+  }
+
+  .cantidad-stepper ion-button {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+
+  .cantidad-valor {
+    font-size: 1.75rem;
+    padding: 10px 20px;
+  }
+
+  .precio-label {
+    font-size: 1rem;
   }
 
   .precio-valor {
     font-size: 1.75rem;
   }
-}
-/* Header fijo arriba */
-ion-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
+
+  .botones-container ion-button {
+    height: 52px;
+    font-size: 0.95rem;
+  }
 }
 
-/* Deja espacio para el header */
-ion-content {
-  --padding-top: 40px; /* ajusta según la altura del header */
-  --padding-bottom: 240px;
-}
+// ============================================
+// RESPONSIVE - EXTRA PEQUEÑOS
+// ============================================
+@media (max-width: 380px) {
+  .producto-titulo {
+    font-size: 1.35rem;
+  }
 
-/* Corrige layout del ion-page sin romper flex */
-.ion-page {
-  display: flex !important;
-  flex-direction: column !important;
-  position: relative !important;
-  height: 100%;
-}
+  .cantidad-stepper {
+    gap: 16px;
+  }
 
-/* =======================================
-   DETALLES
-======================================= */
-ion-card-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-}
+  .cantidad-valor {
+    font-size: 1.5rem;
+    padding: 8px 16px;
+    min-width: 50px;
+  }
 
-ion-button {
-  --border-radius: 10px;
+  .precio-valor {
+    font-size: 1.5rem;
+  }
 }
 
 /* ============================================
-   🔧 FIX PARA HEADERS Y CONTENIDO
+   🛠 FIX PARA HEADERS SOLO EN ESTA PÁGINA
    ============================================ */
 
-/* Header global (app-header) */
+/* Ajustar espacio bajo el header global */
+.page-registrar-pago ion-content {
+  padding-top: 0px !important;
+}
+
+/* Ajustar si hay footer */
+.page-registrar-pago ion-content {
+  padding-bottom: 80px;
+}
+
+/* ======== FONDO GENERAL ======== */
+.fondo-page,
+ion-content {
+  --background: #ffc6c7;
+  position: top !important;
+  display: flex !important;
+  padding-top: 120px !important;
+  min-height: 1000px;
+}
+
+/* ======== CARD PRINCIPAL ======== */
+ion-card {
+  width: 100%;
+  max-width: 420px;
+  margin: 2.5rem auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px #ff9e9e;
+}
+
+ion-card-header {
+  text-align: center;
+  background: #ff6868;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 16px 16px 0 0;
+}
+
+ion-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+ion-card-content {
+  padding: 1.2rem;
+}
+
+/* ======== ITEMS & INPUTS ======== */
+ion-item {
+  --background: #ff888863;
+  --highlight-color-focused: #3c3838;
+  color: #363636;
+
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  padding: 6px 0;
+  border-bottom: none !important;
+}
+
+ion-label {
+  font-weight: 600;
+}
+
+ion-input {
+  color: #000;
+  font-weight: 500;
+}
+
+/* ======== INPUT FILE (Comprobante) ======== */
+input[type="file"] {
+  margin-top: 0.5rem;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 12px;
+  border: 1px solid #ff9e9e;
+  width: 100%;
+}
+
+/* ======== SELECTOR MÉTODO DE PAGO ======== */
+ion-select {
+  font-weight: 600;
+}
+
+ion-select-option {
+  padding: 1rem;
+}
+
+/* ======== IMAGEN QR ======== */
+.qr-img {
+  width: 220px;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px #ff9e9e60;
+  display: block;
+}
+
+/* ======== BOTÓN DE CONFIRMAR ======== */
+ion-button {
+  --background: #ff6868;
+  --background-activated: #e05555;
+  --border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ======== HEADER GLOBAL ======== */
 app-header {
   position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
+
+  background: #ff6868;
+  color: #fff;
 }
 
+/* ======== HEADER LOCAL INTERIOR ======== */
+ion-header {
+  position: fixed !important;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  z-index: 90;
 
-
-/* Contenido debajo de ambos headers */
-ion-content {
-  --background: #fff;
-  position: relative !important;
-  display: block !important;
-  padding-top: 120px !important; /* 60 + 60 aprox */
-  min-height: calc(100vh - 120px);
+  ion-toolbar {
+    --background: #ff6868;
+    --color: #fff;
+  }
 }
 
-.cantidad-stepper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cantidad-valor {
-  min-width: 30px;
-  text-align: center;
-  font-weight: bold;
+/* ======== ESPACIADO FINAL ======== */
+.ion-padding {
+  padding-bottom: 3rem; 
 }
