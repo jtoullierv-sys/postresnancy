@@ -2,7 +2,7 @@
 
 <ion-content class="ion-padding">
 
-  <!-- SEGMENTO SUPERIOR -->
+  <!-- SEGMENTO -->
   <div class="segmento-container">
     <ion-segment [value]="segmento" (ionChange)="cambiarSegmento($event)">
       <ion-segment-button value="activos">Activos</ion-segment-button>
@@ -11,7 +11,7 @@
     </ion-segment>
   </div>
 
-  <!-- 🟢 PEDIDOS ACTIVOS -->
+  <!-- 🟢 ACTIVOS -->
   <ng-container *ngIf="segmento === 'activos'">
     <ion-card *ngFor="let pedido of pedidosActivos" class="pedido-card">
 
@@ -21,32 +21,41 @@
 
       <ion-card-content>
 
-        <!-- Lista de etapas -->
+        <!-- Estados dinámicos 1–6 -->
         <ion-list class="etapas-list" lines="none">
-          <ion-item *ngFor="let etapa of etapas; let paso = index">
-            <ion-badge [color]="obtenerColor(pedido.id_estadopedido, paso + 1)">
-              {{ paso + 1 }}
+          <ion-item *ngFor="let estado of estadosActivos">
+            <ion-badge
+              [color]="obtenerColor(pedido.id_estadopedido, estado.id_estadopedido)">
+              {{ estado.id_estadopedido }}
             </ion-badge>
-            <ion-label>{{ etapa }}</ion-label>
+
+            <ion-label>{{ estado.nombre_estado }}</ion-label>
           </ion-item>
         </ion-list>
 
-        <!-- Información adicional -->
         <p><strong>Total pagado:</strong> S/ {{ pedido.total_pagado }}</p>
         <p><strong>Contacto:</strong> {{ pedido.contacto_pedido }}</p>
         <p><strong>Entrega:</strong> {{ pedido.fecha_entrega }} - {{ pedido.hora_entrega }}</p>
 
-        <!-- Botones -->
         <div class="botones-acciones">
+
+          <!-- VER RECIBO -->
           <ion-button fill="outline" color="primary" (click)="verRecibo(pedido.id_pedido)">
             <ion-icon slot="start" name="receipt-outline"></ion-icon>
             Ver Recibo
           </ion-button>
 
-          <ion-button fill="outline" color="danger" (click)="cancelarPedido(pedido.id_pedido)">
+          <!-- 🚨 CANCELAR SOLO SI ESTADO ES 2,3,4 -->
+          <ion-button
+            *ngIf="debeMostrarCancelar(pedido)"
+            fill="outline"
+            color="danger"
+            (click)="cancelarPedido(pedido)"
+          >
             <ion-icon slot="start" name="trash"></ion-icon>
             Cancelar
           </ion-button>
+
         </div>
 
       </ion-card-content>
@@ -54,23 +63,33 @@
     </ion-card>
   </ng-container>
 
-  <!-- 🔴 PEDIDOS CANCELADOS -->
+  <!-- 🔴 CANCELADOS -->
   <ng-container *ngIf="segmento === 'cancelados'">
     <ion-card *ngFor="let pedido of pedidosCancelados" class="pedido-card">
+
       <ion-card-header>
         <ion-card-title>Pedido Cancelado #{{ pedido.id_pedido }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
-        <p class="cancelado-texto">Este pedido fue cancelado.</p>
 
+        <ion-list class="etapas-list" lines="none">
+          <ion-item *ngIf="getEstadoCancelado(pedido) as c">
+            <ion-badge color="danger">{{ c.id_estadopedido }}</ion-badge>
+            <ion-label>{{ c.nombre_estado }}</ion-label>
+          </ion-item>
+        </ion-list>
+
+        <p class="cancelado-texto">Este pedido fue cancelado.</p>
         <p><strong>Total:</strong> S/ {{ pedido.total_pagado }}</p>
         <p><strong>Contacto:</strong> {{ pedido.contacto_pedido }}</p>
+
       </ion-card-content>
+
     </ion-card>
   </ng-container>
 
-  <!-- 🟢 PEDIDOS FINALIZADOS -->
+  <!-- 🟣 FINALIZADOS -->
   <ng-container *ngIf="segmento === 'finalizados'">
     <ion-card *ngFor="let pedido of pedidosFinalizados" class="pedido-card">
 
@@ -80,17 +99,23 @@
 
       <ion-card-content class="ion-text-center finalizado-boton">
 
+        <ion-list class="etapas-list" lines="none">
+          <ion-item *ngFor="let estado of estadosActivos">
+            <ion-badge color="success">{{ estado.id_estadopedido }}</ion-badge>
+            <ion-label>{{ estado.nombre_estado }}</ion-label>
+          </ion-item>
+        </ion-list>
+
         <p><strong>Entrega:</strong> {{ pedido.fecha_entrega }} - {{ pedido.hora_entrega }}</p>
 
         <ion-button fill="outline" color="success" (click)="reclamarPedido(pedido.id_pedido)">
           <ion-icon slot="start" name="alert-circle-outline"></ion-icon>
           Reclamar
         </ion-button>
+
       </ion-card-content>
 
     </ion-card>
   </ng-container>
 
 </ion-content>
-<app-footer></app-footer>
-

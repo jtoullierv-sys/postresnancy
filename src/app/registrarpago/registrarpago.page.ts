@@ -108,11 +108,13 @@ export class RegistrarpagoPage {
       // -----------------------------
       // 1️⃣ CREAR FORMDATA CON TODO
       // -----------------------------
+      const nombre_img = id_pedido+"-"+this.idCliente+".jpeg";
+      
       const formData = new FormData();
       formData.append('id_pedido', id_pedido);
       formData.append('medio_pago', this.medioSeleccionado);
       formData.append('fecha_pago', new Date().toISOString());
-      formData.append('imagen', this.archivoComprobante!);
+      formData.append('imagen', this.archivoComprobante!, nombre_img);
 
       // -----------------------------
       // 2️⃣ ENVIAR TODO EN UNA SOLA PETICIÓN
@@ -122,7 +124,7 @@ export class RegistrarpagoPage {
         next: (resp) => {
           console.log("✔ Pago + imagen registrado:", resp);
           alert("Pago registrado correctamente");
-          this.router.navigate(['/catalogo']);
+          this.router.navigate(['/vercatalogo']);
         },
         error: (err) => {
           console.error("❌ Error registrando pago con comprobante:", err);

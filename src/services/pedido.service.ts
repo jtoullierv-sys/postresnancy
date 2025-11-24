@@ -10,6 +10,7 @@ export class PedidoService {
   private INSERTAR_ENDPOINT = 'detalles/compra/';
   private OBTENER_ENDPOINT = 'pedidos/cliente/';
   private CANCELAR_ENDOPOINT = 'pedidos/actualizar-estado/';
+  private OBTENER_ESTADOS_PEDIDO_ENDPOINT = 'estados/listar';
 
   constructor(private http: HttpClient) {}
 
@@ -42,8 +43,15 @@ obtenerPedidos(id_cliente: number){
   return this.http.get<PedidoAPI[]>(`${this.API_BASE_URL}${this.OBTENER_ENDPOINT+id_cliente}`);
 }
 
-cancelarPedido(id_pedido: number){
-  return this.http.get<PedidoAPI[]>(`${this.API_BASE_URL}${this.CANCELAR_ENDOPOINT+id_pedido}`);
+cancelarPedido(id_pedido: number, body: any){
+  return this.http.put<any>(
+    `${this.API_BASE_URL}${this.CANCELAR_ENDOPOINT}${id_pedido}`,
+    body
+  );
+}
+
+obtenerEstados(){
+  return this.http.get<PedidoAPI[]>(`${this.API_BASE_URL}${this.OBTENER_ESTADOS_PEDIDO_ENDPOINT}`);
 }
 
 }
