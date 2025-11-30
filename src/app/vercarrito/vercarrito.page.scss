@@ -23,6 +23,10 @@
   padding-bottom: 20px;
 }
 
+ion-content {
+  --padding-top: 144px !important;
+}
+
 /* Título */
 .pago-title {
   text-align: center;
