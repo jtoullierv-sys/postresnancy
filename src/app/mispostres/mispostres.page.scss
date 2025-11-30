@@ -74,6 +74,10 @@ ion-content {
   margin: 0;
 }
 
+ion-content {
+  --padding-top: 144px !important;
+}
+
 // Mobile View (Cards)
 .mobile-view {
   padding: 16px;
