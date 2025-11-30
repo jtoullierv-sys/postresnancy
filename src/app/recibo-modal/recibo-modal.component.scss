@@ -1,0 +1,39 @@
+.modal-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  color: #000; // 🔥 Todo el texto dentro del modal será negro
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000; // 🔥 Negro
+}
+
+.tabla {
+  width: 100%;
+  margin-top: 10px;
+  color: #000; // 🔥 Negro
+}
+
+.tabla th,
+.tabla td {
+  padding: 6px;
+  font-size: 14px;
+  color: #000; // 🔥 Negro
+}
+
+.total {
+  margin-top: 15px;
+  font-size: 18px;
+  text-align: right;
+  color: #000; // 🔥 Negro
+}
+
+.gracias {
+  text-align: center;
+  margin: 15px 0;
+  color: #000 !important; // 🔥 Antes estaba gris
+}

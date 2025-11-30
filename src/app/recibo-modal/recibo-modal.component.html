@@ -1,0 +1,41 @@
+<ion-content class="ion-padding">
+
+  <div class="modal-container">
+
+    <h2>BOLETA DE PAGO</h2>
+
+    <p><strong>Fecha de Pago:</strong> {{ pago?.fecha_pago }}</p>
+    <p><strong>Medio de Pago:</strong> {{ pago?.medio_pago }}</p>
+
+    <p><strong>Fecha de Entrega:</strong> {{ pedido?.fecha_entrega }}</p>
+    <p><strong>Hora de Entrega:</strong> {{ pedido?.hora_entrega }}</p>
+
+    <hr />
+
+    <table class="tabla">
+      <tr>
+        <th>Producto</th>
+        <th>Cant.</th>
+        <th>Subtotal</th>
+      </tr>
+
+      <tr>
+        <td>ALFAJORES X12</td>
+        <td>1</td>
+        <td>22.00</td>
+      </tr>
+    </table>
+
+    <div class="total">
+      <strong>Total a Pagar:</strong> S/. {{ pedido?.total_pagado }}
+    </div>
+
+    <p class="gracias">¡Gracias por tu compra!</p>
+
+    <ion-button expand="block" fill="outline" (click)="cerrar()">
+      Cerrar
+    </ion-button>
+
+  </div>
+
+</ion-content>

@@ -1,20 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
-  IonList,
-  IonLabel,
-  IonItem,
-  IonBadge,
-  IonButton,
-  IonIcon,
-  IonSegment,
-  IonSegmentButton,
-} from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+import { IonicModule, ModalController } from '@ionic/angular'; // <-- IonicModule aquí
+
 import { addIcons } from 'ionicons';
 import { trash, receiptOutline, alertCircleOutline } from 'ionicons/icons';
 
@@ -24,27 +11,19 @@ import { FooterComponent } from '../footer/footer.component';
 import { Pedido, mapPedido } from 'src/models/pedido.model';
 import { PedidoService } from 'src/services/pedido.service';
 import { StorageService } from 'src/services/storage';
+import { ReciboModalComponent } from '../recibo-modal/recibo-modal.component';
+import { PagoService } from 'src/services/pago.service';
+import { mapPago } from 'src/models/pago.model';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-verestadopedido',
+  standalone: true,
   templateUrl: './verestadopedido.page.html',
   styleUrls: ['./verestadopedido.page.scss'],
-  standalone: true,
   imports: [
-    IonContent,
-    IonCard,
-    IonLabel,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
-    IonList,
-    IonItem,
-    IonBadge,
-    IonButton,
-    IonIcon,
-    IonSegment,
-    IonSegmentButton,
     CommonModule,
+    IonicModule,     // <-- importante: provee ModalController y todos los ion-*
     HeaderComponent,
     FooterComponent
   ],
@@ -61,7 +40,9 @@ export class VerestadopedidoPage implements OnInit {
 
   constructor(
     private pedidoService: PedidoService,
-    private storage: StorageService
+    private storage: StorageService,
+    private modalCtrl: ModalController,
+    private pagoService: PagoService
   ) {
     addIcons({ trash, receiptOutline, alertCircleOutline });
   }
@@ -166,8 +147,47 @@ export class VerestadopedidoPage implements OnInit {
     await alert.present();
   }
 
-  verRecibo(id: number) {
-    alert(`Mostrando recibo del pedido ${id}`);
+  async verRecibo(id_pedido: number) {
+
+    // 1. Buscar el pedido desde la lista
+    const pedido = this.pedidosActivos.find(p => p.id_pedido === id_pedido);
+
+    if (!pedido) {
+      console.error("❌ No se encontró el pedido");
+      return;
+    }
+
+    // 2. Obtener el pago real desde el backend
+    let pago = null;
+
+    try {
+      const pagoAPI = await firstValueFrom(this.pagoService.obtenerPagoPorPedido(id_pedido));
+
+      if (pagoAPI) {
+        pago = mapPago(pagoAPI);
+      } else {
+        pago = null; // no hay pago registrado
+      }
+
+    } catch (err) {
+      console.warn("⚠️ Este pedido no tiene pago registrado todavía.", err);
+      pago = null;
+    }
+
+
+    // 3. Abrir el modal con Pedido + Pago
+    const modal = await this.modalCtrl.create({
+      component: ReciboModalComponent,
+      componentProps: {
+        pedido: pedido,
+        pago: pago  // puede ser null si aún no pagó
+      },
+      breakpoints: [0, 0.9],
+      initialBreakpoint: 0.9,
+      cssClass: 'boleta-modal'
+    });
+
+    await modal.present();
   }
 
   reclamarPedido(id: number) {

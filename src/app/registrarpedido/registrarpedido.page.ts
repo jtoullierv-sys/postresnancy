@@ -18,6 +18,7 @@ import { Extra, mapExtra } from 'src/models/extra.model';
 import { CarritoService } from 'src/services/carrito.service';
 import { AlertController } from '@ionic/angular';
 import { StorageService } from '../../services/storage';
+import { FooterComponent } from '../footer/footer.component';
 
 interface Postre {
   id: number;
@@ -43,7 +44,8 @@ interface Postre {
     IonButton,
     IonSelect, 
     IonSelectOption,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class RegistrarpedidoPage implements OnInit {
