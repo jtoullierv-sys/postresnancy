@@ -207,13 +207,33 @@ export class MispostresPage implements OnInit {
 
     modal.onDidDismiss().then((result) => {
       if (result.role === 'confirm') {
-        this.presentToast('Producto actualizado', 'success');
-        this.loadProducts();
+
+        const form = result.data;
+
+        // 🔥 OBJETO EXACTO QUE PIDE EL BACKEND
+        const updatedPostre = {
+          descripcion_postre: form.descripcion.toUpperCase(),
+          imagen_postre: form.imagen,
+          categoria: form.categoria,
+          precio_postre: form.precio
+        };
+
+        this.postreService.actualizarPostre(product.id, updatedPostre).subscribe({
+          next: () => {
+            this.presentToast('Postre actualizado correctamente', 'success');
+            this.loadProducts();
+          },
+          error: () => {
+            this.presentToast('Error al actualizar postre', 'danger');
+          }
+        });
+
       }
     });
 
     await modal.present();
   }
+
 
   toggleEnTienda(product: Product, event: any) {
     const nuevoValor = event.detail.checked; 

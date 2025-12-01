@@ -36,14 +36,25 @@ export class ModalPostreComponent implements OnInit {
 
   ngOnInit() {
     this.formTitle = this.modo === 'agregar' ? 'Agregar Nuevo Producto' : 'Editar Producto';
-    
-    // Inicializar Formulario Reactivo
+
+    // 🔥 CATEGORÍAS ÚNICAS PARA AMBOS MODOS
+    this.categorias = ['KEKE O TORTA', 'BOCADITO'];
+
     this.productForm = this.fb.group({
       id: [this.postre ? this.postre.id : null],
-      descripcion: [this.postre ? this.postre.descripcion : '', [Validators.required, Validators.minLength(3)]],
-      categoria: [this.postre ? this.postre.categoria : this.categorias[0], Validators.required],
-      precio: [this.postre ? this.postre.precio : '', [Validators.required, Validators.min(0.01)]],
-      imagen: [this.postre ? this.postre.imagen : ''] // Solo URL de imagen por ahora
+      descripcion: [
+        this.postre ? this.postre.descripcion : '',
+        [Validators.required, Validators.minLength(3)]
+      ],
+      categoria: [
+        this.postre ? this.postre.categoria : this.categorias[0],
+        Validators.required
+      ],
+      precio: [
+        this.postre ? this.postre.precio : '',
+        [Validators.required, Validators.min(0.01)]
+      ],
+      imagen: [this.postre ? this.postre.imagen : '']
     });
   }
 

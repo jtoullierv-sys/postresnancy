@@ -12,6 +12,7 @@ export class PostreService {
   private POSTREST_ENDPOINT = 'postres/listar?estado=1';
   private CAMBIARESTADO_ENDPOINT = 'postres/cambiar-estado/';
   private AGREGAR_POSTRE = 'postres/insertar';
+  private ACTUALIZAR_POSTRE_ENDPOINT = 'postres/actualizar/';
 
   constructor(private http: HttpClient) {}
 
@@ -35,6 +36,10 @@ export class PostreService {
       `${this.API_BASE_URL}${this.AGREGAR_POSTRE}`,
       body
     );
+  }
+
+  actualizarPostre(id: number, body: any) {
+    return this.http.put(`${this.API_BASE_URL}${this.ACTUALIZAR_POSTRE_ENDPOINT+id}`, body);
   }
 
 }
