@@ -165,7 +165,7 @@ export class MispostresPage implements OnInit {
 
         // 🔥 DATA EXACTA QUE PIDE EL BACKEND
         const newPostre = {
-          descripcion_postre: form.descripcion,
+          descripcion_postre: form.descripcion.toUpperCase(),
           imagen_postre: form.imagen,
           categoria: form.categoria,
           precio_postre: form.precio,
