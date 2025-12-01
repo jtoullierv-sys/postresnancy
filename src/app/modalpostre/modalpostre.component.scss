@@ -1,0 +1,104 @@
+/* =========================================================
+   ESTILOS GENERALES Y LAYOUT DEL MODAL
+   ========================================================= */
+
+// Estilo para el modal completo (usando la clase cssClass en el TS)
+ion-modal.modal-postre {
+    // Si quieres que el modal ocupe menos espacio en desktop
+    @media (min-width: 769px) {
+        --width: 600px;
+        --height: fit-content;
+        --max-height: 90vh;
+        --border-radius: 12px;
+        --box-shadow: 0 10px 30px rgba(255, 104, 104, 0.4); /* Sombra roja sutil */
+    }
+    
+    // Si quieres un modal de pantalla completa en móvil (opcional)
+    @media (max-width: 768px) {
+        --height: 100%;
+        --border-radius: 0;
+    }
+}
+
+ion-header {
+    ion-toolbar {
+        // Usar el color del encabezado de tu app (rojo de Postres Nancy Online)
+        --background: #ff6868; 
+        --color: #ffffff; 
+        border-bottom: 2px solid #e05555;
+    }
+}
+
+ion-content {
+    // Fondo de color claro para que destaque
+    --background: #fdf5f5; 
+    
+    .ion-padding {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   ESTILOS DEL FORMULARIO
+   ========================================================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; // Espacio entre los elementos del formulario
+}
+
+ion-item {
+    --background: #ffffff;
+    --border-radius: 10px;
+    --border-color: #ffc6c7; // Color de borde claro
+    --border-width: 1px;
+    
+    box-shadow: 0 2px 4px rgba(255, 104, 104, 0.1);
+    
+    // Estilo cuando el input está enfocado
+    &.item-has-focus {
+        --border-color: #ff6868;
+        box-shadow: 0 0 0 2px rgba(255, 104, 104, 0.3);
+    }
+    
+    ion-label {
+        color: #764ba2; // Color morado para el label (similar al degradado del fondo general)
+        font-weight: 600;
+    }
+    
+    ion-input, ion-select {
+        --padding-top: 10px;
+        --padding-bottom: 10px;
+        color: #1f2937; // Texto oscuro
+    }
+}
+
+/* =========================================================
+   BOTONES Y MENSAJES DE ERROR
+   ========================================================= */
+
+// Botón de Guardar/Actualizar
+ion-button[type="submit"] {
+    --background: #ff6868; // Rojo principal
+    --background-activated: #e05555;
+    --border-radius: 8px;
+    font-weight: 700;
+    margin-top: 20px;
+    height: 48px;
+}
+
+// Botón de Cerrar (en el header)
+ion-buttons ion-button {
+    --color: #ffffff;
+}
+
+// Mensaje de error de validación
+.error-message {
+    color: #ff6868;
+    font-size: 12px;
+    padding-left: 16px;
+    margin-top: -10px;
+    margin-bottom: 5px;
+}

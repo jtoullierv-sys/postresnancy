@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ formTitle }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelar()">
+        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <form [formGroup]="productForm" (ngSubmit)="guardar()">
+    
+    <ion-item>
+      <ion-label position="floating">Descripción del Producto</ion-label>
+      <ion-input type="text" formControlName="descripcion"></ion-input>
+    </ion-item>
+    <div *ngIf="productForm.get('descripcion')?.invalid && (productForm.get('descripcion')?.dirty || productForm.get('descripcion')?.touched)">
+      <p class="error-message">La descripción es obligatoria (mínimo 3 caracteres).</p>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-select formControlName="categoria" placeholder="Selecciona la categoría">
+        <ion-select-option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio (S/)</ion-label>
+      <ion-input type="number" formControlName="precio" min="0.01"></ion-input>
+    </ion-item>
+    <div *ngIf="productForm.get('precio')?.invalid && (productForm.get('precio')?.dirty || productForm.get('precio')?.touched)">
+      <p class="error-message">El precio es obligatorio y debe ser mayor a 0.</p>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">URL de Imagen</ion-label>
+      <ion-input type="text" formControlName="imagen"></ion-input>
+    </ion-item>
+    
+    <br>
+    
+    <ion-button 
+      expand="block" 
+      type="submit" 
+      [disabled]="productForm.invalid"
+      class="ion-margin-top"
+      color="success">
+      <ion-icon slot="start" name="save-outline"></ion-icon>
+      {{ modo === 'agregar' ? 'Guardar Producto' : 'Actualizar Producto' }}
+    </ion-button>
+    
+  </form>
+
+</ion-content>

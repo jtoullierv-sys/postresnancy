@@ -75,5 +75,9 @@ export const routes: Routes = [
     path: 'mispostres',
     loadComponent: () => import('./mispostres/mispostres.page').then( m => m.MispostresPage)
   },
+  {
+    path: 'listapedidos',
+    loadComponent: () => import('./listapedidos/listapedidos.page').then( m => m.ListapedidosPage)
+  },
 
 ];
