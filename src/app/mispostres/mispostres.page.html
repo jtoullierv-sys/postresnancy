@@ -3,51 +3,58 @@
 <ion-content [fullscreen]="true">
   <div class="container">
     <div class="content-wrapper">
+
       <!-- Header Section -->
       <div class="header-section">
         <h1 class="page-title">Gestión de Productos</h1>
-        
-        <!-- Tabs -->
+
         <div class="tabs-container">
           <ion-segment [(ngModel)]="activeTab" mode="md">
             <ion-segment-button value="postres">
               <ion-label>Postres</ion-label>
             </ion-segment-button>
+
             <ion-segment-button value="extras">
               <ion-label>Extras</ion-label>
             </ion-segment-button>
           </ion-segment>
         </div>
 
-        <!-- Add Button -->
         <ion-button expand="block" class="add-button" (click)="addProduct()">
           <ion-icon slot="start" name="add-circle-outline"></ion-icon>
           Agregar Postre
         </ion-button>
       </div>
 
-      <!-- Mobile View (Cards) -->
+      <!-- ====================================================== -->
+      <!-- MOBILE VIEW -->
+      <!-- ====================================================== -->
       <div class="mobile-view" *ngIf="isMobile">
+
         <ion-card *ngFor="let product of filteredProducts" class="product-card">
           <ion-card-content>
+
             <div class="card-header">
-              <div class="product-image">
+
+              <!-- Imagen solo para POSTRES -->
+              <div class="product-image" *ngIf="product.tipo === 'postre'">
                 <img [src]="product.image" [alt]="product.descripcion" />
               </div>
+
               <div class="product-info">
                 <h2 class="product-name">{{ product.descripcion }}</h2>
                 <p class="product-category">{{ product.categoria }}</p>
                 <p class="product-price">S/ {{ product.precio.toFixed(2) }}</p>
               </div>
+
             </div>
 
             <div class="card-details">
               <div class="detail-row">
                 <span class="detail-label">En tienda:</span>
-                <ion-toggle 
-                  [(ngModel)]="product.enTienda" 
-                  (ionChange)="toggleEnTienda(product)"
-                  color="primary">
+                <ion-toggle
+                  [checked]="product.enTienda"
+                  (ionChange)="toggleEnTienda(product, $event)">
                 </ion-toggle>
               </div>
             </div>
@@ -59,17 +66,23 @@
               <ion-icon slot="start" name="create-outline"></ion-icon>
               Editar
             </ion-button>
+
           </ion-card-content>
         </ion-card>
+
       </div>
 
-      <!-- Desktop/Tablet View (Table) -->
+      <!-- ====================================================== -->
+      <!-- DESKTOP VIEW -->
+      <!-- ====================================================== -->
       <div class="desktop-view" *ngIf="!isMobile">
+
         <div class="table-container">
           <table class="products-table">
+
             <thead>
               <tr>
-                <th>Imagen</th>
+                <th *ngIf="activeTab === 'postres'">Imagen</th>
                 <th>Descripción</th>
                 <th>Categoría</th>
                 <th>Precio (S/)</th>
@@ -77,41 +90,49 @@
                 <th class="text-center">Acciones</th>
               </tr>
             </thead>
+
             <tbody>
+
               <tr *ngFor="let product of filteredProducts" class="table-row">
-                <td>
+
+                <!-- Imagen solo para POSTRES -->
+                <td *ngIf="product.tipo === 'postre'">
                   <div class="table-image">
                     <img [src]="product.image" [alt]="product.descripcion" />
                   </div>
                 </td>
+
                 <td class="product-name-cell">{{ product.descripcion }}</td>
                 <td class="category-cell">{{ product.categoria }}</td>
                 <td class="price-cell">{{ product.precio.toFixed(2) }}</td>
+
                 <td class="text-center">
-                  <ion-toggle 
-                    [(ngModel)]="product.enTienda" 
-                    (ionChange)="toggleEnTienda(product)"
+                  <ion-toggle
+                    [(ngModel)]="product.enTienda"
+                    (ionChange)="toggleEnTienda(product, $event)"
                     color="primary">
                   </ion-toggle>
                 </td>
+
                 <td class="text-center">
-                  <ion-button 
-                    class="edit-button" 
-                    (click)="editProduct(product)">
+                  <ion-button class="edit-button" (click)="editProduct(product)">
                     Editar
                   </ion-button>
                 </td>
+
               </tr>
+
             </tbody>
           </table>
         </div>
+
       </div>
 
-      <!-- Empty State -->
       <div class="empty-state" *ngIf="filteredProducts.length === 0">
         <ion-icon name="basket-outline"></ion-icon>
         <p>No hay productos disponibles</p>
       </div>
+
     </div>
   </div>
 </ion-content>

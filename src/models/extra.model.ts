@@ -1,17 +1,15 @@
-// src/app/models/postre.model.ts
+// src/app/models/extra.model.ts
 
-// Lo que llega desde la API o JSON temporal
 export interface ExtraAPI {
   id_extra: number;
   nombre_extra: string;
   tipo_extra: string;
-  peso_extra: number;
+  peso_extra: string;
   precio_extra: number;
-  estado_Extra: { type: string; data: number[] };
+  estado_extra: boolean;
 }
 
-
-// Lo que usaremos dentro de la app
+// App model
 export interface Extra {
   id: number;
   nombre: string;
@@ -21,14 +19,14 @@ export interface Extra {
   estado: boolean;
 }
 
-// 🧩 Función para convertir API → App
+// MAPP PERMITIDO POR TU JSON REAL
 export function mapExtra(apiData: ExtraAPI): Extra {
   return {
     id: apiData.id_extra,
     nombre: apiData.nombre_extra,
     tipo: apiData.tipo_extra,
-    peso: apiData.peso_extra,
+    peso: Number(apiData.peso_extra),
     precio: apiData.precio_extra,
-    estado: apiData.estado_Extra?.data?.[0] === 1
+    estado: apiData.estado_extra
   };
 }

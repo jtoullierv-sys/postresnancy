@@ -9,10 +9,32 @@ import { PostreAPI } from '../models/postre.model';
 export class PostreService {
   private API_BASE_URL = 'https://api-postresnancy.onrender.com/';
   private POSTRES_ENDPOINT = 'postres/listar';
+  private POSTREST_ENDPOINT = 'postres/listar?estado=1';
+  private CAMBIARESTADO_ENDPOINT = 'postres/cambiar-estado/';
+  private AGREGAR_POSTRE = 'postres/insertar';
 
   constructor(private http: HttpClient) {}
 
   obtenerPostres(): Observable<PostreAPI[]> {
     return this.http.get<PostreAPI[]>(`${this.API_BASE_URL}${this.POSTRES_ENDPOINT}`);
   }
+
+  obtenerTodoslosPostres(): Observable<PostreAPI[]> {
+    return this.http.get<PostreAPI[]>(`${this.API_BASE_URL}${this.POSTREST_ENDPOINT}`);
+  }
+
+  cambiarEstadoPostre(id_postre: number, nuevoEstado: number): Observable<any> {
+  return this.http.put(
+    `${this.API_BASE_URL}${this.CAMBIARESTADO_ENDPOINT}${id_postre}`,
+    { estado_postre: nuevoEstado }
+  );
+ }
+ 
+  agregarPostre(body: any): Observable<any> {
+    return this.http.post(
+      `${this.API_BASE_URL}${this.AGREGAR_POSTRE}`,
+      body
+    );
+  }
+
 }

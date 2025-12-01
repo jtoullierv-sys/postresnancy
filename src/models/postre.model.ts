@@ -35,7 +35,7 @@ export function mapPostre(apiData: PostreAPI): Postre {
     precio: parseFloat(apiData.precio_postre),
     imagen,
     categoria: apiData.categoria,
-    activo: apiData.estado_postre === 1,
+    activo: Boolean(apiData.estado_postre),
     personalizable: apiData.personalizacion?.data?.[0] === 1
   };
 }
